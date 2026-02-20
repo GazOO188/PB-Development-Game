@@ -44,7 +44,28 @@ public class LanguageConversion : MonoBehaviour
 
         Spanish.Add("Building Energy Performance: The Game", "Rendimiento Energético del Edificio: El Juego");
 
+
+        //THIS IS FOR THE START && QUIT BUTTON//
+
+
+        English.Add("Start", "Start");
+
+        Spanish.Add("Start", "Iniciar");
+
+
+        English.Add("Quit", "Quit");
+
+        Spanish.Add("Quit", "Salir");
+
+
+        //THIS IS FOR THE INSTRUCTIONS//
+
+        English.Add("Instructions go here :)", "Instructions go here :)");
+
+        Spanish.Add("Instructions go here :)", "Las instrucciones van aquí");
+
         
+
         
         
         Instance = this;
