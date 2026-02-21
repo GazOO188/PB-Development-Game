@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
+using TMPro;
 
 public class WorkPhaseTimer : MonoBehaviour
 {
@@ -8,11 +8,17 @@ public class WorkPhaseTimer : MonoBehaviour
 
     public float TimerforWorkPhase = 180f; // 3 MINUTES//
 
-    public Text TimerText;
+    public TextMeshProUGUI TimerText;
 
     public bool CanRunTimer = true;
 
     
+    void Awake()
+    {
+        
+      
+   
+    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

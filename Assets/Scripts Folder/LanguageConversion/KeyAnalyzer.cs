@@ -15,13 +15,23 @@ public class KeyAnalyzer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        if (TextComponent == null)
+        {
+            Debug.LogError("TextComponent not assigned!");
+            return;
+        }
+
         TextComponent = GetComponent<TextMeshProUGUI>();
+
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        WordConversion();
+       WordConversion();  
+
         
     }
 

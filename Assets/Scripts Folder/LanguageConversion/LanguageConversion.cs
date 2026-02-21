@@ -64,11 +64,37 @@ public class LanguageConversion : MonoBehaviour
 
         Spanish.Add("Instructions go here :)", "Las instrucciones van aquí");
 
+
+
+        //THIS IS FOR THE BOSS DIALOGUE//
+
+        English.Add("Hmm... there could be a electrical problem wrong here... ", "Hmm... there could be a electrical problem wrong here... ");
+
+
+        Spanish.Add("Hmm... there could be a electrical problem wrong here... ", "Hmm... podría haber algún problema eléctrico aquí.");
+
+
+        //THIS IS FOR THE SPEAKER TAB//
+
+        English.Add("Boss", "Boss");
+
+        Spanish.Add("Boss", "Jefe");
+
+
+
+        //THIS IS FOR INTERACTION BUTTONS//
+
+        English.Add("Press E to Talk", "Press E to Talk");
+
+        Spanish.Add("Press E to Talk", "Presiona E para hablar");
         
 
         
         
         Instance = this;
+       
+
+        
 
 
     

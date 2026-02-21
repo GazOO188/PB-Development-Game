@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
         Crouch,
     }
     [SerializeField] PlayerCamera playerCamera;
+    [SerializeField] CollisionInteractions CI;
+    
     [Space]
     [Header("Movement")]
     public Stance _state;
@@ -29,6 +31,13 @@ public class PlayerController : MonoBehaviour
     [Header("Reticle")]
     [SerializeField] Image ret;
     Vector3 centerScreen = new Vector3(0.5f, 0.5f, 0f);
+
+    [Header("Bool")]
+
+    [SerializeField] public bool CanSeeBoss = false;
+        
+    
+
 
     void Awake()
     {
@@ -52,6 +61,34 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             // Code here for interacting with object that player is looking at
+
+            if (hit.collider.CompareTag("Boss"))
+            {
+
+                Debug.Log("Found Boss");
+
+                CanSeeBoss = true;
+
+                CI.InteractText.enabled = true;
+
+
+
+            }
+
+
+
+        }
+
+        
+         else
+        {
+
+                
+                
+                CI.InteractText.enabled = false;
+
+                CanSeeBoss = false;
+
         }
 
         // Change height when transitioning from crouch to stand and vise versa 

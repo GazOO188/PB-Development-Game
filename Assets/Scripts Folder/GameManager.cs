@@ -9,7 +9,16 @@ public class GameManager : MonoBehaviour
    
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // <-- persist across scenes
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject); // <-- remove duplicate
+        }
+     
     }
 
     void Update()
