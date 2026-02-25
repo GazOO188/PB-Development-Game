@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     [Header("Reticle")]
     [SerializeField] Image ret;
     Vector3 centerScreen = new Vector3(0.5f, 0.5f, 0f);
-    [SerializeField] float raycastDist = 3.0f;
+    [SerializeField] float raycastDist = 3.1f;
 
     [Header("Bool")]
 
