@@ -12,9 +12,10 @@ public class PlayerController : MonoBehaviour
     }
     [SerializeField] PlayerCamera playerCamera;
     [SerializeField] CollisionInteractions CI;
-    
+
     [Space]
     [Header("Movement")]
+    public bool playerControl = true;
     public Stance _state;
     [SerializeField] float moveSpeed;
     [SerializeField] float gravity = -90f;
@@ -31,12 +32,13 @@ public class PlayerController : MonoBehaviour
     [Header("Reticle")]
     [SerializeField] Image ret;
     Vector3 centerScreen = new Vector3(0.5f, 0.5f, 0f);
+    float raycastDist = 3.0f;
 
     [Header("Bool")]
 
     [SerializeField] public bool CanSeeBoss = false;
-        
-    
+
+
 
 
     void Awake()
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(centerScreen);
         RaycastHit hit = new RaycastHit();
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, raycastDist))
         {
             // Code here for interacting with object that player is looking at
 
@@ -66,29 +68,14 @@ public class PlayerController : MonoBehaviour
             {
 
                 Debug.Log("Found Boss");
-
                 CanSeeBoss = true;
-
                 CI.InteractText.enabled = true;
-
-
-
             }
-
-
-
         }
-
-        
-         else
+        else
         {
-
-                
-                
-                CI.InteractText.enabled = false;
-
-                CanSeeBoss = false;
-
+            CI.InteractText.enabled = false;
+            CanSeeBoss = false;
         }
 
         // Change height when transitioning from crouch to stand and vise versa 
