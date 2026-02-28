@@ -281,8 +281,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 557165004}
+  m_Children: []
   m_Father: {fileID: 1352681786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -562,11 +561,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 252758417}
+  m_Father: {fileID: 1352681786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 60.193268}
+  m_AnchoredPosition: {x: -150, y: -353}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &557165005
@@ -931,6 +930,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   playerCamera: {fileID: 1661498700}
   CI: {fileID: 86658419}
+  playerControl: 1
   _state: 0
   moveSpeed: 6
   gravity: -9.81
@@ -940,6 +940,10 @@ MonoBehaviour:
     m_Bits: 1024
   grounded: 1
   ret: {fileID: 649195350}
+  raycastDist: 7.8
+  CanSeeBoss: 0
+  CanCast: 1
+  IH: {fileID: 1565778096}
 --- !u!143 &836840582
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1336,6 +1340,7 @@ RectTransform:
   m_Children:
   - {fileID: 649195349}
   - {fileID: 1903019329}
+  - {fileID: 557165004}
   - {fileID: 252758417}
   - {fileID: 677299905}
   - {fileID: 315884467}
@@ -4014,6 +4019,42 @@ MonoBehaviour:
   CI: {fileID: 86658419}
   playerCamera: {fileID: 1661498700}
   Dialogue: {fileID: 11400000, guid: 3df600ba208c84fac9ae68f807d0179e, type: 2}
+  _move:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 655320cb-021f-4f38-ac66-ec0e243f0611
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _look:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 31237733-ac9e-43f3-afcc-690ae473c15a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _crouch:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 075f8608-efcc-418a-9881-c2ade6c0550d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _interact:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a286965e-5f91-4aec-abd9-f8f45c4dca60
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!4 &1565778097
 Transform:
   m_ObjectHideFlags: 0

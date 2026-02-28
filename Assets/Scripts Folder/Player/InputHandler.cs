@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class InputHandler : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class InputHandler : MonoBehaviour
     public DialogueData Dialogue;
 
     
-    InputAction _move, _look, _crouch, _interact;
+    public InputAction _move, _look, _crouch, _interact;
 
     void Awake()
     {
@@ -43,6 +44,7 @@ public class InputHandler : MonoBehaviour
         if (_interact.WasPressedThisFrame() && player.CanSeeBoss)
         {
 
+           
 
             CI.DialogueText.enabled = true;
 
@@ -50,13 +52,36 @@ public class InputHandler : MonoBehaviour
 
             CI.WhoIsSpeakingTab.SetActive(true);
 
-            CI.InteractText.enabled = false;
-
+          
             StartCoroutine(CI.ShowDialgoueText(LanguageConversion.Instance.WordConverter(Dialogue.lines[0])));
 
-           
+            StartCoroutine(TemporarilyDisableRaycast());
             
         
         }
     }
+
+    private IEnumerator TemporarilyDisableRaycast()
+    {
+
+        yield return new WaitForSeconds(0f);
+
+        player.CanCast = false;
+          
+        CI.InteractText.enabled = false;
+
+        yield return new WaitForSeconds(6.7f);
+
+
+        player.CanCast = true;
+          
+        CI.InteractText.enabled = true;
+
+
+
+
+
+    }
+
+
 }

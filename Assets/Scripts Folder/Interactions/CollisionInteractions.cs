@@ -31,6 +31,8 @@ public class CollisionInteractions : MonoBehaviour
     //REFERENCE TO SCRIPTABLE DATA OBJECT FOR THE DIALOGUE SYSTEM
     public DialogueData Dialogue;
 
+    public PlayerController PC;
+
 
   
     
@@ -66,6 +68,7 @@ public class CollisionInteractions : MonoBehaviour
     public IEnumerator ShowDialgoueText(string TexttoDisplay)
     {
 
+    
 
         //CLEAR TEXT//
         DialogueText.text = "";
@@ -88,6 +91,8 @@ public class CollisionInteractions : MonoBehaviour
           DialgouePanel.enabled = false;
 
           WhoIsSpeakingTab.SetActive(false);
+          
+          
 
     
 
