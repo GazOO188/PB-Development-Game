@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] public bool CanSeeBoss = false;
 
+    [SerializeField] public bool CanCast = true;
 
 
 
@@ -60,6 +61,10 @@ public class PlayerController : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(centerScreen);
         RaycastHit hit = new RaycastHit();
 
+        if (CanCast)
+        {
+            
+        
         if (Physics.Raycast(ray, out hit, raycastDist))
         {
             // Code here for interacting with object that player is looking at
@@ -77,7 +82,7 @@ public class PlayerController : MonoBehaviour
             CI.InteractText.enabled = false;
             CanSeeBoss = false;
         }
-
+        }
         // Change height when transitioning from crouch to stand and vise versa 
         // Source: https://www.youtube.com/watch?v=NsSk58un8E0
         var currentHeight = transform.localScale.y;
