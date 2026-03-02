@@ -28,6 +28,7 @@ public class ToolTipTriggerV2 : MonoBehaviour
     private float toolTipOpenTime;
     private string currentTag = "";
     public AudioClip clip;
+<<<<<<< Updated upstream
     public InputHandler inputHandler;
     [System.Serializable]
     public class TagTooltipMapping
