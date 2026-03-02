@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Game Manager
   - Boss
+  - Player Inventory
   layers:
   - Default
   - TransparentFX

@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        PlayerInventory.Instance.UpdateInventory();
         characterController = GetComponent<CharacterController>();
         _state = Stance.Stand;
     }
@@ -63,25 +64,25 @@ public class PlayerController : MonoBehaviour
 
         if (CanCast)
         {
-            
-        
-        if (Physics.Raycast(ray, out hit, raycastDist))
-        {
-            // Code here for interacting with object that player is looking at
 
-            if (hit.collider.CompareTag("Boss"))
+
+            if (Physics.Raycast(ray, out hit, raycastDist))
             {
+                // Code here for interacting with object that player is looking at
 
-                Debug.Log("Found Boss");
-                CanSeeBoss = true;
-                CI.InteractText.enabled = true;
+                if (hit.collider.CompareTag("Boss"))
+                {
+
+                    Debug.Log("Found Boss");
+                    CanSeeBoss = true;
+                    CI.InteractText.enabled = true;
+                }
             }
-        }
-        else
-        {
-            CI.InteractText.enabled = false;
-            CanSeeBoss = false;
-        }
+            else
+            {
+                CI.InteractText.enabled = false;
+                CanSeeBoss = false;
+            }
         }
         // Change height when transitioning from crouch to stand and vise versa 
         // Source: https://www.youtube.com/watch?v=NsSk58un8E0
