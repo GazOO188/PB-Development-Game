@@ -252,6 +252,7 @@ MonoBehaviour:
   WhoIsSpeakingTab: {fileID: 315884466}
   typeSpeed: 0.07
   Dialogue: {fileID: 11400000, guid: 3df600ba208c84fac9ae68f807d0179e, type: 2}
+  PC: {fileID: 0}
 --- !u!1 &252758416
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +944,6 @@ MonoBehaviour:
   raycastDist: 7.8
   CanSeeBoss: 0
   CanCast: 1
-  IH: {fileID: 1565778096}
 --- !u!143 &836840582
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4020,7 +4020,7 @@ MonoBehaviour:
   playerCamera: {fileID: 1661498700}
   Dialogue: {fileID: 11400000, guid: 3df600ba208c84fac9ae68f807d0179e, type: 2}
   _move:
-    m_Name: 
+    m_Name: Move
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 655320cb-021f-4f38-ac66-ec0e243f0611
@@ -4029,7 +4029,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _look:
-    m_Name: 
+    m_Name: Look
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 31237733-ac9e-43f3-afcc-690ae473c15a
@@ -4038,7 +4038,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _crouch:
-    m_Name: 
+    m_Name: Crouch
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 075f8608-efcc-418a-9881-c2ade6c0550d
@@ -4047,10 +4047,19 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _interact:
-    m_Name: 
+    m_Name: Interact
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: a286965e-5f91-4aec-abd9-f8f45c4dca60
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _SummonMenu:
+    m_Name: Summon Menu
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 15dffef2-de75-4ce9-a59b-323f6530e170
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
