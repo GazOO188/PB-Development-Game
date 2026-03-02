@@ -28,10 +28,7 @@ public class ToolTipTriggerV2 : MonoBehaviour
     private float toolTipOpenTime;
     private string currentTag = "";
     public AudioClip clip;
-<<<<<<< Updated upstream
     public InputHandler inputHandler;
-=======
->>>>>>> Stashed changes
     [System.Serializable]
     public class TagTooltipMapping
     {
@@ -59,7 +56,6 @@ public class ToolTipTriggerV2 : MonoBehaviour
             DetectInteractable();
         }
 
-<<<<<<< Updated upstream
         if (isToolTipActive)
         {
             if (inputHandler._interact.WasPressedThisFrame())
@@ -67,12 +63,6 @@ public class ToolTipTriggerV2 : MonoBehaviour
                 CloseToolTip();
             }
         }
-=======
-        //if (isToolTipActive)
-        //{
-        //CloseToolTip();
-        //}
->>>>>>> Stashed changes
 
 
     }
