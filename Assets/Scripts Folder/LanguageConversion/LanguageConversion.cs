@@ -74,6 +74,16 @@ public class LanguageConversion : MonoBehaviour
         Spanish.Add("Hmm... there could be a electrical problem wrong here... ", "Hmm... podría haber algún problema eléctrico aquí.");
 
 
+        
+        
+        English.Add("Welcome! It looks like we'll be dealing with a envelope issue today...", "Welcome! It looks like we'll be dealing with a envelope issue today...");
+
+        Spanish.Add("Welcome! It looks like we'll be dealing with a envelope issue today...", "¡Bienvenido! Parece que hoy tendremos un problema con un sobre…");
+
+
+
+
+
         //THIS IS FOR THE SPEAKER TAB//
 
         English.Add("Boss", "Boss");

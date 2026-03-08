@@ -8,6 +8,7 @@ public class InputHandler : MonoBehaviour
     public PlayerController player;
 
     public CollisionInteractions CI;
+    
     [SerializeField] PlayerCamera playerCamera;
 
     public DialogueData Dialogue;
@@ -61,6 +62,8 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    
+
     private IEnumerator TemporarilyDisableRaycast()
     {
 
@@ -70,7 +73,7 @@ public class InputHandler : MonoBehaviour
           
         CI.InteractText.enabled = false;
 
-        yield return new WaitForSeconds(6.7f);
+        yield return new WaitForSeconds(7.7f);
 
 
         player.CanCast = true;
