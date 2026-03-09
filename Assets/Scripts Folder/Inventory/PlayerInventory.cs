@@ -11,7 +11,7 @@ public class PlayerInventory : MonoBehaviour
     public List<string> inventory = new List<string>();
     public List<string> currentItems = new List<string>();
 
-    public ItemSelect currentItem = null;
+    public Item currentItem = null;
     public bool itemIsMoving;
 
     void Awake()
