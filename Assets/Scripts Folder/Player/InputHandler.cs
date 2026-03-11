@@ -23,8 +23,8 @@ public class InputHandler : MonoBehaviour
         _crouch = InputSystem.actions.FindAction("Crouch");
         _interact = InputSystem.actions.FindAction("Interact");
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
