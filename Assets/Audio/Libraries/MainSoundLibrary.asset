@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: MainSoundLibrary
   m_EditorClassIdentifier: Assembly-CSharp::SoundLibrary
   sounds:
-  - key: ui_click
+  - key: start_click
     variants:
     - {fileID: 8300000, guid: 61006ce1db69aaf499666207a19a3f0c, type: 3}
+    volume: 1
+    pitchVariance: 1.05
+  - key: settings_click
+    variants:
+    - {fileID: 8300000, guid: 9807e08e1940fc545bf449f2cfa46520, type: 3}
     volume: 1
     pitchVariance: 1.05
