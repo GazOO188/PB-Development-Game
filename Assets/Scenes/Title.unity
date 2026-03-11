@@ -217,7 +217,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 49341255}
         m_TargetAssemblyTypeName: ClickSound, Assembly-CSharp
-        m_MethodName: PlaySettingClick
+        m_MethodName: PlayClickSound2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1585,6 +1585,7 @@ GameObject:
   - component: {fileID: 1056072453}
   - component: {fileID: 1056072452}
   - component: {fileID: 1056072451}
+  - component: {fileID: 1056072454}
   m_Layer: 5
   m_Name: How to Play Button
   m_TagString: Untagged
@@ -1668,6 +1669,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1056072454}
+        m_TargetAssemblyTypeName: ClickSound, Assembly-CSharp
+        m_MethodName: PlayClickSound1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1056072452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,6 +1719,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056072449}
   m_CullTransparentMesh: 1
+--- !u!114 &1056072454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056072449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd873d32a9436cb4f9fa3abc8e5e083c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSound
+  sounds: {fileID: 11400000, guid: 4f78483c16e4f9b469aac567f6a6a1cc, type: 2}
 --- !u!1 &1104831056
 GameObject:
   m_ObjectHideFlags: 0
@@ -3248,18 +3274,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1734502189}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2016984899}
-        m_TargetAssemblyTypeName: ClickSound, Assembly-CSharp
-        m_MethodName: PlayStartClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

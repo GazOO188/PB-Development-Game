@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainSoundLibrary
   m_EditorClassIdentifier: Assembly-CSharp::SoundLibrary
   sounds:
-  - key: start_click
+  - key: howtoplay_click
     variants:
     - {fileID: 8300000, guid: 61006ce1db69aaf499666207a19a3f0c, type: 3}
     volume: 1
