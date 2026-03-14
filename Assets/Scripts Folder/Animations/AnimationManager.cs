@@ -25,7 +25,7 @@ public class AnimationManager : MonoBehaviour
     void Awake()
     {
         
-        RAI = GameObject.Find("Boss NPC").GetComponent<RoamingAI>();
+        RAI = GetComponent<RoamingAI>();
 
     }
 
