@@ -14,7 +14,7 @@ public class InputHandler : MonoBehaviour
     public DialogueData Dialogue;
 
     
-    public InputAction _move, _look, _crouch, _interact;
+    public InputAction _move, _look, _crouch, _interact, _WeatherStrip;
 
     void Awake()
     {
@@ -22,6 +22,8 @@ public class InputHandler : MonoBehaviour
         _look = InputSystem.actions.FindAction("Look");
         _crouch = InputSystem.actions.FindAction("Crouch");
         _interact = InputSystem.actions.FindAction("Interact");
+
+        _WeatherStrip = InputSystem.actions.FindAction("WeatherStrip");
 
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
