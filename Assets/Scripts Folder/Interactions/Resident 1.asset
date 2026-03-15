@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   SpeakerName: Dialogue
   lines:
-  - Welcome! It looks like we'll be dealing with a envelope issue today...
+  - Hi! I have a heating problem in my room.
+  - The heat comes and go. It's hard to get a good night rest.
+  - The furnace is downstairs.
