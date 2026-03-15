@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Game Manager
   - Boss
+  - Resident 1
+  - Resident 2
+  - Resident 3
   layers:
   - Default
   - TransparentFX

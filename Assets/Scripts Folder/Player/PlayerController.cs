@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     }
     [SerializeField] PlayerCamera playerCamera;
     [SerializeField] CollisionInteractions CI;
+    [SerializeField] InputHandler IH;
 
     [Space]
     [Header("Movement")]
@@ -31,12 +32,17 @@ public class PlayerController : MonoBehaviour
     [Space]
     [Header("Reticle")]
     [SerializeField] Image ret;
-    Vector3 centerScreen = new Vector3(0.5f, 0.5f, 0f);
+     Vector3 centerScreen = new Vector3(0.5f, 0.5f, 0f);
     [SerializeField] float raycastDist = 7.8f;
 
     [Header("Bool")]
 
     [SerializeField] public bool CanSeeBoss = false;
+
+    
+    //FOR THE RESIDENTS//
+
+    [SerializeField] public bool ResidentOneSeen = false, ResidentTwoSeen = false, ResidentThreeSeen = false;
 
     [SerializeField] public bool CanCast = true;
 
@@ -76,11 +82,57 @@ public class PlayerController : MonoBehaviour
                 CanSeeBoss = true;
                 CI.InteractText.enabled = true;
             }
+
+
+            //FOR DETECTING THE FIRST RESIDENT//
+            if (hit.collider.CompareTag("Resident 1"))
+            {
+
+                //Debug.Log("Resident one");
+                ResidentOneSeen = true;
+                CI.InteractText.enabled = true;
+            }
+
+
+            //FOR DETECTING THE SECOND RESIDENT//
+            if(hit.collider.CompareTag("Resident 2"))
+            {
+                    
+                Debug.Log("Resident Two");
+                ResidentTwoSeen = true;
+                CI.InteractText.enabled = true;
+
+
+            }
+
+
+            //FOR DETECTING THE THIRD RESIDENT//
+            if(hit.collider.CompareTag("Resident 3"))
+            {
+                    
+                Debug.Log("Resident THREE");
+                ResidentThreeSeen = true;
+                CI.InteractText.enabled = true;
+
+
+            }
+
+
+
+
+
+            
         }
+
+
+       
         else
         {
             CI.InteractText.enabled = false;
             CanSeeBoss = false;
+            ResidentOneSeen = false;
+            ResidentTwoSeen = false;
+            ResidentThreeSeen = false;
         }
         }
         // Change height when transitioning from crouch to stand and vise versa 

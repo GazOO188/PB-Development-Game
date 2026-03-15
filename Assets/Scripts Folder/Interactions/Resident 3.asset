@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   SpeakerName: Dialogue
   lines:
-  - Welcome! It looks like we'll be dealing with a envelope issue today...
+  - 'Hello! There''s an outlet in the bathroom near the sink. '
+  - There's a burn mark on the outlet and it's not working.
+  - Maybe it's just the outlet itself?

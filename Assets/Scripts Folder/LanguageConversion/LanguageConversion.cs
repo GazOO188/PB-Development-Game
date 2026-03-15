@@ -82,8 +82,6 @@ public class LanguageConversion : MonoBehaviour
 
 
 
-
-
         //THIS IS FOR THE SPEAKER TAB//
 
         English.Add("Boss", "Boss");
@@ -92,11 +90,45 @@ public class LanguageConversion : MonoBehaviour
 
 
 
+        //THIS IS FOR RESIDENT SPEAKER TAB//
+
+        English.Add("Resident", "Resident");
+
+
+
         //THIS IS FOR INTERACTION BUTTONS//
 
         English.Add("Press E to Talk", "Press E to Talk");
 
         Spanish.Add("Press E to Talk", "Presiona E para hablar");
+
+
+        //THIS IS FOR THE FIRST RESIDENT//
+
+        English.Add("Hi! I have a heating problem in my room.","Hi! I have a heating problem in my room.");
+
+        English.Add("The heat comes and go. It's hard to get a good night rest.", "The heat comes and go. It's hard to get a good night rest.");
+
+        English.Add("The furnace is downstairs.", "The furnace is downstairs.");
+
+
+        //THIS IS FOR THE SECOND RESIDENT//
+
+        English.Add("Hi! Lately the Kitchen has been really cold.", "Hi! Lately the Kitchen has been really cold.");
+
+        English.Add("I constantly feel a draft coming the window.", "I constantly feel a draft coming the window.");
+
+        English.Add("I wonder what it could be...", "I wonder what it could be...");
+
+
+
+        //THIS IS FOR THE THIRD RESIDENT//
+
+        English.Add("Hello! There's an outlet in the bathroom near the sink.", "Hello! There's an outlet in the bathroom near the sink.");
+
+        English.Add("There's a burn mark on the outlet and it's not working.", "There's a burn mark on the outlet and it's not working.");
+
+        English.Add("Maybe it's just the outlet itself?", "Maybe it's just the outlet itself?");
         
 
         
@@ -132,6 +164,8 @@ public class LanguageConversion : MonoBehaviour
     public string WordConverter(string Key)
     {
 
+        Key = Key.Trim();
+        
         //IF THE BOOL IS ENGLISHLANGUAGE TRUE, GIVE BACK THE ENGLISH VALUE, ELSE GIVE THE SPANISH VALUE//
         if (GameManager.Instance.englishLanguage)
         {
