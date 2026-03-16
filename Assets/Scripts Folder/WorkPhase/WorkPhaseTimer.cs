@@ -71,12 +71,13 @@ public class WorkPhaseTimer : MonoBehaviour
         
         
         }
+    }
 
 
 
         //FUNCTION TO DISPLAY THE TIMER//
 
-        void DisplayTimeronScreen(float time)
+        public void DisplayTimeronScreen(float time)
         {
             
         
@@ -105,4 +106,4 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
     }
-}
+

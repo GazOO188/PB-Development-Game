@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     }
     [SerializeField] PlayerCamera playerCamera;
     [SerializeField] CollisionInteractions CI;
+    [SerializeField] InputHandler IH;
 
     [Space]
     [Header("Movement")]
@@ -37,6 +38,11 @@ public class PlayerController : MonoBehaviour
     [Header("Bool")]
 
     [SerializeField] public bool CanSeeBoss = false;
+
+
+    //FOR THE RESIDENTS//
+
+    [SerializeField] public bool ResidentOneSeen = false, ResidentTwoSeen = false, ResidentThreeSeen = false;
 
     [SerializeField] public bool CanCast = true;
 
@@ -83,7 +89,59 @@ public class PlayerController : MonoBehaviour
                 CI.InteractText.enabled = false;
                 CanSeeBoss = false;
             }
+
+
+            //FOR DETECTING THE FIRST RESIDENT//
+            if (hit.collider.CompareTag("Resident 1"))
+            {
+
+                //Debug.Log("Resident one");
+                ResidentOneSeen = true;
+                CI.InteractText.enabled = true;
+            }
+
+
+            //FOR DETECTING THE SECOND RESIDENT//
+            if (hit.collider.CompareTag("Resident 2"))
+            {
+
+                Debug.Log("Resident Two");
+                ResidentTwoSeen = true;
+                CI.InteractText.enabled = true;
+
+
+            }
+
+
+            //FOR DETECTING THE THIRD RESIDENT//
+            if (hit.collider.CompareTag("Resident 3"))
+            {
+
+                Debug.Log("Resident THREE");
+                ResidentThreeSeen = true;
+                CI.InteractText.enabled = true;
+
+
+            }
+
+
+
+
+
+
         }
+
+
+
+        else
+        {
+            CI.InteractText.enabled = false;
+            CanSeeBoss = false;
+            ResidentOneSeen = false;
+            ResidentTwoSeen = false;
+            ResidentThreeSeen = false;
+        }
+
         // Change height when transitioning from crouch to stand and vise versa 
         // Source: https://www.youtube.com/watch?v=NsSk58un8E0
         var currentHeight = transform.localScale.y;

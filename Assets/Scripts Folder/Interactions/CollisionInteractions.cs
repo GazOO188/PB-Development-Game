@@ -26,6 +26,10 @@ public class CollisionInteractions : MonoBehaviour
 
     [SerializeField] public float typeSpeed = 1f;
 
+    
+    
+    public bool LineFinished = false;
+
 
 
     //REFERENCE TO SCRIPTABLE DATA OBJECT FOR THE DIALOGUE SYSTEM
@@ -64,11 +68,12 @@ public class CollisionInteractions : MonoBehaviour
     }
 
 
-
+    //FUNCTION TO SHOW THE TEXT WITH TYPE WRITIGNG EFFECT//
     public IEnumerator ShowDialgoueText(string TexttoDisplay)
     {
 
-    
+        //FRESH INSTANCE//
+        LineFinished = false;
 
         //CLEAR TEXT//
         DialogueText.text = "";
@@ -83,21 +88,11 @@ public class CollisionInteractions : MonoBehaviour
         
         
         }
+
+        //THE LINE HAS FINISHED WRITING OUT//
+         LineFinished = true;
       
-        yield return new WaitForSeconds(2.5f);
-
-          DialogueText.enabled = false;
-        
-          DialgouePanel.enabled = false;
-
-          WhoIsSpeakingTab.SetActive(false);
-          
-          
-
-    
-
-
-    
+      
     
     }
 
