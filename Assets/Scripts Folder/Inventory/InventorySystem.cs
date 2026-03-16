@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class MechanicalTools : MonoBehaviour
+public class InventorySystem : MonoBehaviour
 {
     void Start()
     {
 
     }
 
+    // Update is called once per frame
     void Update()
     {
 
