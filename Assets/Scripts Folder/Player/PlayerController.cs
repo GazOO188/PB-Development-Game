@@ -71,6 +71,11 @@ public class PlayerController : MonoBehaviour
         if (CanCast)
         {
 
+            CanSeeBoss = false;
+            ResidentOneSeen = false;
+            ResidentTwoSeen = false;
+            ResidentThreeSeen = false;
+
 
             if (Physics.Raycast(ray, out hit, raycastDist))
             {
@@ -83,12 +88,8 @@ public class PlayerController : MonoBehaviour
                     CanSeeBoss = true;
                     CI.InteractText.enabled = true;
                 }
-            }
-            else
-            {
-                CI.InteractText.enabled = false;
-                CanSeeBoss = false;
-            }
+            
+           
 
 
             //FOR DETECTING THE FIRST RESIDENT//
@@ -128,19 +129,9 @@ public class PlayerController : MonoBehaviour
 
 
 
-
+            }
         }
 
-
-
-        else
-        {
-            CI.InteractText.enabled = false;
-            CanSeeBoss = false;
-            ResidentOneSeen = false;
-            ResidentTwoSeen = false;
-            ResidentThreeSeen = false;
-        }
 
         // Change height when transitioning from crouch to stand and vise versa 
         // Source: https://www.youtube.com/watch?v=NsSk58un8E0
