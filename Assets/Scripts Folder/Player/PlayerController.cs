@@ -32,14 +32,14 @@ public class PlayerController : MonoBehaviour
     [Space]
     [Header("Reticle")]
     [SerializeField] Image ret;
-     Vector3 centerScreen = new Vector3(0.5f, 0.5f, 0f);
+    Vector3 centerScreen = new Vector3(0.5f, 0.5f, 0f);
     [SerializeField] float raycastDist = 7.8f;
 
     [Header("Bool")]
 
     [SerializeField] public bool CanSeeBoss = false;
 
-    
+
     //FOR THE RESIDENTS//
 
     [SerializeField] public bool ResidentOneSeen = false, ResidentTwoSeen = false, ResidentThreeSeen = false;
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        PlayerInventory.Instance.UpdateInventory();
         characterController = GetComponent<CharacterController>();
         _state = Stance.Stand;
     }
@@ -69,18 +70,24 @@ public class PlayerController : MonoBehaviour
 
         if (CanCast)
         {
-            
-        
-        if (Physics.Raycast(ray, out hit, raycastDist))
-        {
-            // Code here for interacting with object that player is looking at
 
-            if (hit.collider.CompareTag("Boss"))
+
+            if (Physics.Raycast(ray, out hit, raycastDist))
             {
+                // Code here for interacting with object that player is looking at
 
-                Debug.Log("Found Boss");
-                CanSeeBoss = true;
-                CI.InteractText.enabled = true;
+                if (hit.collider.CompareTag("Boss"))
+                {
+
+                    Debug.Log("Found Boss");
+                    CanSeeBoss = true;
+                    CI.InteractText.enabled = true;
+                }
+            }
+            else
+            {
+                CI.InteractText.enabled = false;
+                CanSeeBoss = false;
             }
 
 
@@ -95,9 +102,9 @@ public class PlayerController : MonoBehaviour
 
 
             //FOR DETECTING THE SECOND RESIDENT//
-            if(hit.collider.CompareTag("Resident 2"))
+            if (hit.collider.CompareTag("Resident 2"))
             {
-                    
+
                 Debug.Log("Resident Two");
                 ResidentTwoSeen = true;
                 CI.InteractText.enabled = true;
@@ -107,9 +114,9 @@ public class PlayerController : MonoBehaviour
 
 
             //FOR DETECTING THE THIRD RESIDENT//
-            if(hit.collider.CompareTag("Resident 3"))
+            if (hit.collider.CompareTag("Resident 3"))
             {
-                    
+
                 Debug.Log("Resident THREE");
                 ResidentThreeSeen = true;
                 CI.InteractText.enabled = true;
@@ -121,11 +128,11 @@ public class PlayerController : MonoBehaviour
 
 
 
-            
+
         }
 
 
-       
+
         else
         {
             CI.InteractText.enabled = false;
@@ -134,7 +141,7 @@ public class PlayerController : MonoBehaviour
             ResidentTwoSeen = false;
             ResidentThreeSeen = false;
         }
-        }
+
         // Change height when transitioning from crouch to stand and vise versa 
         // Source: https://www.youtube.com/watch?v=NsSk58un8E0
         var currentHeight = transform.localScale.y;
