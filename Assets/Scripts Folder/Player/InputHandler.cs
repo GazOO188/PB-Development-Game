@@ -10,7 +10,7 @@ public class InputHandler : MonoBehaviour
     public CollisionInteractions CI;
 
     public ObjectiveAlert OA;
-    
+
     [SerializeField] PlayerCamera playerCamera;
 
     [SerializeField] public DialogueData Dialogue, Resident1, Resident2, Resident3;
@@ -22,9 +22,9 @@ public class InputHandler : MonoBehaviour
 
 
     DialogueData currentDialogue;
-   
+
     [SerializeField] public int currentLine = 0;
-    
+
     bool isTalking = false;
 
     bool MetWithResidentOne = false, MetWithResidentTwo = false, MetWithResidentThree = false, CanTriggerObjectiveAnimation = false;
@@ -40,17 +40,19 @@ public class InputHandler : MonoBehaviour
 
         _WeatherStrip = InputSystem.actions.FindAction("WeatherStrip");
 
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
 
-        OA = GameObject.Find("UI Manager").GetComponent<ObjectiveAlert>();
+        //OA = GameObject.Find("UI Manager").GetComponent<ObjectiveAlert>();
 
-      
+
     }
 
     void Update()
     {
+        if (!player.playerControl) return;
+
         Vector2 movement = _move.ReadValue<Vector2>();
         player.Move(movement);
 
@@ -64,77 +66,77 @@ public class InputHandler : MonoBehaviour
 
 
         //THIS IS FOR PRESSING E TO TALK//
-     
+        return;
         if (_interact.WasPressedThisFrame())
         {
-            
-              if(!isTalking)
+
+            if (!isTalking)
             {
-                if(player.CanSeeBoss)
+                if (player.CanSeeBoss)
                 {
-                  displayDialouge(Dialogue);
-                }
-        
-                else if(player.ResidentOneSeen)
-                {
-                  displayDialouge(Resident1);
-                  MetWithResidentOne = true;
-                }
-        
-                else if(player.ResidentTwoSeen)
-                {
-                  displayDialouge(Resident2);
-                  MetWithResidentTwo = true;
-                }
-        
-                else if(player.ResidentThreeSeen)
-                {
-                 displayDialouge(Resident3);
-                 MetWithResidentThree = true;
+                    displayDialouge(Dialogue);
                 }
 
-            
-           
-         
+                else if (player.ResidentOneSeen)
+                {
+                    displayDialouge(Resident1);
+                    MetWithResidentOne = true;
+                }
+
+                else if (player.ResidentTwoSeen)
+                {
+                    displayDialouge(Resident2);
+                    MetWithResidentTwo = true;
+                }
+
+                else if (player.ResidentThreeSeen)
+                {
+                    displayDialouge(Resident3);
+                    MetWithResidentThree = true;
+                }
+
+
+
+
             }
 
-             // CONTINUE TALKING//
+            // CONTINUE TALKING//
             else if (isTalking)
             {
                 NextLine();
             }
 
 
-        
-    
-
-    }
 
 
-    //DISPLAYS THE E BUTTON//
+
+        }
+
+
+        //DISPLAYS THE E BUTTON//
         ShowEButton();
     }
-   
+
     //DISPLAYS THE DIALOGUE PHYSICALLY//
     public void displayDialouge(DialogueData data)
     {
-            
-            currentDialogue = data;
-           
-            currentLine = 0;
-            
-            isTalking = true;
 
-            CI.DialogueText.enabled = true;
+        currentDialogue = data;
 
-            CI.DialgouePanel.enabled = true;
+        currentLine = 0;
 
-            CI.WhoIsSpeakingTab.SetActive(true);
+        isTalking = true;
 
-            ShowCurrentLine();
+        CI.DialogueText.enabled = true;
 
-            TemporarilyDisableRaycast();
-            
+        CI.DialgouePanel.enabled = true;
+
+        CI.WhoIsSpeakingTab.SetActive(true);
+
+        ShowCurrentLine();
+
+        TemporarilyDisableRaycast();
+
 
 
     }
@@ -143,8 +145,8 @@ public class InputHandler : MonoBehaviour
     //SHOWS THE CURRENT LINE//
     void ShowCurrentLine()
     {
-         if (typewriterCoroutine != null)
-        StopCoroutine(typewriterCoroutine);
+        if (typewriterCoroutine != null)
+            StopCoroutine(typewriterCoroutine);
 
         string line = LanguageConversion.Instance.WordConverter(currentDialogue.lines[currentLine]);
 
@@ -171,20 +173,20 @@ public class InputHandler : MonoBehaviour
             EndDialogue();
 
 
-        
-        //START THE OBJECTIVE TASK ANIMATION IF MET WITH EITHER NPC//
 
-           
-        if (!CanTriggerObjectiveAnimation && (MetWithResidentOne || MetWithResidentTwo || MetWithResidentThree))
-        {
-            StartCoroutine(OA.TriggerAnimation());
-            CanTriggerObjectiveAnimation = true;
+            //START THE OBJECTIVE TASK ANIMATION IF MET WITH EITHER NPC//
 
-            // Reset NPC flags so they don't interfere
-            MetWithResidentOne = false;
-            MetWithResidentTwo = false;
-            MetWithResidentThree = false;
-        }
+
+            if (!CanTriggerObjectiveAnimation && (MetWithResidentOne || MetWithResidentTwo || MetWithResidentThree))
+            {
+                StartCoroutine(OA.TriggerAnimation());
+                CanTriggerObjectiveAnimation = true;
+
+                // Reset NPC flags so they don't interfere
+                MetWithResidentOne = false;
+                MetWithResidentTwo = false;
+                MetWithResidentThree = false;
+            }
         }
     }
 
@@ -204,14 +206,14 @@ public class InputHandler : MonoBehaviour
         player.CanCast = true;
     }
 
-    
+
     //THIS FUNCTION TEMPORARILY DISABLES RAYCAST//
     private void TemporarilyDisableRaycast()
     {
 
 
         player.CanCast = false;
-          
+
         CI.InteractText.enabled = false;
 
 
@@ -226,40 +228,40 @@ public class InputHandler : MonoBehaviour
 
     public void ShowEButton()
     {
-        
-    //SETS IT TO TRUE IF THE LINE HAS FINISHED//
-    if (isTalking && (MetWithResidentOne || MetWithResidentThree || MetWithResidentTwo))
-    {
 
-       EButton.SetActive(CI.LineFinished);   
+        //SETS IT TO TRUE IF THE LINE HAS FINISHED//
+        if (isTalking && (MetWithResidentOne || MetWithResidentThree || MetWithResidentTwo))
+        {
 
-
-
-    }
+            EButton.SetActive(CI.LineFinished);
 
 
-    else
-    {
+
+        }
 
 
-    if (!isTalking)
-    {
-            
-        
-        EButton.SetActive(false);
-
-        
-     
+        else
+        {
 
 
-     }
-      
+            if (!isTalking)
+            {
 
-       
 
- 
+                EButton.SetActive(false);
 
-    }
+
+
+
+
+            }
+
+
+
+
+
+
+        }
 
 
 
