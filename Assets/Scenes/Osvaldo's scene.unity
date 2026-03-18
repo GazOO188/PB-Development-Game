@@ -719,7 +719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &256561768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1451,11 +1451,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb5e41ed029c8c4e98d8a542b89a026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TooltipUIManager
-  titleText: {fileID: 0}
+  titleText: {fileID: 1007332008}
   titleImage: {fileID: 0}
-  descriptionText: {fileID: 0}
-  actionText: {fileID: 0}
-  backgroundImage: {fileID: 0}
+  descriptionText: {fileID: 854826676}
+  actionText: {fileID: 828654120}
+  backgroundImage: {fileID: 472696504}
   modelStageParent: {fileID: 0}
   renderTextureImage: {fileID: 0}
 --- !u!4 &568511284
@@ -1717,8 +1717,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 66.00007, y: -134}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 293.52, y: -134}
+  m_SizeDelta: {x: 681.03, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &828654120
 MonoBehaviour:
@@ -1854,8 +1854,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.000061, y: -233}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 297.2, y: -249.5133}
+  m_SizeDelta: {x: 688.4, y: 108.1664}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &854826676
 MonoBehaviour:
@@ -2149,8 +2149,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 103, y: -25}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 347.2, y: -29.940796}
+  m_SizeDelta: {x: 688.4, y: 59.8817}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007332008
 MonoBehaviour:
@@ -2588,7 +2588,7 @@ GameObject:
   - component: {fileID: 1361776106}
   m_Layer: 10
   m_Name: Stairs
-  m_TagString: Untagged
+  m_TagString: Stairs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5329,18 +5329,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f191d435b71ee6548bd6c94a91288264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToolTipTriggerV2
-  maxDetectionDistance: 2
+  maxDetectionDistance: 7
   interactableLayers:
     serializedVersion: 2
-    m_Bits: 0
-  ToolTipPanel: {fileID: 0}
+    m_Bits: 1025
+  ToolTipPanel: {fileID: 256561767}
   fadeInDuration: 0.5
   fadeOutDuration: 0.3
-  tooltipCanvasGroup: {fileID: 0}
-  tooltipUIManager: {fileID: 0}
-  tagTooltips: []
+  tooltipCanvasGroup: {fileID: 256561769}
+  tooltipUIManager: {fileID: 568511283}
+  tagTooltips:
+  - tagName: Boss
+    tooltipData: {fileID: 11400000, guid: 4644c25b77998d64092852d59b1929f0, type: 2}
+  - tagName: Stairs
+    tooltipData: {fileID: 11400000, guid: f0827144642113243b9c99ddd4c02e82, type: 2}
   clip: {fileID: 0}
-  inputHandler: {fileID: 0}
+  inputHandler: {fileID: 479130691}
 --- !u!114 &1844696692 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1147989084862390667, guid: a41a4e5566072fe429e6986609d63089, type: 3}
@@ -5731,6 +5735,63 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &7136307103179231530
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 204.13219
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 891.7179
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344533836760609056, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7765899321335423215, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b7c24297cac0ec34a951430ac9a00f8a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5739,6 +5800,7 @@ SceneRoots:
   - {fileID: 949987814}
   - {fileID: 1090082936}
   - {fileID: 1681840987}
+  - {fileID: 7136307103179231530}
   - {fileID: 568511284}
   - {fileID: 479130692}
   - {fileID: 1361776111}

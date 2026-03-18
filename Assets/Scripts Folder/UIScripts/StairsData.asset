@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cf5dfa80ec4264d801292ca066a6c5, type: 3}
   m_Name: StairsData
   m_EditorClassIdentifier: Assembly-CSharp::TooltipData
-  title: 
+  title: Stairs
   titleImage: {fileID: 0}
-  description: 
+  description: 'Description: Don''t trip'
   modelPrefab: {fileID: 0}
   modelPositionOffset: {x: 0, y: 0, z: 0}
   modelRotation: {x: 0, y: 0, z: 0}
