@@ -38,6 +38,12 @@ public class PlayerController : MonoBehaviour
     [Header("Bool")]
 
     [SerializeField] public bool CanSeeBoss = false;
+    [Space]
+
+    [Header("Inventory")]
+    public GameObject inventory;
+    [Space]
+    public bool toolInUse;
 
 
     //FOR THE RESIDENTS//
@@ -54,13 +60,19 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        PlayerInventory.Instance.UpdateInventory();
+        //PlayerInventory.Instance.UpdateInventory();
         characterController = GetComponent<CharacterController>();
         _state = Stance.Stand;
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I) && !toolInUse)
+        {
+            InventoryScreen();
+        }
+
+        if (!playerControl) return;
         // Rotate player with camera
         transform.localEulerAngles = new Vector3(0f, playerCamera.transform.localEulerAngles.y, 0f);
 
@@ -75,20 +87,47 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, raycastDist))
             {
                 // Code here for interacting with object that player is looking at
+                if (hit.collider.CompareTag("Circuit Breaker") && PlayerInventory.Instance.currentItem != null && PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.gray)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        GameObject.Find("Circuit Manager").GetComponent<CircuitBreaker>().UpdateCircuit();
+                    }
+                }
+
+                if (hit.collider.CompareTag("Outlet") && PlayerInventory.Instance.currentItem != null)
+                {
+                    if (PlayerInventory.Instance.currentItem.itemName == "Outlet" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.white)
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            GameObject.Find("Outlet Manager").GetComponent<Outlet>().UpdateOutlet(hit.collider.gameObject);
+                        }
+                    }
+                    else if (PlayerInventory.Instance.currentItem.itemName == "Outlet Tester" && hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white)
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            StartCoroutine(GameObject.Find("Outlet Manager").GetComponent<OutletTester>().TestOutlets(hit.transform.gameObject));
+                        }
+                    }
+                }
 
                 if (hit.collider.CompareTag("Boss"))
                 {
 
                     Debug.Log("Found Boss");
                     CanSeeBoss = true;
-                    CI.InteractText.enabled = true;
+                    //CI.InteractText.enabled = true;
                 }
             }
             else
             {
-                CI.InteractText.enabled = false;
+                //CI.InteractText.enabled = false;
                 CanSeeBoss = false;
             }
+
+            return;
 
 
             //FOR DETECTING THE FIRST RESIDENT//
@@ -135,6 +174,7 @@ public class PlayerController : MonoBehaviour
 
         else
         {
+            return;
             CI.InteractText.enabled = false;
             CanSeeBoss = false;
             ResidentOneSeen = false;
@@ -186,5 +226,14 @@ public class PlayerController : MonoBehaviour
         // Ground check -- Not using this but leaving it here for now
         grounded = Physics.BoxCast(transform.position, transform.localScale * 0.25f, Vector3.down, out floorHit, transform.rotation, 1.2f, isGround);
         //Debug.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), Color.magenta);
+    }
+
+    public void InventoryScreen()
+    {
+        playerControl = !playerControl;
+        inventory.SetActive(!playerControl);
+        Cursor.visible = !playerControl;
+        if (playerControl) Cursor.lockState = CursorLockMode.Locked;
+        else Cursor.lockState = CursorLockMode.None;
     }
 }

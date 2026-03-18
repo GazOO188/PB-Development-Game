@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 1
+  name: 
 --- !u!114 &81991961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,6 +1211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 0
+  name: Circuit Breaker
 --- !u!114 &419700221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1346,6 +1348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 0
+  name: 
 --- !u!114 &447732574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2020,6 +2023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 1
+  name: 
 --- !u!114 &793025161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2506,6 +2510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 0
+  name: Outlet
 --- !u!114 &919416677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2721,6 +2726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 0
+  name: Outlet Tester
 --- !u!114 &1195721239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3807,6 +3813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 0
+  name: 
 --- !u!114 &1680417922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4176,6 +4183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 0
+  name: 
 --- !u!1 &1846222398
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,6 +4611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 1
+  name: 
 --- !u!114 &2043277563
 MonoBehaviour:
   m_ObjectHideFlags: 0
