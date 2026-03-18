@@ -7,6 +7,10 @@ TagManager:
   - Game Manager
   - Boss
   - Stairs
+  - Player Inventory
+  - Resident 1
+  - Resident 2
+  - Resident 3
   layers:
   - Default
   - TransparentFX

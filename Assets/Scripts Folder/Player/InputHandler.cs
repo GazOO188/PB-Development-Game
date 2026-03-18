@@ -8,12 +8,28 @@ public class InputHandler : MonoBehaviour
     public PlayerController player;
 
     public CollisionInteractions CI;
+
+    public ObjectiveAlert OA;
+    
     [SerializeField] PlayerCamera playerCamera;
 
-    public DialogueData Dialogue;
+    [SerializeField] public DialogueData Dialogue, Resident1, Resident2, Resident3;
 
+    [SerializeField] public GameObject EButton;
+
+
+    private Coroutine typewriterCoroutine, ObjectiveCouroutine;
+
+
+    DialogueData currentDialogue;
+   
+    [SerializeField] public int currentLine = 0;
     
-    public InputAction _move, _look, _crouch, _interact;
+    bool isTalking = false;
+
+    bool MetWithResidentOne = false, MetWithResidentTwo = false, MetWithResidentThree = false, CanTriggerObjectiveAnimation = false;
+
+    public InputAction _move, _look, _crouch, _interact, _WeatherStrip;
 
     void Awake()
     {
@@ -22,8 +38,15 @@ public class InputHandler : MonoBehaviour
         _crouch = InputSystem.actions.FindAction("Crouch");
         _interact = InputSystem.actions.FindAction("Interact");
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        _WeatherStrip = InputSystem.actions.FindAction("WeatherStrip");
+
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+
+
+        OA = GameObject.Find("UI Manager").GetComponent<ObjectiveAlert>();
+
+      
     }
 
     void Update()
@@ -41,10 +64,66 @@ public class InputHandler : MonoBehaviour
 
 
         //THIS IS FOR PRESSING E TO TALK//
-        if (_interact.WasPressedThisFrame() && player.CanSeeBoss)
+     
+        if (_interact.WasPressedThisFrame())
         {
+            
+              if(!isTalking)
+            {
+                if(player.CanSeeBoss)
+                {
+                  displayDialouge(Dialogue);
+                }
+        
+                else if(player.ResidentOneSeen)
+                {
+                  displayDialouge(Resident1);
+                  MetWithResidentOne = true;
+                }
+        
+                else if(player.ResidentTwoSeen)
+                {
+                  displayDialouge(Resident2);
+                  MetWithResidentTwo = true;
+                }
+        
+                else if(player.ResidentThreeSeen)
+                {
+                 displayDialouge(Resident3);
+                 MetWithResidentThree = true;
+                }
 
+            
            
+         
+            }
+
+             // CONTINUE TALKING//
+            else if (isTalking)
+            {
+                NextLine();
+            }
+
+
+        
+    
+
+    }
+
+
+    //DISPLAYS THE E BUTTON//
+        ShowEButton();
+    }
+   
+    //DISPLAYS THE DIALOGUE PHYSICALLY//
+    public void displayDialouge(DialogueData data)
+    {
+            
+            currentDialogue = data;
+           
+            currentLine = 0;
+            
+            isTalking = true;
 
             CI.DialogueText.enabled = true;
 
@@ -52,36 +131,141 @@ public class InputHandler : MonoBehaviour
 
             CI.WhoIsSpeakingTab.SetActive(true);
 
-          
-            StartCoroutine(CI.ShowDialgoueText(LanguageConversion.Instance.WordConverter(Dialogue.lines[0])));
+            ShowCurrentLine();
 
-            StartCoroutine(TemporarilyDisableRaycast());
+            TemporarilyDisableRaycast();
             
+
+
+    }
+
+
+    //SHOWS THE CURRENT LINE//
+    void ShowCurrentLine()
+    {
+         if (typewriterCoroutine != null)
+        StopCoroutine(typewriterCoroutine);
+
+        string line = LanguageConversion.Instance.WordConverter(currentDialogue.lines[currentLine]);
+
+        typewriterCoroutine = StartCoroutine(CI.ShowDialgoueText(line));
+    }
+
+
+    //FUNCTION THAT CONTROLS DISPLAYING MULTIPLE LINES OF DATA//
+    void NextLine()
+    {
+        //INCREMENT THE CURRENTLINE VARIABLE//
+        currentLine++;
+
+        //IF THERES MORE DIALOGUE TO SAY, SHOW THE LINE//
+        if (currentLine < currentDialogue.lines.Length)
+        {
+            ShowCurrentLine();
+
+        }
+
+        //IF NO MORE DIALOGUE LEFT, STOP THE CONVERSATION//
+        else
+        {
+            EndDialogue();
+
+
         
+        //START THE OBJECTIVE TASK ANIMATION IF MET WITH EITHER NPC//
+
+           
+        if (!CanTriggerObjectiveAnimation && (MetWithResidentOne || MetWithResidentTwo || MetWithResidentThree))
+        {
+            StartCoroutine(OA.TriggerAnimation());
+            CanTriggerObjectiveAnimation = true;
+
+            // Reset NPC flags so they don't interfere
+            MetWithResidentOne = false;
+            MetWithResidentTwo = false;
+            MetWithResidentThree = false;
+        }
         }
     }
 
-    private IEnumerator TemporarilyDisableRaycast()
+
+    //THIS FUNCTION ENDS THE DIALOGUE ONCE THE PERSON HAS NO MRE DIALOGUE IN THEIR DATA//
+    void EndDialogue()
+    {
+        //NO LONGER TALKING OR HAVE ANY MORE DIALOGUE TO SAY//
+        isTalking = false;
+
+        //HIDES DIALOGUE BOX//
+        CI.DialogueText.enabled = false;
+        CI.DialgouePanel.enabled = false;
+        CI.WhoIsSpeakingTab.SetActive(false);
+
+        //PLAYER CAN CAST RAYCAST TO DETECT THINGS/
+        player.CanCast = true;
+    }
+
+    
+    //THIS FUNCTION TEMPORARILY DISABLES RAYCAST//
+    private void TemporarilyDisableRaycast()
     {
 
-        yield return new WaitForSeconds(0f);
 
         player.CanCast = false;
           
         CI.InteractText.enabled = false;
 
-        yield return new WaitForSeconds(6.7f);
 
 
-        player.CanCast = true;
-          
-        CI.InteractText.enabled = true;
+    }
 
 
+
+
+    //FUNCTION TO DISPLAY THE EBUTTON PROMPT//
+
+
+    public void ShowEButton()
+    {
+        
+    //SETS IT TO TRUE IF THE LINE HAS FINISHED//
+    if (isTalking && (MetWithResidentOne || MetWithResidentThree || MetWithResidentTwo))
+    {
+
+       EButton.SetActive(CI.LineFinished);   
 
 
 
     }
+
+
+    else
+    {
+
+
+    if (!isTalking)
+    {
+            
+        
+        EButton.SetActive(false);
+
+        
+     
+
+
+     }
+      
+
+       
+
+ 
+
+    }
+
+
+
+    }
+
+
 
 
 }
