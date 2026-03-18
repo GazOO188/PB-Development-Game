@@ -67,7 +67,6 @@ public class ObjectiveAlert : MonoBehaviour
         EP.SetActive(false);
 
         
-
         
         yield return new WaitForSeconds(1f);
 

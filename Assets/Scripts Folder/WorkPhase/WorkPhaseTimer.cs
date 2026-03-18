@@ -6,7 +6,7 @@ public class WorkPhaseTimer : MonoBehaviour
 {
     //THIS SCRIPT IS FOR THE TIMER//
 
-    public float TimerforWorkPhase = 180f; // 3 MINUTES//
+    public float TimerforWorkPhase = 360f; // 6 MINUTES//
 
     public TextMeshProUGUI TimerText;
 
