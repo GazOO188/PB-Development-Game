@@ -83,6 +83,11 @@ public class PlayerController : MonoBehaviour
         if (CanCast)
         {
 
+            CanSeeBoss = false;
+            ResidentOneSeen = false;
+            ResidentTwoSeen = false;
+            ResidentThreeSeen = false;
+
 
             if (Physics.Raycast(ray, out hit, raycastDist))
             {
@@ -127,6 +132,8 @@ public class PlayerController : MonoBehaviour
                 CanSeeBoss = false;
             }
 
+
+
             return;
 
 
@@ -167,10 +174,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-
         }
-
-
 
         else
         {
