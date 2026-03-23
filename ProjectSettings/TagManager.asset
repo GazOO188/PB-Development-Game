@@ -7,6 +7,9 @@ TagManager:
   - Game Manager
   - Boss
   - Stairs
+  - Fastener
+  - RepairTool
+  - RepairJob
   layers:
   - Default
   - TransparentFX
@@ -16,8 +19,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Tool
+  - Interactable
   - Ground
   - 
   - 
