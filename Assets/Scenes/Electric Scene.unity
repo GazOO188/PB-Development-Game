@@ -5461,7 +5461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d760f8db72d4db1905da03ead946e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorkPhaseTimer
-  TimerforWorkPhase: 120
+  TimerforWorkPhase: 360
   TimerText: {fileID: 1173555238}
   CanRunTimer: 1
 --- !u!222 &1173555240
