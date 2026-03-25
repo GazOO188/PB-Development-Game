@@ -66,7 +66,7 @@ public class InputHandler : MonoBehaviour
 
 
         //THIS IS FOR PRESSING E TO TALK//
-        return;
+       // return;
         if (_interact.WasPressedThisFrame())
         {
 
