@@ -1167,6 +1167,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 745484752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &151491879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2767307726968231643, guid: 6c309804aa612424187535f334a8eee6, type: 3}
+  m_PrefabInstance: {fileID: 9126471027152065149}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &168401049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,7 +1744,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5841491146950691713, guid: 6c309804aa612424187535f334a8eee6, type: 3}
   m_PrefabInstance: {fileID: 9126471027152065149}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 151491879}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b4efdaf1013643f78a4311818e7383c, type: 3}
@@ -2294,13 +2299,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517402655}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.18854296, y: -0.5410548, z: 0.80624175, w: -0.14726032}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 111.879, y: -562.844, z: -354.853}
 --- !u!114 &517402658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2928,7 +2933,6 @@ GameObject:
   m_Component:
   - component: {fileID: 742134113}
   - component: {fileID: 742134114}
-  - component: {fileID: 742134115}
   m_Layer: 0
   m_Name: ToolManager
   m_TagString: Untagged
@@ -2958,26 +2962,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742134111}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 576de17922d684df980b84afd1338449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnvelopeTools
-  CurrentTool: 0
   WST: {fileID: 426581254}
   IH: {fileID: 1565778096}
---- !u!114 &742134115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742134111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4bf487b550c24617862e021af29d0ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Distance
 --- !u!1 &745484750
 GameObject:
   m_ObjectHideFlags: 0
@@ -5529,7 +5520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Report to the Kitchen Area
+  m_text: Restore Bedroom power
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5538,8 +5529,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294965760
+  m_fontColor: {r: 0, g: 0.98080873, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5666,7 +5657,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Report to the 2nd Floor
+  m_text: Fix the faulty breaker
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5675,8 +5666,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294965760
+  m_fontColor: {r: 0, g: 0.98080873, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5823,7 +5814,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 9adcc2a4fc4444cc5b9a750c3734c20f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9407,6 +9398,7 @@ MonoBehaviour:
   - {fileID: 1951756560}
   - {fileID: 1624207154}
   - {fileID: 1081887572}
+  - {fileID: 151491879}
   currentItem: {fileID: 0}
   currentTool: 0
 --- !u!4 &1500752508
@@ -9710,7 +9702,7 @@ MonoBehaviour:
   Dialogue: {fileID: 11400000, guid: 3df600ba208c84fac9ae68f807d0179e, type: 2}
   Resident1: {fileID: 11400000, guid: 47a5645e42f114ba08f01b2759c3ef43, type: 2}
   Resident2: {fileID: 0}
-  Resident3: {fileID: 0}
+  Resident3: {fileID: 11400000, guid: 6b2fd04c4ef8f46e8b988ac537d0b7bd, type: 2}
   EButton: {fileID: 175884391}
   currentLine: 0
   _move:
@@ -9877,7 +9869,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -12041,7 +12033,7 @@ MonoBehaviour:
   WhoIsSpeakingTab: {fileID: 1723788411}
   typeSpeed: 0.06
   LineFinished: 0
-  Dialogue: {fileID: 11400000, guid: 47a5645e42f114ba08f01b2759c3ef43, type: 2}
+  Dialogue: {fileID: 11400000, guid: 6b2fd04c4ef8f46e8b988ac537d0b7bd, type: 2}
   PC: {fileID: 836840581}
 --- !u!114 &1719844005
 MonoBehaviour:
@@ -12061,7 +12053,7 @@ MonoBehaviour:
   WhoIsSpeakingTab: {fileID: 1723788411}
   typeSpeed: 0.06
   LineFinished: 0
-  Dialogue: {fileID: 11400000, guid: 47a5645e42f114ba08f01b2759c3ef43, type: 2}
+  Dialogue: {fileID: 11400000, guid: 6b2fd04c4ef8f46e8b988ac537d0b7bd, type: 2}
   PC: {fileID: 836840581}
 --- !u!1 &1723788411
 GameObject:
@@ -13314,7 +13306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   inFront: 0
-  itemName: 
+  itemName: WeatherStrip
 --- !u!114 &1918291548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13410,7 +13402,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Report to the Living Room
+  m_text: 'Repair the Broken Outlet '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13419,8 +13411,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294965760
+  m_fontColor: {r: 0, g: 0.98080873, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14479,7 +14471,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767307726968231643, guid: 6c309804aa612424187535f334a8eee6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767307726968231643, guid: 6c309804aa612424187535f334a8eee6, type: 3}
+      propertyPath: m_TagString
+      value: WeatherStrip
       objectReference: {fileID: 0}
     - target: {fileID: 5505393554480276480, guid: 6c309804aa612424187535f334a8eee6, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits

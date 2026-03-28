@@ -26,6 +26,8 @@ public class WeatherStripTool : MonoBehaviour
     // THIS FUNCTION HANDLES PLACING, ROTATING, AND SCALING THE WEATHER STRIP
     public void HandleWeatherStrip()
     {
+
+        
         // SAFETY CHECK: IF INPUT HANDLER OR THE WEATHER STRIP ACTION IS NULL, EXIT THE FUNCTION
         if (IH == null || IH._WeatherStrip == null) return;
 

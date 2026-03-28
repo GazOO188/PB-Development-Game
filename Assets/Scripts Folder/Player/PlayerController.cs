@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                //CI.InteractText.enabled = false;
+                CI.InteractText.enabled = false;
                 CanSeeBoss = false;
             }
 

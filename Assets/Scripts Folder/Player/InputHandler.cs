@@ -79,21 +79,21 @@ public class InputHandler : MonoBehaviour
 
                 else if (player.ResidentOneSeen)
                 {
-                    displayDialouge(Resident1);
+                    displayDialouge(Resident3);
                     MetWithResidentOne = true;
                 }
 
-                else if (player.ResidentTwoSeen)
-                {
-                    displayDialouge(Resident2);
-                    MetWithResidentTwo = true;
-                }
+              //  else if (player.ResidentTwoSeen)
+               // {
+             //       displayDialouge(Resident2);
+                   // MetWithResidentTwo = true;
+               // }
 
-                else if (player.ResidentThreeSeen)
-                {
-                    displayDialouge(Resident3);
-                    MetWithResidentThree = true;
-                }
+              //  else if (player.ResidentThreeSeen)
+               // {
+                 //   displayDialouge(Resident3);
+                 //   MetWithResidentThree = true;
+               // }
 
 
 

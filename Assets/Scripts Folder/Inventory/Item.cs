@@ -29,6 +29,7 @@ public class Item : MonoBehaviour
     {
         if (canSelectItem && Input.GetMouseButtonDown(0))
         {
+            
             if (sprite.color != Color.blue)
             {
                 sprite.color = Color.blue;

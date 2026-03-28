@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlayerInventory : MonoBehaviour
 {
     public static PlayerInventory Instance;
+    
     public enum AllTools
     {
         None,
@@ -46,6 +47,8 @@ public class PlayerInventory : MonoBehaviour
         toolDict.Add("Outlet", tools[0]);
         toolDict.Add("Outlet Tester", tools[1]);
         toolDict.Add("Circuit Breaker", tools[2]);
+
+        toolDict.Add("WeatherStrip", tools[3]);
         //itemDict.Add("Wrench", itemNames[6]);
         //itemDict.Add("Screw Driver", itemNames[7]);
         //itemDict.Add("Allen Keys", itemNames[8]);
@@ -104,6 +107,24 @@ public class PlayerInventory : MonoBehaviour
 
             toolDict["Outlet Tester"].SetActive(true);
         }
+
+
+        //FOR WEATHERSTRIP//
+
+        if(currentItem.itemName == "WeatherStrip" && currentTool is not AllTools.WeatherStrip)
+        {
+            
+            currentTool = AllTools.WeatherStrip;
+
+            toolDict["WeatherStrip"].SetActive(true);
+
+            
+
+
+        }
+
+
+    
 
     }
 

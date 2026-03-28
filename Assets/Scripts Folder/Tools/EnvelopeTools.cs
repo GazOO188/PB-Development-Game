@@ -3,34 +3,37 @@ using UnityEngine.InputSystem;
 
 public class EnvelopeTools : MonoBehaviour
 {
-    public enum TypesofEnvelopeTools { None, WeatherStrip, CaulkGun, FoamSprayGun }
+    //REFERENCE TO PLAYER INVENTORY//
 
-    public TypesofEnvelopeTools CurrentTool = TypesofEnvelopeTools.None;
-
+   
+    
     public WeatherStripTool WST;
     public InputHandler IH;
+    
+    
 
     void Update()
     {
         // Press T to activate WeatherStrip
-        if (IH._WeatherStrip.WasPressedThisFrame())
+        if (PlayerInventory.Instance.currentTool == PlayerInventory.AllTools.WeatherStrip)
         {
-            CurrentTool = TypesofEnvelopeTools.WeatherStrip;
+            HandleEachTool();
             Debug.Log("WeatherStrip tool activated");
         }
 
-        HandleEachTool();
     }
 
     void HandleEachTool()
     {
-        switch (CurrentTool)
+        switch (PlayerInventory.Instance.currentTool)
         {
-            case TypesofEnvelopeTools.WeatherStrip:
-                WST.HandleWeatherStrip(); // handles mouse input inside WeatherStripTool
-                break;
-        }
+            case PlayerInventory.AllTools.WeatherStrip:
+            {
+            WST.HandleWeatherStrip();
+            break;
+            }
     }
+}
 }
     
   
