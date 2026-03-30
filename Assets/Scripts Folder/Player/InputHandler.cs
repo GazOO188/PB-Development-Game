@@ -29,7 +29,11 @@ public class InputHandler : MonoBehaviour
 
     bool MetWithResidentOne = false, MetWithResidentTwo = false, MetWithResidentThree = false, CanTriggerObjectiveAnimation = false;
 
-    public InputAction _move, _look, _crouch, _interact, _WeatherStrip;
+
+    //BOOL FOR ENABLING/DISABLING MOVEMENT//
+    public bool canMove = true;
+
+    public InputAction _move, _look, _crouch, _interact, _WeatherStrip, _CaulkGun, _SprayFoam;
 
     void Awake()
     {
@@ -39,6 +43,10 @@ public class InputHandler : MonoBehaviour
         _interact = InputSystem.actions.FindAction("Interact");
 
         _WeatherStrip = InputSystem.actions.FindAction("WeatherStrip");
+
+        _CaulkGun = InputSystem.actions.FindAction("CaulkGun");
+
+        _SprayFoam = InputSystem.actions.FindAction("SprayFoam");
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -53,8 +61,14 @@ public class InputHandler : MonoBehaviour
     {
         if (!player.playerControl) return;
 
+
+        if (canMove)
+        {
+            
         Vector2 movement = _move.ReadValue<Vector2>();
         player.Move(movement);
+
+        }
 
         Vector2 look = _look.ReadValue<Vector2>();
         playerCamera.Rotate(look);
@@ -81,6 +95,9 @@ public class InputHandler : MonoBehaviour
                 {
                     displayDialouge(Resident3);
                     MetWithResidentOne = true;
+                    canMove = false;
+
+        
                 }
 
               //  else if (player.ResidentTwoSeen)
@@ -171,6 +188,8 @@ public class InputHandler : MonoBehaviour
         else
         {
             EndDialogue();
+
+            //player.canMove = true;
 
 
 

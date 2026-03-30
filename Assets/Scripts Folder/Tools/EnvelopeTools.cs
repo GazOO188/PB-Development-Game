@@ -8,33 +8,101 @@ public class EnvelopeTools : MonoBehaviour
    
     
     public WeatherStripTool WST;
+    
+    public CaulkGun CG;
+    
     public InputHandler IH;
-    
-    
+
+
 
     void Update()
     {
-        // Press T to activate WeatherStrip
-        if (PlayerInventory.Instance.currentTool == PlayerInventory.AllTools.WeatherStrip)
-        {
-            HandleEachTool();
-            Debug.Log("WeatherStrip tool activated");
-        }
 
-    }
-
-    void HandleEachTool()
-    {
         switch (PlayerInventory.Instance.currentTool)
         {
-            case PlayerInventory.AllTools.WeatherStrip:
+            
+           case PlayerInventory.AllTools.WeatherStrip:
+           {
+                    
+            
+                // Press T to activate WeatherStrip
+                if (PlayerInventory.Instance.currentTool == PlayerInventory.AllTools.WeatherStrip)
+                 {
+                     HandleWeatherStripTool();
+                     Debug.Log("WeatherStrip tool activated");
+                   
+                 }
+
+                 break;
+                
+           }
+
+            case PlayerInventory.AllTools.CaulkGun:
             {
-            WST.HandleWeatherStrip();
-            break;
+
+                if(PlayerInventory.Instance.currentTool == PlayerInventory.AllTools.CaulkGun)
+                {
+                        
+
+                    HandleCaulkGunTool();
+                    Debug.Log("CaulkGun Activated");
+
+
+                }   
+
+                break; 
+
+
             }
+         
+
+        }
+
+       
     }
+
+    void HandleWeatherStripTool()
+    {
+       
+      WST.HandleWeatherStrip();
+          
+    }
+    
+    
+
+    void HandleCaulkGunTool()
+    {
+    if (IH._CaulkGun == null) return;
+
+    // Read current trigger value
+    float triggerValue = IH._CaulkGun.ReadValue<float>();
+
+    // Reset hasLastPoint on first frame pressed
+    if (IH._CaulkGun.triggered)
+    {
+        CG.hasLastPoint = false; // start a new line
+    }
+
+    // While holding the trigger, spray caulk
+    if (triggerValue > 0f)
+    {
+        if (Time.time - CG.lastUsedTime >= CG.sprayRate)
+        {
+            CG.ShootCaulk();
+            CG.lastUsedTime = Time.time;
+        }
+    }
+
+    // Reset hasLastPoint on release
+    if (IH._CaulkGun.phase == InputActionPhase.Canceled)
+    {
+        CG.hasLastPoint = false;
+    }
+    }
+
 }
-}
+
+
     
   
     
