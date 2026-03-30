@@ -15,6 +15,7 @@ TagManager:
   - Circuit Breaker
   - Outlet Tester
   - WeatherStrip
+  - CaulkGun
   layers:
   - Default
   - TransparentFX

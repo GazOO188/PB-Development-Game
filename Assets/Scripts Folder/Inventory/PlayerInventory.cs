@@ -49,6 +49,7 @@ public class PlayerInventory : MonoBehaviour
         toolDict.Add("Circuit Breaker", tools[2]);
 
         toolDict.Add("WeatherStrip", tools[3]);
+        toolDict.Add("CaulkGun", tools[4]);
         //itemDict.Add("Wrench", itemNames[6]);
         //itemDict.Add("Screw Driver", itemNames[7]);
         //itemDict.Add("Allen Keys", itemNames[8]);
@@ -119,6 +120,20 @@ public class PlayerInventory : MonoBehaviour
             toolDict["WeatherStrip"].SetActive(true);
 
             
+
+
+        }
+
+
+        //FOR CAULKGUN//
+
+        if(currentItem.itemName == "CaulkGun" && currentTool is not AllTools.CaulkGun)
+        {
+            
+            currentTool = AllTools.CaulkGun;
+
+            toolDict["CaulkGun"].SetActive(true);
+
 
 
         }
