@@ -124,11 +124,30 @@ public class LanguageConversion : MonoBehaviour
 
         //THIS IS FOR THE THIRD RESIDENT//
 
-        English.Add("Hello! There's an outlet in the bathroom near the sink.", "Hello! There's an outlet in the bathroom near the sink.");
+        English.Add("Salutations my good sir. I'm in need of assistance with an outlet in my bathroom.","Salutations my good sir. I'm in need of assistance with an outlet in my bathroom.");
 
-        English.Add("There's a burn mark on the outlet and it's not working.", "There's a burn mark on the outlet and it's not working.");
+        English.Add("It does not work and I like to charge my devices when I am taking a shower.", "It does not work and I like to charge my devices when I am taking a shower.");
 
-        English.Add("Maybe it's just the outlet itself?", "Maybe it's just the outlet itself?");
+        English.Add("The outlet is right next to my sink it’s really easy to find would appreciate your assistance", "The outlet is right next to my sink it’s really easy to find would appreciate your assistance."); 
+
+
+        //TASK 2//
+
+        English.Add("Hello there sir, I’ve been having issues with an outlet in my kitchen by my microwave.", "Hello there sir, I’ve been having issues with an outlet in my kitchen by my microwave.");
+
+        English.Add("I only use my microwave on that outlet. It was fine a couple days ago but then it just stopped working when I plugged in a microwave in the same socket.", "I only use my microwave on that outlet. It was fine a couple days ago but then it just stopped working when I plugged in a microwave in the same socket.");
+
+        English.Add("It seems like the outlet is short circuited and I have no Idea why. Can you check it out?", "It seems like the outlet is short circuited and I have no idea why. Can you check it out?");
+
+
+        //TASK 3//
+
+        English.Add("Well it’s about time you came.", "Well it’s about time you came.");
+
+        English.Add("I thought I had to end up doing everything myself. You mind actually doing your job and fixing the light situation in my room.", "I thought I had to end up doing everything myself. You mind actually doing your job and fixing the light situation in my room.");
+
+        English.Add("It's been a pain having to go to the living room for entertainment. Get it done and quick I’m missing critical hours on marvel rivals.", "It's been a pain having to go to the living room for entertainment. Get it done and quick I’m missing critical hours on marvel rivals.");
+
         
 
         

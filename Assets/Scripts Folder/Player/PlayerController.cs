@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
     public CharacterController characterController;
+   
     public enum Stance
     {
         Stand,
@@ -159,9 +160,6 @@ public class PlayerController : MonoBehaviour
 
 
                 }
-
-
-
 
 
             }

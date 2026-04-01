@@ -72,7 +72,7 @@ public class RoamingAI : MonoBehaviour
             navMesh.isStopped = true;
 
             // PLAY IDLE ANIMATION
-            anim.Play("Idle", 0, 0f);
+           // anim.Play("Idle", 0, 0f);
 
             // START THE IDLE COROUTINE BEFORE MOVING TO NEXT WAYPOINT
             StartCoroutine(IdleThenMoveToNextWaypoint());

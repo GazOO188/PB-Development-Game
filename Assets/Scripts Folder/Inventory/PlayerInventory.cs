@@ -50,6 +50,7 @@ public class PlayerInventory : MonoBehaviour
 
         toolDict.Add("WeatherStrip", tools[3]);
         toolDict.Add("CaulkGun", tools[4]);
+        //toolDict.Add("SprayFoam", tools[5]);
         //itemDict.Add("Wrench", itemNames[6]);
         //itemDict.Add("Screw Driver", itemNames[7]);
         //itemDict.Add("Allen Keys", itemNames[8]);

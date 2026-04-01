@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   SpeakerName: Dialogue
   lines:
-  - Hi! I have a heating problem in my room.
+  - Salutations my good sir. I'm in need of assistance with an outlet in my bathroom.
   - The heat comes and go. It's hard to get a good night rest.
   - The furnace is downstairs.
