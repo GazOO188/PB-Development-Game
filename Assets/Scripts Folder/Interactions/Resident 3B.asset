@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 268bf36e2c95048f4b4ca0fcdf827688, type: 3}
-  m_Name: Resident 3
+  m_Name: Resident 3B
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   SpeakerName: Dialogue
   lines:
-  - 'Salutations my good sir. I''m in need of assistance with an outlet in my bathroom. '
-  - It does not work and I like to charge my devices when I am taking a shower.
-  - "The outlet is right next to my sink it\u2019s really easy to find would appreciate
-    your assistance   "
+  - "Well it\u2019s about time you came."
+  - I thought I had to end up doing everything myself. You mind actually doing your
+    job and fixing the light situation in my room.
+  - "It's been a pain having to go to the living room for entertainment. Get it done
+    and quick I\u2019m missing critical hours on marvel rivals."

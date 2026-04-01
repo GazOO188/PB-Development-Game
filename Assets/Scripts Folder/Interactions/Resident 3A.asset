@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 268bf36e2c95048f4b4ca0fcdf827688, type: 3}
-  m_Name: Resident 3
+  m_Name: Resident 3A
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   SpeakerName: Dialogue
   lines:
-  - 'Salutations my good sir. I''m in need of assistance with an outlet in my bathroom. '
-  - It does not work and I like to charge my devices when I am taking a shower.
-  - "The outlet is right next to my sink it\u2019s really easy to find would appreciate
-    your assistance   "
+  - "Hello there sir, I\u2019ve been having issues with an outlet in my kitchen by
+    my microwave."
+  - I only use my microwave on that outlet. It was fine a couple days ago but then
+    it just stopped working when I plugged in a microwave in the same socket.
+  - 'It seems like the outlet is short circuited and I have no Idea why. Can you
+    check it out? '

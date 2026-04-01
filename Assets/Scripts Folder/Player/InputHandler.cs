@@ -11,9 +11,11 @@ public class InputHandler : MonoBehaviour
 
     public ObjectiveAlert OA;
 
+    public WorkPhaseTimer WPT;
+
     [SerializeField] PlayerCamera playerCamera;
 
-    [SerializeField] public DialogueData Dialogue, Resident1, Resident2, Resident3;
+    [SerializeField] public DialogueData Dialogue, Resident1, Resident2, Resident3, Resident3A, Resident3B;
 
     [SerializeField] public GameObject EButton;
 
@@ -32,6 +34,8 @@ public class InputHandler : MonoBehaviour
 
     //BOOL FOR ENABLING/DISABLING MOVEMENT//
     public bool canMove = true;
+
+    public bool canProgresstoNextDialogue = false;
 
     public InputAction _move, _look, _crouch, _interact, _WeatherStrip, _CaulkGun, _SprayFoam;
 
@@ -61,7 +65,8 @@ public class InputHandler : MonoBehaviour
     {
         if (!player.playerControl) return;
 
-
+        canProgresstoNextDialogue = CI.LineFinished;
+      
         if (canMove)
         {
             
@@ -96,6 +101,10 @@ public class InputHandler : MonoBehaviour
                     displayDialouge(Resident3);
                     MetWithResidentOne = true;
                     canMove = false;
+                    WPT.CanRunTimer = false;
+                  
+
+             
 
         
                 }
@@ -118,16 +127,20 @@ public class InputHandler : MonoBehaviour
             }
 
             // CONTINUE TALKING//
-            else if (isTalking)
+            else if (canProgresstoNextDialogue)
             {
                 NextLine();
+
             }
+            
+  
 
 
 
 
 
         }
+
 
 
         //DISPLAYS THE E BUTTON//
@@ -189,7 +202,17 @@ public class InputHandler : MonoBehaviour
         {
             EndDialogue();
 
-            //player.canMove = true;
+            canMove = true;
+
+            if (OA.TimerCheck)
+            {
+            
+                WPT.CanRunTimer = true;
+
+
+            }
+
+         
 
 
 
@@ -268,6 +291,8 @@ public class InputHandler : MonoBehaviour
 
 
                 EButton.SetActive(false);
+
+
 
 
 
