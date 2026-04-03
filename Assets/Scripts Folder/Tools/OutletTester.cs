@@ -14,11 +14,15 @@ public class OutletTester : MonoBehaviour
         PlayerController.Instance.toolInUse = true;
 
         tester.transform.position = currentOutlet.transform.GetChild(0).transform.position;
-        tester.transform.rotation = currentOutlet.transform.rotation;
+        Quaternion q = currentOutlet.transform.GetChild(0).transform.rotation;
+        tester.transform.rotation = q;
 
         yield return new WaitForSeconds(2);
 
-        testLight.GetComponent<Renderer>().material.color = Color.green;
+        if (currentOutlet.name == "Working Outlet")
+            testLight.GetComponent<Renderer>().material.color = Color.green;
+        else
+            testLight.GetComponent<Renderer>().material.color = Color.red;
 
         yield return new WaitForSeconds(1);
 

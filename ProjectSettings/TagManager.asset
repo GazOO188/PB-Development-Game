@@ -16,6 +16,7 @@ TagManager:
   - Outlet Tester
   - WeatherStrip
   - CaulkGun
+  - Tool UI
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - Ground
   - 
   - 
-  - 
+  - CanHit
   - 
   - 
   - 

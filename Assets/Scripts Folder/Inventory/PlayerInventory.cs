@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PlayerInventory : MonoBehaviour
 {
     public static PlayerInventory Instance;
-    
+
     public enum AllTools
     {
         None,
@@ -24,6 +24,7 @@ public class PlayerInventory : MonoBehaviour
 
     public Item currentItem = null;
     public AllTools currentTool = AllTools.None;
+    public int panelIndex = 0;
     //[SerializeField] GameObject breaker, outlet, outletTester;
     //public bool itemIsMoving;
 
@@ -93,7 +94,7 @@ public class PlayerInventory : MonoBehaviour
         {
             currentTool = AllTools.CircuitBreaker;
 
-            toolDict["Circuit Breaker"].SetActive(true);
+            if (panelIndex != 2) toolDict["Circuit Breaker"].SetActive(true);
         }
 
         if (currentItem.itemName == "Outlet" && currentTool is not AllTools.Outlets)
@@ -113,14 +114,14 @@ public class PlayerInventory : MonoBehaviour
 
         //FOR WEATHERSTRIP//
 
-        if(currentItem.itemName == "WeatherStrip" && currentTool is not AllTools.WeatherStrip)
+        if (currentItem.itemName == "WeatherStrip" && currentTool is not AllTools.WeatherStrip)
         {
-            
+
             currentTool = AllTools.WeatherStrip;
 
             toolDict["WeatherStrip"].SetActive(true);
 
-            
+
 
 
         }
@@ -128,9 +129,9 @@ public class PlayerInventory : MonoBehaviour
 
         //FOR CAULKGUN//
 
-        if(currentItem.itemName == "CaulkGun" && currentTool is not AllTools.CaulkGun)
+        if (currentItem.itemName == "CaulkGun" && currentTool is not AllTools.CaulkGun)
         {
-            
+
             currentTool = AllTools.CaulkGun;
 
             toolDict["CaulkGun"].SetActive(true);
@@ -140,7 +141,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
 
-    
+
 
     }
 
