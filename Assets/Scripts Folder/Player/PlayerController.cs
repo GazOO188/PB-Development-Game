@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
     public CharacterController characterController;
-   
+    Outline outline;
     public enum Stance
     {
         Stand,
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool ResidentOneSeen = false, ResidentTwoSeen = false, ResidentThreeSeen = false;
 
     [SerializeField] public bool CanCast = true;
+    [SerializeField] LayerMask layerMask;
 
 
 
@@ -70,6 +71,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I) && !toolInUse)
         {
+            if (!playerControl)
+            {
+                GameObject[] tools = GameObject.FindGameObjectsWithTag("Tool UI");
+                foreach (GameObject tool in tools)
+                {
+                    tool.GetComponent<Item>().CloseUI();
+                }
+            }
             InventoryScreen();
         }
 
@@ -90,14 +99,16 @@ public class PlayerController : MonoBehaviour
             ResidentThreeSeen = false;
 
 
-            if (Physics.Raycast(ray, out hit, raycastDist))
+            if (Physics.Raycast(ray, out hit, raycastDist, layerMask))
             {
                 // Code here for interacting with object that player is looking at
                 if (hit.collider.CompareTag("Circuit Breaker") && PlayerInventory.Instance.currentItem != null && PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.gray)
                 {
+                    ShowOutline(hit);
                     if (Input.GetMouseButtonDown(0))
                     {
-                        GameObject.Find("Circuit Manager").GetComponent<CircuitBreaker>().UpdateCircuit();
+                        GameObject.Find("Circuit Manager").GetComponent<CircuitBreaker>().UpdateCircuit(hit.collider.gameObject);
+                        RemoveOutline();
                     }
                 }
 
@@ -105,16 +116,20 @@ public class PlayerController : MonoBehaviour
                 {
                     if (PlayerInventory.Instance.currentItem.itemName == "Outlet" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.white)
                     {
+                        ShowOutline(hit);
                         if (Input.GetMouseButtonDown(0))
                         {
                             GameObject.Find("Outlet Manager").GetComponent<Outlet>().UpdateOutlet(hit.collider.gameObject);
+                            RemoveOutline();
                         }
                     }
                     else if (PlayerInventory.Instance.currentItem.itemName == "Outlet Tester" && hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white)
                     {
+                        ShowOutline(hit);
                         if (Input.GetMouseButtonDown(0))
                         {
                             StartCoroutine(GameObject.Find("Outlet Manager").GetComponent<OutletTester>().TestOutlets(hit.transform.gameObject));
+                            RemoveOutline();
                         }
                     }
                 }
@@ -128,7 +143,7 @@ public class PlayerController : MonoBehaviour
                 }
 
 
-                 //FOR DETECTING THE FIRST RESIDENT//
+                //FOR DETECTING THE FIRST RESIDENT//
                 if (hit.collider.CompareTag("Resident 1"))
                 {
 
@@ -147,7 +162,7 @@ public class PlayerController : MonoBehaviour
                     CI.InteractText.enabled = true;
 
 
-                 }
+                }
 
 
                 //FOR DETECTING THE THIRD RESIDENT//
@@ -167,11 +182,13 @@ public class PlayerController : MonoBehaviour
             {
                 CI.InteractText.enabled = false;
                 CanSeeBoss = false;
+
+                if (outline != null) RemoveOutline();
             }
 
 
 
-           
+
 
 
 
@@ -179,7 +196,7 @@ public class PlayerController : MonoBehaviour
 
         else
         {
-            
+
             CI.InteractText.enabled = false;
             CanSeeBoss = false;
             ResidentOneSeen = false;
@@ -202,6 +219,21 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), 1f - Mathf.Exp(-15f * Time.deltaTime));
         }
+    }
+
+    void ShowOutline(RaycastHit hit)
+    {
+        if (outline == null)
+        {
+            outline = hit.collider.GetComponent<Outline>();
+            outline.enabled = true;
+        }
+    }
+
+    void RemoveOutline()
+    {
+        outline.enabled = false;
+        outline = null;
     }
 
     public void Move(Vector2 movement)

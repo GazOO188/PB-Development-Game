@@ -30,23 +30,23 @@ public class CircuitBreaker : MonoBehaviour
         {
             if (index == 0 && circuits[0].GetComponent<Renderer>().material.color != Color.green)
                 circuits[0].GetComponent<Renderer>().material.color = Color.green;
-            if (complete) Debug.Log("YOU DID IT");
+            else if (index == 1 && circuits[1].GetComponent<Renderer>().material.color != Color.green)
+                circuits[01].GetComponent<Renderer>().material.color = Color.green;
+
+            //if (complete) Debug.Log("YOU DID IT");
         }
     }
 
-    public void UpdateCircuit()
+    public void UpdateCircuit(GameObject panel)
     {
-        if (circuits[1].GetComponent<Renderer>().material.color == Color.green)
+        panel.GetComponent<Renderer>().material.color = Color.gray;
+        PlayerInventory.Instance.panelIndex++;
+        index++;
+        if (index == 1) circuits[1].GetComponent<Renderer>().material.color = Color.green;
+        if (index == 2)
         {
-            circuits[1].GetComponent<Renderer>().material.color = Color.gray;
-            PlayerInventory.Instance.currentItem = null;
             complete = true;
-        }
-        else
-        {
-            circuits[0].GetComponent<Renderer>().material.color = Color.gray;
-            circuits[1].GetComponent<Renderer>().material.color = Color.green;
-            index++;
+            PlayerInventory.Instance.currentItem = null;
         }
     }
 }
