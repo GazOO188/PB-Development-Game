@@ -50,6 +50,7 @@ public class Outlet : MonoBehaviour
         {
             PlayerInventory.Instance.currentItem = null;
             complete = true;
+            Debug.Log("Did");
         }
     }
 }
