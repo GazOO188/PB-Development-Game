@@ -45,13 +45,15 @@ public class PlayerInventory : MonoBehaviour
         //itemDict.Add("Weather Strip", itemNames[0]);
         //itemDict.Add("Caulk Gun", itemNames[1]);
         //itemDict.Add("Foam Gun", itemNames[2]);
+        
         toolDict.Add("Outlet", tools[0]);
         toolDict.Add("Outlet Tester", tools[1]);
         toolDict.Add("Circuit Breaker", tools[2]);
 
         toolDict.Add("WeatherStrip", tools[3]);
         toolDict.Add("CaulkGun", tools[4]);
-        //toolDict.Add("SprayFoam", tools[5]);
+        toolDict.Add("SprayFoam", tools[5]);
+        
         //itemDict.Add("Wrench", itemNames[6]);
         //itemDict.Add("Screw Driver", itemNames[7]);
         //itemDict.Add("Allen Keys", itemNames[8]);
@@ -135,6 +137,21 @@ public class PlayerInventory : MonoBehaviour
             currentTool = AllTools.CaulkGun;
 
             toolDict["CaulkGun"].SetActive(true);
+
+
+
+        }
+
+
+        //FOR SPRAYFOAM//
+
+        if(currentItem.itemName == "SprayFoam" && currentTool is not AllTools.FoamSprayGun)
+        {
+            
+
+            currentTool = AllTools.FoamSprayGun;
+
+            toolDict["SprayFoam"].SetActive(true);
 
 
 
