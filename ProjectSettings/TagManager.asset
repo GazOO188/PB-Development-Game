@@ -17,6 +17,7 @@ TagManager:
   - WeatherStrip
   - CaulkGun
   - Tool UI
+  - SprayFoam
   layers:
   - Default
   - TransparentFX
