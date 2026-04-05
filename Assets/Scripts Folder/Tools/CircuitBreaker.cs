@@ -33,7 +33,7 @@ public class CircuitBreaker : MonoBehaviour
             else if (index == 1 && circuits[1].GetComponent<Renderer>().material.color != Color.green)
                 circuits[01].GetComponent<Renderer>().material.color = Color.green;
 
-            //if (complete) Debug.Log("YOU DID IT");
+            if (complete) Debug.Log("YOU DID IT");
         }
     }
 

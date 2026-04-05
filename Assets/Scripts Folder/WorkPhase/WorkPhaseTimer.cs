@@ -7,30 +7,54 @@ public class WorkPhaseTimer : MonoBehaviour
 {
     //THIS SCRIPT IS FOR THE TIMER//
 
+    //TIMER VARIABLE//
+    [Header("Timer")]
     public float TimerforWorkPhase = 360f; // 6 MINUTES//
 
-    public TextMeshProUGUI TimerText, TaskOneText;
+    //TEXT//
+    [Header("TextMeshPro")]
+    public TextMeshProUGUI TimerText;
+    public TextMeshProUGUI TaskOneText;
+    public TextMeshProUGUI TaskTwoText;
 
-    public bool CanRunTimer = true, TaskOneCompleted = false, DisplaySecondTask = false;
+    //BOOLS//
+    [Header("Bools")]
+    public bool CanRunTimer = true;
+    public bool TaskOneCompleted = false;
+    public bool DisplaySecondTask = false;
+    public bool TaskTwoCompleted = false;
+    public bool DisplayFinalTask = false;
 
-    public Outlet outlet;
 
+    //GAMEOBJECT REFERENCES//
     [Header("GameObjects")]
-
-    public GameObject ExclamationPoint, CheckMark, Task2;
+    public GameObject ExclamationPoint;
+    public GameObject ExclamationPoint2;
+    public GameObject CheckMark;
+    public GameObject CheckMarkForTask2;
+    public GameObject Task2;
+    public GameObject Task3;
 
 
    //ANIMATION SECTION//
    [Header("Animation Settings")]
-
    public Animator CheckAnim;
 
+   public Animator CheckAnim2;
+
+   //THIS SHOWS THE SECOND OBJECTIVE "FIX THE FAULTY BREAKER"//
    public Animator Task2Anim;
 
+   public Animator FinalTaskAnim;
 
+
+
+
+    //SCRIPT REFERENCES//
    [Header("Script References")]
-
    public InputHandler IH;
+   public CircuitBreaker CB;
+   public Outlet outlet;
  
     
     void Awake()
@@ -39,9 +63,14 @@ public class WorkPhaseTimer : MonoBehaviour
 
        CheckAnim.enabled = false;
 
+       CheckAnim2.enabled = false;
+
+      
        Task2Anim.enabled = false;
 
        Task2.SetActive(false);
+
+       Task3.SetActive(false);
 
 
       
@@ -109,6 +138,18 @@ public class WorkPhaseTimer : MonoBehaviour
         }
 
 
+        //STARTS THE COROUTINE FOR SHOWING NEXT OBJECTIVE AFTER OBJ 2//
+
+
+        if (!TaskTwoCompleted)
+        {
+            
+         StartCoroutine(MarkTask2());
+
+
+        }
+
+
 
         //FOR DISPLAYING THE SECOND OBJECTIVE ON SCREEN//
         if(IH.MetWithResidentOneAgain && !IH.isTalking && !DisplaySecondTask)
@@ -119,6 +160,19 @@ public class WorkPhaseTimer : MonoBehaviour
 
         DisplaySecondTask = true;
 
+
+
+        }
+
+
+        //FOR DISPLAYING THE THIRD OBJECTIVE ON SCREEN//
+
+
+        if(IH.MetWithResidentOneFinalTime && !IH.isTalking && !DisplayFinalTask)
+        {
+            
+
+           StartCoroutine(ShowFinalTask());
 
 
         }
@@ -171,7 +225,6 @@ public class WorkPhaseTimer : MonoBehaviour
 
        
 
-            
             CheckMark.SetActive(true);
       
 
@@ -220,6 +273,77 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
 
+
+
+        }
+
+
+        //MARK THE SECOND TASK AS DONE//
+
+        public IEnumerator MarkTask2()
+        {
+        
+            yield return new WaitForSeconds(0f);
+
+
+            //FOR CIRCUIT BREAKER TASK//
+            if(CB.complete && !TaskTwoCompleted)
+            {
+            
+            ExclamationPoint2.SetActive(false);
+            
+            TaskTwoText.text = "<s> Fix the faulty breaker </s>";
+
+       
+
+            CheckMarkForTask2.SetActive(true);
+      
+
+            CheckAnim2.enabled = true;
+
+            CheckAnim2.Play("Mark2");
+
+            CanRunTimer = false;
+
+
+
+            yield return new WaitForSeconds(2.3f);
+
+            CheckMarkForTask2.SetActive(false);
+
+            TaskTwoText.text = "Report to the Resident";
+
+            CanRunTimer = true;
+
+            
+
+
+            TaskTwoCompleted = true;
+            }
+
+
+
+        }
+
+       
+        public IEnumerator ShowFinalTask()
+        {
+           
+            yield return new WaitForSeconds(0f);
+
+            Task3.SetActive(true);
+
+            FinalTaskAnim.enabled = true;
+
+            FinalTaskAnim.Play("FinalTask");
+
+            TaskTwoText.text = "<s> Report to the Resident </s>";
+
+
+
+
+
+        
 
 
         }
