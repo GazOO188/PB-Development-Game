@@ -27,9 +27,11 @@ public class InputHandler : MonoBehaviour
 
     [SerializeField] public int currentLine = 0;
 
-    bool isTalking = false;
+    public bool isTalking = false;
 
-    bool MetWithResidentOne = false, MetWithResidentTwo = false, MetWithResidentThree = false, CanTriggerObjectiveAnimation = false;
+
+    [Header("Bools")]
+    public bool MetWithResidentOne = false, MetWithResidentOneAgain = false, MetWithResidentTwo = false, MetWithResidentThree = false, CanTriggerObjectiveAnimation = false;
 
 
     //BOOL FOR ENABLING/DISABLING MOVEMENT//
@@ -96,18 +98,34 @@ public class InputHandler : MonoBehaviour
                     displayDialouge(Dialogue);
                 }
 
+
+
+                //FOR DISPLYING THE SECOND DIALOGUE// 
+                else if (player.ResidentOneSeen && WPT.TaskOneCompleted)
+                {
+                    displayDialouge(Resident3A);
+                    MetWithResidentOne = true;
+                   
+                    MetWithResidentOneAgain = true;
+               
+                    canMove = false;
+                    WPT.CanRunTimer = false;
+        
+                }
+
+                //FOR DISPLAYING THE FIRST DIALOGUE//
                 else if (player.ResidentOneSeen)
                 {
                     displayDialouge(Resident3);
                     MetWithResidentOne = true;
                     canMove = false;
                     WPT.CanRunTimer = false;
-                  
-
-             
-
         
                 }
+
+
+
+             
 
               //  else if (player.ResidentTwoSeen)
                // {
@@ -246,6 +264,9 @@ public class InputHandler : MonoBehaviour
 
         //PLAYER CAN CAST RAYCAST TO DETECT THINGS/
         player.CanCast = true;
+
+
+
     }
 
 

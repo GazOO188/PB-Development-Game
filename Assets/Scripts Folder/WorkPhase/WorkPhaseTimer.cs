@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 
 public class WorkPhaseTimer : MonoBehaviour
 {
@@ -8,14 +9,41 @@ public class WorkPhaseTimer : MonoBehaviour
 
     public float TimerforWorkPhase = 360f; // 6 MINUTES//
 
-    public TextMeshProUGUI TimerText;
+    public TextMeshProUGUI TimerText, TaskOneText;
 
-    public bool CanRunTimer = true;
+    public bool CanRunTimer = true, TaskOneCompleted = false, DisplaySecondTask = false;
 
+    public Outlet outlet;
+
+    [Header("GameObjects")]
+
+    public GameObject ExclamationPoint, CheckMark, Task2;
+
+
+   //ANIMATION SECTION//
+   [Header("Animation Settings")]
+
+   public Animator CheckAnim;
+
+   public Animator Task2Anim;
+
+
+   [Header("Script References")]
+
+   public InputHandler IH;
+ 
     
     void Awake()
     {
-        
+       outlet = GameObject.Find("Outlet Manager").GetComponent<Outlet>();
+
+       CheckAnim.enabled = false;
+
+       Task2Anim.enabled = false;
+
+       Task2.SetActive(false);
+
+
       
    
     }
@@ -71,6 +99,31 @@ public class WorkPhaseTimer : MonoBehaviour
         
         
         }
+
+        //START THE COROUTINE TO SHOW NEXT OBJECTIVE//
+        if (!TaskOneCompleted)
+        {
+            
+        StartCoroutine(ShowNextObjective()); 
+       
+        }
+
+
+
+        //FOR DISPLAYING THE SECOND OBJECTIVE ON SCREEN//
+        if(IH.MetWithResidentOneAgain && !IH.isTalking && !DisplaySecondTask)
+        {
+            
+        
+        StartCoroutine(ShowTheSecondTask());
+
+        DisplaySecondTask = true;
+
+
+
+        }
+
+      
     }
 
 
@@ -101,6 +154,80 @@ public class WorkPhaseTimer : MonoBehaviour
         
         }
 
+
+        //COROUTINE FOR STARTING THE NEXT OBJECTIVE//
+        public IEnumerator ShowNextObjective()
+        {
+
+         yield return new WaitForSeconds(0f);
+
+        //THIS CROSSES OUT THE TASK TO MARK IT COMPLETE//
+        if (outlet.complete && !TaskOneCompleted)
+        {
+
+            ExclamationPoint.SetActive(false);
+            
+            TaskOneText.text = "<s> Repair the Broken Outlet </s>";
+
+       
+
+            
+            CheckMark.SetActive(true);
+      
+
+            CheckAnim.enabled = true;
+
+            CheckAnim.Play("MarkTask");
+
+            CanRunTimer = false;
+
+
+
+            yield return new WaitForSeconds(2.3f);
+
+            CheckMark.SetActive(false);
+
+            TaskOneText.text = "Report to the Resident";
+
+            CanRunTimer = true;
+
+            
+            TaskOneCompleted = true;
+
+        }
+
+
+
+        }
+
+
+
+        //COROTUINE FOR SHOWING THE SECOND OBJECTIVE ON SCREEN//
+
+
+        public IEnumerator ShowTheSecondTask()
+        {
+        
+            yield return new WaitForSeconds(0f);
+            
+            Task2.SetActive(true);
+           
+            Task2Anim.enabled = true;
+
+            Task2Anim.Play("ShowTask2");
+
+            TaskOneText.text = "<s> Report to the Resident </s>";
+
+
+
+
+
+        }
+
+
+
+
+      
 
 
 
