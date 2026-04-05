@@ -31,7 +31,17 @@ public class InputHandler : MonoBehaviour
 
 
     [Header("Bools")]
-    public bool MetWithResidentOne = false, MetWithResidentOneAgain = false, MetWithResidentTwo = false, MetWithResidentThree = false, CanTriggerObjectiveAnimation = false;
+    public bool MetWithResidentOne = false;
+    
+    public bool MetWithResidentOneAgain = false;
+    
+    public bool MetWithResidentOneFinalTime = false;
+   
+    public bool MetWithResidentTwo = false;
+   
+    public bool MetWithResidentThree = false;
+   
+    public bool CanTriggerObjectiveAnimation = false;
 
 
     //BOOL FOR ENABLING/DISABLING MOVEMENT//
@@ -100,18 +110,33 @@ public class InputHandler : MonoBehaviour
 
 
 
-                //FOR DISPLYING THE SECOND DIALOGUE// 
-                else if (player.ResidentOneSeen && WPT.TaskOneCompleted)
-                {
-                    displayDialouge(Resident3A);
+                // THIRD DIALOGUE (MOST ADVANCED)
+               else if (player.ResidentOneSeen && WPT.TaskTwoCompleted)
+               {               
+                    displayDialouge(Resident3B);
+
                     MetWithResidentOne = true;
-                   
-                    MetWithResidentOneAgain = true;
-               
+                    
+                    MetWithResidentOneFinalTime = true;
+
                     canMove = false;
+                    
                     WPT.CanRunTimer = false;
-        
-                }
+               }
+
+               // SECOND DIALOGUE
+               else if (player.ResidentOneSeen && WPT.TaskOneCompleted)
+               {
+                    displayDialouge(Resident3A);
+
+                    MetWithResidentOne = true;
+    
+                    MetWithResidentOneAgain = true;
+
+                    canMove = false;
+    
+                    WPT.CanRunTimer = false;
+               }
 
                 //FOR DISPLAYING THE FIRST DIALOGUE//
                 else if (player.ResidentOneSeen)
