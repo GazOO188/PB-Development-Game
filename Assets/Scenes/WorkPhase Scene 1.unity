@@ -1547,6 +1547,8 @@ MonoBehaviour:
   ret: {fileID: 106632512}
   raycastDist: 7.8
   CanSeeBoss: 0
+  inventory: {fileID: 0}
+  toolInUse: 0
   ResidentOneSeen: 0
   ResidentTwoSeen: 0
   ResidentThreeSeen: 0

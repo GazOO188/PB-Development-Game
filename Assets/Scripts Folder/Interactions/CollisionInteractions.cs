@@ -37,6 +37,8 @@ public class CollisionInteractions : MonoBehaviour
 
     public PlayerController PC;
 
+    public InputHandler IH;
+
 
   
     
@@ -91,6 +93,11 @@ public class CollisionInteractions : MonoBehaviour
 
         //THE LINE HAS FINISHED WRITING OUT//
          LineFinished = true;
+
+      
+      
+
+
       
       
     

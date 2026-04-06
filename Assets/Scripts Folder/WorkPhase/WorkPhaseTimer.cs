@@ -1,21 +1,78 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 
 public class WorkPhaseTimer : MonoBehaviour
 {
     //THIS SCRIPT IS FOR THE TIMER//
 
-    public float TimerforWorkPhase = 180f; // 3 MINUTES//
+    //TIMER VARIABLE//
+    [Header("Timer")]
+    public float TimerforWorkPhase = 360f; // 6 MINUTES//
 
+    //TEXT//
+    [Header("TextMeshPro")]
     public TextMeshProUGUI TimerText;
+    public TextMeshProUGUI TaskOneText;
+    public TextMeshProUGUI TaskTwoText;
 
+    //BOOLS//
+    [Header("Bools")]
     public bool CanRunTimer = true;
+    public bool TaskOneCompleted = false;
+    public bool DisplaySecondTask = false;
+    public bool TaskTwoCompleted = false;
+    public bool DisplayFinalTask = false;
 
+
+    //GAMEOBJECT REFERENCES//
+    [Header("GameObjects")]
+    public GameObject ExclamationPoint;
+    public GameObject ExclamationPoint2;
+    public GameObject CheckMark;
+    public GameObject CheckMarkForTask2;
+    public GameObject Task2;
+    public GameObject Task3;
+
+
+   //ANIMATION SECTION//
+   [Header("Animation Settings")]
+   public Animator CheckAnim;
+
+   public Animator CheckAnim2;
+
+   //THIS SHOWS THE SECOND OBJECTIVE "FIX THE FAULTY BREAKER"//
+   public Animator Task2Anim;
+
+   public Animator FinalTaskAnim;
+
+
+
+
+    //SCRIPT REFERENCES//
+   [Header("Script References")]
+   public InputHandler IH;
+   public CircuitBreaker CB;
+   public Outlet outlet;
+ 
     
     void Awake()
     {
-        
+       outlet = GameObject.Find("Outlet Manager").GetComponent<Outlet>();
+
+       CheckAnim.enabled = false;
+
+       CheckAnim2.enabled = false;
+
+      
+       Task2Anim.enabled = false;
+
+       Task2.SetActive(false);
+
+       Task3.SetActive(false);
+
+
       
    
     }
@@ -71,6 +128,56 @@ public class WorkPhaseTimer : MonoBehaviour
         
         
         }
+
+        //START THE COROUTINE TO SHOW NEXT OBJECTIVE//
+        if (!TaskOneCompleted)
+        {
+            
+        StartCoroutine(ShowNextObjective()); 
+       
+        }
+
+
+        //STARTS THE COROUTINE FOR SHOWING NEXT OBJECTIVE AFTER OBJ 2//
+
+
+        if (!TaskTwoCompleted)
+        {
+            
+         StartCoroutine(MarkTask2());
+
+
+        }
+
+
+
+        //FOR DISPLAYING THE SECOND OBJECTIVE ON SCREEN//
+        if(IH.MetWithResidentOneAgain && !IH.isTalking && !DisplaySecondTask)
+        {
+            
+        
+        StartCoroutine(ShowTheSecondTask());
+
+        DisplaySecondTask = true;
+
+
+
+        }
+
+
+        //FOR DISPLAYING THE THIRD OBJECTIVE ON SCREEN//
+
+
+        if(IH.MetWithResidentOneFinalTime && !IH.isTalking && !DisplayFinalTask)
+        {
+            
+
+           StartCoroutine(ShowFinalTask());
+
+
+        }
+
+      
     }
 
 
@@ -101,6 +208,150 @@ public class WorkPhaseTimer : MonoBehaviour
         
         }
 
+
+        //COROUTINE FOR STARTING THE NEXT OBJECTIVE//
+        public IEnumerator ShowNextObjective()
+        {
+
+         yield return new WaitForSeconds(0f);
+
+        //THIS CROSSES OUT THE TASK TO MARK IT COMPLETE//
+        if (outlet.complete && !TaskOneCompleted)
+        {
+
+            ExclamationPoint.SetActive(false);
+            
+            TaskOneText.text = "<s> Repair the Broken Outlet </s>";
+
+       
+
+            CheckMark.SetActive(true);
+      
+
+            CheckAnim.enabled = true;
+
+            CheckAnim.Play("MarkTask");
+
+            CanRunTimer = false;
+
+
+
+            yield return new WaitForSeconds(2.3f);
+
+            CheckMark.SetActive(false);
+
+            TaskOneText.text = "Report to the Resident";
+
+            CanRunTimer = true;
+
+            
+            TaskOneCompleted = true;
+
+        }
+
+
+
+        }
+
+
+
+        //COROTUINE FOR SHOWING THE SECOND OBJECTIVE ON SCREEN//
+
+
+        public IEnumerator ShowTheSecondTask()
+        {
+        
+            yield return new WaitForSeconds(0f);
+            
+            Task2.SetActive(true);
+           
+            Task2Anim.enabled = true;
+
+            Task2Anim.Play("ShowTask2");
+
+            TaskOneText.text = "<s> Report to the Resident </s>";
+
+
+
+
+
+        }
+
+
+        //MARK THE SECOND TASK AS DONE//
+
+        public IEnumerator MarkTask2()
+        {
+        
+            yield return new WaitForSeconds(0f);
+
+
+            //FOR CIRCUIT BREAKER TASK//
+            if(CB.complete && !TaskTwoCompleted)
+            {
+            
+            ExclamationPoint2.SetActive(false);
+            
+            TaskTwoText.text = "<s> Fix the faulty breaker </s>";
+
+       
+
+            CheckMarkForTask2.SetActive(true);
+      
+
+            CheckAnim2.enabled = true;
+
+            CheckAnim2.Play("Mark2");
+
+            CanRunTimer = false;
+
+
+
+            yield return new WaitForSeconds(2.3f);
+
+            CheckMarkForTask2.SetActive(false);
+
+            TaskTwoText.text = "Report to the Resident";
+
+            CanRunTimer = true;
+
+            
+
+
+            TaskTwoCompleted = true;
+            }
+
+
+
+        }
+
+       
+        public IEnumerator ShowFinalTask()
+        {
+           
+            yield return new WaitForSeconds(0f);
+
+            Task3.SetActive(true);
+
+            FinalTaskAnim.enabled = true;
+
+            FinalTaskAnim.Play("FinalTask");
+
+            TaskTwoText.text = "<s> Report to the Resident </s>";
+
+
+
+
+
+        
+
+
+        }
+
+
+
+
+      
 
 
 

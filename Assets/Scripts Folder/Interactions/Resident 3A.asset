@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 268bf36e2c95048f4b4ca0fcdf827688, type: 3}
+  m_Name: Resident 3A
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  SpeakerName: Dialogue
+  lines:
+  - "Hello there sir, I\u2019ve been having issues with an outlet in my kitchen by
+    my microwave."
+  - I only use my microwave on that outlet. It was fine a couple days ago but then
+    it just stopped working when I plugged in a microwave in the same socket.
+  - 'It seems like the outlet is short circuited and I have no Idea why. Can you
+    check it out? '

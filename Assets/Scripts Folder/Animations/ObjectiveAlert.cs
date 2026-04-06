@@ -5,9 +5,29 @@ public class ObjectiveAlert : MonoBehaviour
 {
     //THIS SCRIPT IS THE NOTIFICATION ALERT SYMBOL AT THE BEGINNING OF THE WORKPHASE//
 
-    public Animator Anim;
+    public Animator Anim, TimerAnim;
     
-    public GameObject Objectives, Task1, Task2, Task3, EP;
+    public GameObject Objectives, Task1, EP, TimerText;
+
+    public WorkPhaseTimer WPT;
+
+    public bool TimerCheck = false;
+
+
+    void Awake()
+    {
+        
+        WPT = GameObject.Find("Timer Text").GetComponent<WorkPhaseTimer>();
+
+        TimerAnim = GameObject.Find("Timer Text").GetComponent<Animator>();
+
+        TimerAnim.enabled = false;
+
+
+        TimerText.SetActive(false);
+
+
+    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,11 +36,7 @@ public class ObjectiveAlert : MonoBehaviour
 
         Task1.SetActive(false);
 
-        Task2.SetActive(false);
-
-        Task3.SetActive(false);
-
-
+    
         Anim = GameObject.Find("Exclamation Points").GetComponent<Animator>(); 
 
 
@@ -41,7 +57,6 @@ public class ObjectiveAlert : MonoBehaviour
     public IEnumerator TriggerAnimation()
     {
         
-
         EP.SetActive(true);
        
         yield return new WaitForSeconds(0f);
@@ -67,22 +82,31 @@ public class ObjectiveAlert : MonoBehaviour
         EP.SetActive(false);
 
         
-
         
         yield return new WaitForSeconds(1f);
 
         Task1.SetActive(true);
 
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
-        Task2.SetActive(true);
+        TimerText.SetActive(true);
+
+        TimerAnim.enabled = true;
+       
+        TimerAnim.Play("RevealTimer");
+
+        TimerCheck = true;
 
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
+       
+        WPT.CanRunTimer = true;
 
-        Task3.SetActive(true);
+    
 
+
+     
         
 
 

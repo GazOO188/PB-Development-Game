@@ -3,35 +3,106 @@ using UnityEngine.InputSystem;
 
 public class EnvelopeTools : MonoBehaviour
 {
-    public enum TypesofEnvelopeTools { None, WeatherStrip, CaulkGun, FoamSprayGun }
+    //REFERENCE TO PLAYER INVENTORY//
 
-    public TypesofEnvelopeTools CurrentTool = TypesofEnvelopeTools.None;
-
+   
+    
     public WeatherStripTool WST;
+    
+    public CaulkGun CG;
+    
     public InputHandler IH;
+
+
 
     void Update()
     {
-        // Press T to activate WeatherStrip
-        if (IH._WeatherStrip.WasPressedThisFrame())
+
+        switch (PlayerInventory.Instance.currentTool)
         {
-            CurrentTool = TypesofEnvelopeTools.WeatherStrip;
-            Debug.Log("WeatherStrip tool activated");
+            
+           case PlayerInventory.AllTools.WeatherStrip:
+           {
+                    
+            
+                // Press T to activate WeatherStrip
+                if (PlayerInventory.Instance.currentTool == PlayerInventory.AllTools.WeatherStrip)
+                 {
+                     //HandleWeatherStripTool();
+                     Debug.Log("WeatherStrip tool activated");
+                   
+                 }
+
+                 break;
+                
+           }
+
+            case PlayerInventory.AllTools.CaulkGun:
+            {
+
+                if(PlayerInventory.Instance.currentTool == PlayerInventory.AllTools.CaulkGun)
+                {
+                        
+
+                   // HandleCaulkGunTool();
+                    Debug.Log("CaulkGun Activated");
+
+
+                }   
+
+                break; 
+
+
+            }
+         
+
         }
 
-        HandleEachTool();
+       
     }
 
-    void HandleEachTool()
+    void HandleWeatherStripTool()
     {
-        switch (CurrentTool)
+       
+      WST.HandleWeatherStrip();
+          
+    }
+    
+    
+
+    void HandleCaulkGunTool()
+    {
+    if (IH._CaulkGun == null) return;
+
+    // Read current trigger value
+    float triggerValue = IH._CaulkGun.ReadValue<float>();
+
+    // Reset hasLastPoint on first frame pressed
+    if (IH._CaulkGun.triggered)
+    {
+        CG.hasLastPoint = false; // start a new line
+    }
+
+    // While holding the trigger, spray caulk
+    if (triggerValue > 0f)
+    {
+        if (Time.time - CG.lastUsedTime >= CG.sprayRate)
         {
-            case TypesofEnvelopeTools.WeatherStrip:
-                WST.HandleWeatherStrip(); // handles mouse input inside WeatherStripTool
-                break;
+            CG.ShootCaulk();
+            CG.lastUsedTime = Time.time;
         }
     }
+
+    // Reset hasLastPoint on release
+    if (IH._CaulkGun.phase == InputActionPhase.Canceled)
+    {
+        CG.hasLastPoint = false;
+    }
+    }
+
 }
+
+
     
   
     

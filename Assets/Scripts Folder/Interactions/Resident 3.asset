@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   SpeakerName: Dialogue
   lines:
-  - 'Hello! There''s an outlet in the bathroom near the sink. '
-  - There's a burn mark on the outlet and it's not working.
-  - Maybe it's just the outlet itself?
+  - 'Salutations my good sir. I''m in need of assistance with an outlet in my bathroom. '
+  - It does not work and I like to charge my devices when I am taking a shower.
+  - "The outlet is right next to my sink it\u2019s really easy to find would appreciate
+    your assistance   "
