@@ -13,6 +13,8 @@ public class EnvelopeTools : MonoBehaviour
     
     public InputHandler IH;
 
+    public SprayFoam SF;
+
 
 
     void Update()
@@ -52,6 +54,22 @@ public class EnvelopeTools : MonoBehaviour
 
                 break; 
 
+
+            }
+
+            case PlayerInventory.AllTools.FoamSprayGun:
+            {
+                    
+                if(PlayerInventory.Instance.currentTool == PlayerInventory.AllTools.FoamSprayGun)
+                {
+                        
+                    //SF.HandleFoamSpray();
+                    //SF.UpdateFoamGrowth();
+                   
+
+                }
+               
+                break;
 
             }
          
