@@ -9,6 +9,7 @@ public class CircuitBreaker : MonoBehaviour
     public bool playerDetected;
     public bool singleReplaced, doubleReplaced;
     public bool complete = false;
+    public bool singlePanelComplete, doublePanelComplete;
     void Start()
     {
         circuitPanel.GetComponent<Renderer>().material.color = Color.white;

@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.GameOver) return;
+
         if (Input.GetKeyDown(KeyCode.I) && !toolInUse)
         {
             if (!playerControl)

@@ -40,7 +40,14 @@ public class SceneLoader : MonoBehaviour
 
     public void ReloadCurrentScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        //GET THE CURRENT SCENE//
+        Scene currentScene = SceneManager.GetActiveScene();
+
+
+        //RELOAD IT BY ITS NAME//
+        SceneManager.LoadScene(currentScene.name);
     }
 
     public void LoadNextScene()

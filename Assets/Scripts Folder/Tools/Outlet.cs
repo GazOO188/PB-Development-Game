@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Outlet : MonoBehaviour
 {
+    [SerializeField] WorkPhaseTimer timer;
     public List<GameObject> outlets = new List<GameObject>();
     int index = 0;
     public bool active = true;
@@ -36,6 +37,8 @@ public class Outlet : MonoBehaviour
 
     public void UpdateOutlet(GameObject currentOutlet)
     {
+        if (!timer.TaskOneDisplayed) return;
+
         foreach (GameObject outlet in outlets)
         {
             if (currentOutlet == outlet)
