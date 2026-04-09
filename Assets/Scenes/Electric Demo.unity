@@ -12612,6 +12612,7 @@ MonoBehaviour:
   DisplayFinalTask: 0
   FinalTaskCompleted: 0
   CanMarkTask2: 0
+  CanMarkTask3: 0
   ExclamationPoint: {fileID: 882109304}
   ExclamationPoint2: {fileID: 1791321510}
   ExclamtionPoint3: {fileID: 168401049}
@@ -14120,7 +14121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CircuitBreaker
   circuitPanel: {fileID: 64912161}
-  breakers: []
+  breakers:
+  - {fileID: 1214046814}
+  - {fileID: 2073987181}
   active: 1
   playerDetected: 0
   singleReplaced: 0
