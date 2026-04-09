@@ -23,11 +23,10 @@ public class SprayFoam : MonoBehaviour
 
     void Update() 
     {
-        HandleFoamSpray();
-        UpdateFoamGrowth();
+       
     }
 
-    void HandleFoamSpray()
+    public void HandleFoamSpray()
     {
         if (IH == null || IH._SprayFoam == null) return;
 
@@ -78,7 +77,7 @@ public class SprayFoam : MonoBehaviour
         }
     }
 
-    void UpdateFoamGrowth()
+    public void UpdateFoamGrowth()
     {
         for (int i = 0; i < foamBlobs.Count; i++)
         {
