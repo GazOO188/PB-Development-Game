@@ -9,6 +9,7 @@ public class CircuitBreaker : MonoBehaviour
     public bool playerDetected;
     public bool singleReplaced, doubleReplaced;
     public bool complete = false;
+    public bool singlePanelComplete, doublePanelComplete;
     void Start()
     {
         circuitPanel.GetComponent<Renderer>().material.color = Color.white;
@@ -38,12 +39,14 @@ public class CircuitBreaker : MonoBehaviour
             {
                 breakers[0].SetActive(false);
                 breakers[1].SetActive(true);
+                doublePanelComplete = true;
             }
 
             if (breakers[1].activeInHierarchy && Input.GetKeyDown(KeyCode.Alpha1) && !singleReplaced)
             {
                 breakers[1].SetActive(false);
                 breakers[0].SetActive(true);
+                singlePanelComplete = true;
             }
         }
     }
