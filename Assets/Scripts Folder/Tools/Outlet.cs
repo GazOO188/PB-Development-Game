@@ -8,10 +8,9 @@ public class Outlet : MonoBehaviour
     int index = 0;
     public bool active = true;
     public bool complete = false;
-    public bool[] functional = new bool[4];
     void Start()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < outlets.Count; i++)
             outlets[i].GetComponent<Renderer>().material.color = Color.gray;
     }
 
@@ -22,7 +21,7 @@ public class Outlet : MonoBehaviour
 
         if (!active)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < outlets.Count; i++)
             {
                 if (outlets[i].GetComponent<Renderer>().material.color != Color.white)
                     outlets[i].GetComponent<Renderer>().material.color = Color.gray;
@@ -42,11 +41,12 @@ public class Outlet : MonoBehaviour
             if (currentOutlet == outlet)
             {
                 outlet.GetComponent<Renderer>().material.color = Color.white;
+                outlet.name = "Working Outlet";
                 index++;
             }
         }
 
-        if (index == 4)
+        if (index == outlets.Count)
         {
             PlayerInventory.Instance.currentItem = null;
             complete = true;
