@@ -10,6 +10,7 @@ public class CircuitBreaker : MonoBehaviour
     public bool singleReplaced, doubleReplaced;
     public bool complete = false;
     public bool singlePanelComplete, doublePanelComplete;
+    [SerializeField] GameObject helpText;
     void Start()
     {
         circuitPanel.GetComponent<Renderer>().material.color = Color.white;
@@ -24,6 +25,8 @@ public class CircuitBreaker : MonoBehaviour
 
         if (!active)
         {
+            if (helpText.activeInHierarchy) helpText.SetActive(false);
+
             for (int i = 0; i < 2; i++)
             {
                 if (circuitPanel.GetComponent<Renderer>().material.color != Color.gray)
@@ -34,6 +37,8 @@ public class CircuitBreaker : MonoBehaviour
         else
         {
             if (singleReplaced && doubleReplaced) return;
+
+            if (!helpText.activeInHierarchy) helpText.SetActive(true);
 
             if (breakers[0].activeInHierarchy && Input.GetKeyDown(KeyCode.Alpha2) && !doubleReplaced)
             {
