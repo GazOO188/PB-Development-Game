@@ -9,7 +9,8 @@ public class PlayerCamera : MonoBehaviour
     void LateUpdate()
     {
         Vector3 targetPosition = cameraTarget.position;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.deltaTime);
+        if (PlayerController.Instance.playerControl)
+            transform.position = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.deltaTime);
     }
 
     void Update()

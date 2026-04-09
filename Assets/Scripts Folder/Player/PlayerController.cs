@@ -102,15 +102,13 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, raycastDist, layerMask))
             {
                 // Code here for interacting with object that player is looking at
-                if (hit.collider.CompareTag("Circuit Breaker") && PlayerInventory.Instance.currentItem != null && PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.gray)
+                /*if (hit.collider.CompareTag("Circuit Breaker") && PlayerInventory.Instance.currentItem != null && PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.gray)
                 {
-                    ShowOutline(hit);
                     if (Input.GetMouseButtonDown(0))
                     {
                         GameObject.Find("Circuit Manager").GetComponent<CircuitBreaker>().UpdateCircuit(hit.collider.gameObject);
-                        RemoveOutline();
                     }
-                }
+                }*/
 
                 if (hit.collider.CompareTag("Outlet") && PlayerInventory.Instance.currentItem != null)
                 {
@@ -123,7 +121,7 @@ public class PlayerController : MonoBehaviour
                             RemoveOutline();
                         }
                     }
-                    else if (PlayerInventory.Instance.currentItem.itemName == "Outlet Tester" && hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white)
+                    else if (PlayerInventory.Instance.currentItem.itemName == "Outlet Tester") //&& hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white)
                     {
                         ShowOutline(hit);
                         if (Input.GetMouseButtonDown(0))
