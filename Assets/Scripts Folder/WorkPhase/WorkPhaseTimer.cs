@@ -16,6 +16,7 @@ public class WorkPhaseTimer : MonoBehaviour
     public TextMeshProUGUI TimerText;
     public TextMeshProUGUI TaskOneText;
     public TextMeshProUGUI TaskTwoText;
+    public TextMeshProUGUI TaskThreeText;
 
     //BOOLS//
     [Header("Bools")]
@@ -31,8 +32,10 @@ public class WorkPhaseTimer : MonoBehaviour
     [Header("GameObjects")]
     public GameObject ExclamationPoint;
     public GameObject ExclamationPoint2;
+    public GameObject ExclamtionPoint3;
     public GameObject CheckMark;
     public GameObject CheckMarkForTask2;
+    public GameObject CheckMarkForTask3;
     public GameObject Task2;
     public GameObject Task3;
 
@@ -42,6 +45,8 @@ public class WorkPhaseTimer : MonoBehaviour
     public Animator CheckAnim;
 
     public Animator CheckAnim2;
+
+    public Animator CheckAnim3;
 
     //THIS SHOWS THE SECOND OBJECTIVE "FIX THE FAULTY BREAKER"//
     public Animator Task2Anim;
@@ -62,11 +67,15 @@ public class WorkPhaseTimer : MonoBehaviour
     {
         outlet = GameObject.Find("Outlet Manager").GetComponent<Outlet>();
 
+        //DISABLE THE CHECK ANIMATIONS FROM HAPPENING//
         CheckAnim.enabled = false;
 
         CheckAnim2.enabled = false;
 
+        CheckAnim3.enabled = false;
 
+        
+        //DISABLE THE TASKS FROM SHOWING//
         Task2Anim.enabled = false;
 
         Task2.SetActive(false);
@@ -177,6 +186,19 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
         }
+
+
+
+
+        //CHECKS OFF THE FINAL TASK//
+        if (!FinalTaskCompleted)
+        {
+
+            StartCoroutine(MarkTask3());
+
+
+        }
+
 
 
     }
@@ -326,7 +348,8 @@ public class WorkPhaseTimer : MonoBehaviour
 
     }
 
-
+    //THIS FUNCTION SHOWS THE LAST TASK//
+    
     public IEnumerator ShowFinalTask()
     {
 
@@ -336,8 +359,10 @@ public class WorkPhaseTimer : MonoBehaviour
 
         FinalTaskAnim.enabled = true;
 
+        //SHOWS THE LAST TASK//
         FinalTaskAnim.Play("FinalTask");
 
+        //CROSS OUT THE TASK TWO TASK//
         TaskTwoText.text = "<s> Report to the Resident </s>";
 
 
@@ -349,6 +374,8 @@ public class WorkPhaseTimer : MonoBehaviour
 
     }
 
+    //FOR MARKING THE FINAL TASK//
+
     public IEnumerator MarkTask3()
     {
 
@@ -358,8 +385,41 @@ public class WorkPhaseTimer : MonoBehaviour
         //FOR CIRCUIT BREAKER TASK//
         if (CB.singlePanelComplete && !FinalTaskCompleted)
         {
-            // THANK YOU, JULS
+            ExclamtionPoint3.SetActive(false);
 
+
+            //CROSS OUT THE TASK TEXT//
+            TaskThreeText.text = "<s> Restore Bedroom power <s>";
+
+
+            //ACTIVATE THE CHECKMARK 3 GAMEOBJECT//
+            CheckMarkForTask3.SetActive(true);
+
+
+            //ENABLE ANIMATOR//
+            CheckAnim3.enabled = true;
+
+
+            //PLAY ANIMATION//
+            CheckAnim3.Play("Task3Check");
+
+
+            //DISABLE TIMER//
+
+            CanRunTimer = false;
+
+
+            yield return new WaitForSeconds(2.3f);
+
+            //HIDE/DISBALE CHECKMARK GAMEOBJECT//
+            CheckMarkForTask3.SetActive(false);
+
+
+            //EMPTY TEXT FOR NOW//
+            TaskThreeText.text = "";
+          
+            // THANK YOU, JULS
+            // MARK TASK AS COMPLETE//
             FinalTaskCompleted = true;
         }
 
