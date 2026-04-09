@@ -13,34 +13,35 @@ public class WorkPhaseTimer : MonoBehaviour
 
     //TEXT//
     [Header("TextMeshPro")]
-    [SerializeField]  public TextMeshProUGUI TimerText;
-    [SerializeField]  public TextMeshProUGUI TaskOneText;
-    [SerializeField]  public TextMeshProUGUI TaskTwoText;
-    [SerializeField]  public TextMeshProUGUI TaskThreeText;
+    [SerializeField] public TextMeshProUGUI TimerText;
+    [SerializeField] public TextMeshProUGUI TaskOneText;
+    [SerializeField] public TextMeshProUGUI TaskTwoText;
+    [SerializeField] public TextMeshProUGUI TaskThreeText;
 
     //BOOLS//
     [Header("Bools")]
     public bool CanRunTimer = true;
-   [SerializeField]  public bool TaskOneCompleted = false;
-   [SerializeField]  public bool DisplaySecondTask = false;
-   [SerializeField]  public bool TaskTwoCompleted = false;
-   [SerializeField]  public bool DisplayFinalTask = false;
-   [SerializeField]  public bool FinalTaskCompleted = false;
-   [SerializeField]  public bool CanMarkTask1 = false;
-   [SerializeField]  public bool CanMarkTask2 = false;
-   [SerializeField]  public bool CanMarkTask3 = false;
+    public bool TaskOneDisplayed = false;
+    [SerializeField] public bool TaskOneCompleted = false;
+    [SerializeField] public bool DisplaySecondTask = false;
+    [SerializeField] public bool TaskTwoCompleted = false;
+    [SerializeField] public bool DisplayFinalTask = false;
+    [SerializeField] public bool FinalTaskCompleted = false;
+    [SerializeField] public bool CanMarkTask1 = false;
+    [SerializeField] public bool CanMarkTask2 = false;
+    [SerializeField] public bool CanMarkTask3 = false;
 
 
     //GAMEOBJECT REFERENCES//
-   [Header("GameObjects")]
-   [SerializeField]   public GameObject ExclamationPoint;
-   [SerializeField]   public GameObject ExclamationPoint2;
-   [SerializeField]   public GameObject ExclamtionPoint3;
-   [SerializeField]   public GameObject CheckMark;
-   [SerializeField]   public GameObject CheckMarkForTask2;
-   [SerializeField]   public GameObject CheckMarkForTask3;
-   [SerializeField]   public GameObject Task2;
-   [SerializeField]   public GameObject Task3;
+    [Header("GameObjects")]
+    [SerializeField] public GameObject ExclamationPoint;
+    [SerializeField] public GameObject ExclamationPoint2;
+    [SerializeField] public GameObject ExclamtionPoint3;
+    [SerializeField] public GameObject CheckMark;
+    [SerializeField] public GameObject CheckMarkForTask2;
+    [SerializeField] public GameObject CheckMarkForTask3;
+    [SerializeField] public GameObject Task2;
+    [SerializeField] public GameObject Task3;
 
 
     //ANIMATION SECTION//
@@ -68,7 +69,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
     void Awake()
     {
-        
+
         outlet = GameObject.Find("Outlet Manager").GetComponent<Outlet>();
 
         //DISABLE THE CHECK ANIMATIONS FROM HAPPENING//
@@ -78,7 +79,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
         CheckAnim3.enabled = false;
 
-        
+
         //DISABLE THE TASKS FROM SHOWING//
         Task2Anim.enabled = false;
 
@@ -87,17 +88,17 @@ public class WorkPhaseTimer : MonoBehaviour
         Task3.SetActive(false);
 
 
-        
 
 
-      
+
+
 
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+
 
     }
 
@@ -119,6 +120,8 @@ public class WorkPhaseTimer : MonoBehaviour
                 //WHILE COUNTING DOWN UPDATE THE TIMER ON SCREEN//
                 DisplayTimeronScreen(TimerforWorkPhase);
 
+                if (!TaskOneDisplayed) TaskOneDisplayed = true;
+
 
 
             }
@@ -134,9 +137,6 @@ public class WorkPhaseTimer : MonoBehaviour
                     TimerforWorkPhase = 0;
 
                     CanRunTimer = false;
-
-
-
                 }
 
 
@@ -165,7 +165,7 @@ public class WorkPhaseTimer : MonoBehaviour
         {
 
             StartCoroutine(MarkTask2());
-            
+
             CanMarkTask2 = true;
 
 
@@ -255,40 +255,40 @@ public class WorkPhaseTimer : MonoBehaviour
         yield return new WaitForSeconds(0f);
 
         //THIS CROSSES OUT THE TASK TO MARK IT COMPLETE//
-      
-            ExclamationPoint.SetActive(false);
 
-            TaskOneText.text = "<s> Repair the Broken Outlet </s>";
+        ExclamationPoint.SetActive(false);
 
-
-
-            CheckMark.SetActive(true);
-
-
-            CheckAnim.enabled = true;
-
-            CheckAnim.Play("MarkTask");
-
-            CanRunTimer = false;
+        TaskOneText.text = "<s> Repair the Broken Outlet </s>";
 
 
 
-            yield return new WaitForSeconds(2.3f);
-
-            CheckMark.SetActive(false);
-
-            TaskOneText.text = "Report to the Resident";
-
-            CanRunTimer = true;
+        CheckMark.SetActive(true);
 
 
-            TaskOneCompleted = true;
+        CheckAnim.enabled = true;
 
-        }
+        CheckAnim.Play("MarkTask");
+
+        CanRunTimer = false;
 
 
 
-    
+        yield return new WaitForSeconds(2.3f);
+
+        CheckMark.SetActive(false);
+
+        TaskOneText.text = "Report to the Resident";
+
+        CanRunTimer = true;
+
+
+        TaskOneCompleted = true;
+
+    }
+
+
+
+
 
 
 
@@ -324,43 +324,43 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
 
-            ExclamationPoint2.SetActive(false);
+        ExclamationPoint2.SetActive(false);
 
-            TaskTwoText.text = "<s> Fix the faulty breaker </s>";
-
-
-
-            CheckMarkForTask2.SetActive(true);
-
-
-            CheckAnim2.enabled = true;
-
-            CheckAnim2.Play("Mark2");
-
-            CanRunTimer = false;
+        TaskTwoText.text = "<s> Fix the faulty breaker </s>";
 
 
 
-            yield return new WaitForSeconds(2.3f);
-
-            CheckMarkForTask2.SetActive(false);
-
-            TaskTwoText.text = "Report to the Resident";
-
-            CanRunTimer = true;
+        CheckMarkForTask2.SetActive(true);
 
 
-            TaskTwoCompleted = true;
-       
-       
-        }
+        CheckAnim2.enabled = true;
+
+        CheckAnim2.Play("Mark2");
+
+        CanRunTimer = false;
 
 
 
-    
+        yield return new WaitForSeconds(2.3f);
+
+        CheckMarkForTask2.SetActive(false);
+
+        TaskTwoText.text = "Report to the Resident";
+
+        CanRunTimer = true;
+
+
+        TaskTwoCompleted = true;
+
+
+    }
+
+
+
+
 
     //THIS FUNCTION SHOWS THE LAST TASK//
-    
+
     public IEnumerator ShowFinalTask()
     {
 
@@ -428,7 +428,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
             //EMPTY TEXT FOR NOW//
             TaskThreeText.text = "";
-          
+
             // THANK YOU, JULS
             // MARK TASK AS COMPLETE//
             FinalTaskCompleted = true;

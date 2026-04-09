@@ -32,15 +32,15 @@ public class InputHandler : MonoBehaviour
 
     [Header("Bools")]
     public bool MetWithResidentOne = false;
-    
+
     public bool MetWithResidentOneAgain = false;
-    
+
     public bool MetWithResidentOneFinalTime = false;
-   
+
     public bool MetWithResidentTwo = false;
-   
+
     public bool MetWithResidentThree = false;
-   
+
     public bool CanTriggerObjectiveAnimation = false;
 
 
@@ -75,15 +75,15 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
-        if (!player.playerControl) return;
+        if (!player.playerControl || GameManager.Instance.GameOver) return;
 
         canProgresstoNextDialogue = CI.LineFinished;
-      
+
         if (canMove)
         {
-            
-        Vector2 movement = _move.ReadValue<Vector2>();
-        player.Move(movement);
+
+            Vector2 movement = _move.ReadValue<Vector2>();
+            player.Move(movement);
 
         }
 
@@ -97,7 +97,7 @@ public class InputHandler : MonoBehaviour
 
 
         //THIS IS FOR PRESSING E TO TALK//
-       // return;
+        // return;
         if (_interact.WasPressedThisFrame())
         {
 
@@ -111,32 +111,32 @@ public class InputHandler : MonoBehaviour
 
 
                 // THIRD DIALOGUE (MOST ADVANCED)
-               else if (player.ResidentOneSeen && WPT.TaskTwoCompleted)
-               {               
+                else if (player.ResidentOneSeen && WPT.TaskTwoCompleted)
+                {
                     displayDialouge(Resident3B);
 
                     MetWithResidentOne = true;
-                    
+
                     MetWithResidentOneFinalTime = true;
 
                     canMove = false;
-                    
-                    WPT.CanRunTimer = false;
-               }
 
-               // SECOND DIALOGUE
-               else if (player.ResidentOneSeen && WPT.TaskOneCompleted)
-               {
+                    WPT.CanRunTimer = false;
+                }
+
+                // SECOND DIALOGUE
+                else if (player.ResidentOneSeen && WPT.TaskOneCompleted)
+                {
                     displayDialouge(Resident3A);
 
                     MetWithResidentOne = true;
-    
+
                     MetWithResidentOneAgain = true;
 
                     canMove = false;
-    
+
                     WPT.CanRunTimer = false;
-               }
+                }
 
                 //FOR DISPLAYING THE FIRST DIALOGUE//
                 else if (player.ResidentOneSeen)
@@ -145,24 +145,24 @@ public class InputHandler : MonoBehaviour
                     MetWithResidentOne = true;
                     canMove = false;
                     WPT.CanRunTimer = false;
-        
+
                 }
 
 
 
-             
 
-              //  else if (player.ResidentTwoSeen)
-               // {
-             //       displayDialouge(Resident2);
-                   // MetWithResidentTwo = true;
-               // }
 
-              //  else if (player.ResidentThreeSeen)
-               // {
-                 //   displayDialouge(Resident3);
-                 //   MetWithResidentThree = true;
-               // }
+                //  else if (player.ResidentTwoSeen)
+                // {
+                //       displayDialouge(Resident2);
+                // MetWithResidentTwo = true;
+                // }
+
+                //  else if (player.ResidentThreeSeen)
+                // {
+                //   displayDialouge(Resident3);
+                //   MetWithResidentThree = true;
+                // }
 
 
 
@@ -175,8 +175,8 @@ public class InputHandler : MonoBehaviour
                 NextLine();
 
             }
-            
-  
+
+
 
 
 
@@ -249,13 +249,13 @@ public class InputHandler : MonoBehaviour
 
             if (OA.TimerCheck)
             {
-            
+
                 WPT.CanRunTimer = true;
 
 
             }
 
-         
+
 
 
 

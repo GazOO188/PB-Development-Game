@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class CircuitSwitch : MonoBehaviour
 {
+    [SerializeField] WorkPhaseTimer timer;
     [SerializeField] CircuitBreaker circuitManager;
     [SerializeField] GameObject playerBreakers;
     [SerializeField] Quaternion on, off;
@@ -37,7 +38,7 @@ public class CircuitSwitch : MonoBehaviour
 
     void NewCircuits()
     {
-        if (isHovering && Input.GetMouseButtonDown(1) && !isMoving && isSinglePanel && needsDoublePanel
+        if (isHovering && Input.GetMouseButtonDown(1) && !isMoving && isSinglePanel && needsDoublePanel && timer.DisplaySecondTask
             && PlayerInventory.Instance.currentTool is PlayerInventory.AllTools.CircuitBreaker
             && playerBreakers.transform.GetChild(1).gameObject.activeInHierarchy && !circuitManager.doublePanelComplete)
         {
@@ -49,7 +50,7 @@ public class CircuitSwitch : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        if (isHovering && Input.GetMouseButtonDown(1) && !isMoving && isSinglePanel && isDamaged
+        if (isHovering && Input.GetMouseButtonDown(1) && !isMoving && isSinglePanel && isDamaged && timer.DisplayFinalTask
             && PlayerInventory.Instance.currentTool is PlayerInventory.AllTools.CircuitBreaker
             && playerBreakers.transform.GetChild(0).gameObject.activeInHierarchy && circuitManager.doublePanelComplete)
         {
