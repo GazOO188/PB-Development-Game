@@ -13,45 +13,47 @@ public class WorkPhaseTimer : MonoBehaviour
 
     //TEXT//
     [Header("TextMeshPro")]
-    public TextMeshProUGUI TimerText;
-    public TextMeshProUGUI TaskOneText;
-    public TextMeshProUGUI TaskTwoText;
-    public TextMeshProUGUI TaskThreeText;
+    [SerializeField]  public TextMeshProUGUI TimerText;
+    [SerializeField]  public TextMeshProUGUI TaskOneText;
+    [SerializeField]  public TextMeshProUGUI TaskTwoText;
+    [SerializeField]  public TextMeshProUGUI TaskThreeText;
 
     //BOOLS//
     [Header("Bools")]
     public bool CanRunTimer = true;
-    public bool TaskOneCompleted = false;
-    public bool DisplaySecondTask = false;
-    public bool TaskTwoCompleted = false;
-    public bool DisplayFinalTask = false;
-    public bool FinalTaskCompleted = false;
+   [SerializeField]  public bool TaskOneCompleted = false;
+   [SerializeField]  public bool DisplaySecondTask = false;
+   [SerializeField]  public bool TaskTwoCompleted = false;
+   [SerializeField]  public bool DisplayFinalTask = false;
+   [SerializeField]  public bool FinalTaskCompleted = false;
+   [SerializeField]  public bool CanMarkTask2 = false;
+   [SerializeField]  public bool CanMarkTask3 = false;
 
 
     //GAMEOBJECT REFERENCES//
-    [Header("GameObjects")]
-    public GameObject ExclamationPoint;
-    public GameObject ExclamationPoint2;
-    public GameObject ExclamtionPoint3;
-    public GameObject CheckMark;
-    public GameObject CheckMarkForTask2;
-    public GameObject CheckMarkForTask3;
-    public GameObject Task2;
-    public GameObject Task3;
+   [Header("GameObjects")]
+   [SerializeField]   public GameObject ExclamationPoint;
+   [SerializeField]   public GameObject ExclamationPoint2;
+   [SerializeField]   public GameObject ExclamtionPoint3;
+   [SerializeField]   public GameObject CheckMark;
+   [SerializeField]   public GameObject CheckMarkForTask2;
+   [SerializeField]   public GameObject CheckMarkForTask3;
+   [SerializeField]   public GameObject Task2;
+   [SerializeField]   public GameObject Task3;
 
 
     //ANIMATION SECTION//
     [Header("Animation Settings")]
-    public Animator CheckAnim;
+    [SerializeField] public Animator CheckAnim;
 
-    public Animator CheckAnim2;
+    [SerializeField] public Animator CheckAnim2;
 
-    public Animator CheckAnim3;
+    [SerializeField] public Animator CheckAnim3;
 
     //THIS SHOWS THE SECOND OBJECTIVE "FIX THE FAULTY BREAKER"//
-    public Animator Task2Anim;
+    [SerializeField] public Animator Task2Anim;
 
-    public Animator FinalTaskAnim;
+    [SerializeField] public Animator FinalTaskAnim;
 
 
 
@@ -65,6 +67,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
     void Awake()
     {
+        
         outlet = GameObject.Find("Outlet Manager").GetComponent<Outlet>();
 
         //DISABLE THE CHECK ANIMATIONS FROM HAPPENING//
@@ -83,13 +86,17 @@ public class WorkPhaseTimer : MonoBehaviour
         Task3.SetActive(false);
 
 
+        
 
+
+      
 
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+       
 
     }
 
@@ -151,10 +158,12 @@ public class WorkPhaseTimer : MonoBehaviour
         //STARTS THE COROUTINE FOR SHOWING NEXT OBJECTIVE AFTER OBJ 2//
 
 
-        if (!TaskTwoCompleted)
+        if (!TaskTwoCompleted && !CanMarkTask2 && CB.doublePanelComplete)
         {
 
             StartCoroutine(MarkTask2());
+            
+            CanMarkTask2 = true;
 
 
         }
@@ -191,10 +200,12 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
         //CHECKS OFF THE FINAL TASK//
-        if (!FinalTaskCompleted)
+        if (!FinalTaskCompleted && !CanMarkTask3 && CB.singlePanelComplete)
         {
 
             StartCoroutine(MarkTask3());
+
+            CanMarkTask3 = true;
 
 
         }

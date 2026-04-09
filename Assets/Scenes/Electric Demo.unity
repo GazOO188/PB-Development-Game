@@ -4883,7 +4883,7 @@ GameObject:
   - component: {fileID: 168401052}
   - component: {fileID: 168401051}
   m_Layer: 5
-  m_Name: Checkmark
+  m_Name: Checkmark 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12611,12 +12611,13 @@ MonoBehaviour:
   TaskTwoCompleted: 0
   DisplayFinalTask: 0
   FinalTaskCompleted: 0
+  CanMarkTask2: 0
   ExclamationPoint: {fileID: 882109304}
   ExclamationPoint2: {fileID: 1791321510}
   ExclamtionPoint3: {fileID: 168401049}
   CheckMark: {fileID: 1637501088}
   CheckMarkForTask2: {fileID: 988319310}
-  CheckMarkForTask3: {fileID: 1897707636}
+  CheckMarkForTask3: {fileID: 168401049}
   Task2: {fileID: 1430660632}
   Task3: {fileID: 949117858}
   CheckAnim: {fileID: 1637501089}
@@ -14118,10 +14119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9792d966125bf80438e89c064f6c571d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CircuitBreaker
-  circuitPanel: {fileID: 1081061885}
-  breakers:
-  - {fileID: 1248683398}
-  - {fileID: 1997987577}
+  circuitPanel: {fileID: 64912161}
+  breakers: []
   active: 1
   playerDetected: 0
   singleReplaced: 0
