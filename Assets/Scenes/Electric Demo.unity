@@ -5077,7 +5077,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.041992188, y: -0.9200134}
+  m_AnchoredPosition: {x: 1.3270264, y: -1.3200073}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &186956680
@@ -12604,13 +12604,14 @@ MonoBehaviour:
   TimerText: {fileID: 1173555238}
   TaskOneText: {fileID: 1922590948}
   TaskTwoText: {fileID: 1278892120}
-  TaskThreeText: {fileID: 1260399632}
+  TaskThreeText: {fileID: 0}
   CanRunTimer: 1
   TaskOneCompleted: 0
   DisplaySecondTask: 0
   TaskTwoCompleted: 0
   DisplayFinalTask: 0
   FinalTaskCompleted: 0
+  CanMarkTask1: 0
   CanMarkTask2: 0
   CanMarkTask3: 0
   ExclamationPoint: {fileID: 882109304}
@@ -12618,16 +12619,16 @@ MonoBehaviour:
   ExclamtionPoint3: {fileID: 168401049}
   CheckMark: {fileID: 1637501088}
   CheckMarkForTask2: {fileID: 988319310}
-  CheckMarkForTask3: {fileID: 168401049}
+  CheckMarkForTask3: {fileID: 1897707636}
   Task2: {fileID: 1430660632}
   Task3: {fileID: 949117858}
   CheckAnim: {fileID: 1637501089}
   CheckAnim2: {fileID: 988319312}
-  CheckAnim3: {fileID: 1897707638}
+  CheckAnim3: {fileID: 949117861}
   Task2Anim: {fileID: 1430660635}
   FinalTaskAnim: {fileID: 949117861}
   IH: {fileID: 1565778096}
-  CB: {fileID: 745484751}
+  CB: {fileID: 1343537046}
   outlet: {fileID: 1066753385}
 --- !u!222 &1173555240
 CanvasRenderer:
@@ -14120,7 +14121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9792d966125bf80438e89c064f6c571d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CircuitBreaker
-  circuitPanel: {fileID: 64912161}
+  circuitPanel: {fileID: 1081061885}
   breakers:
   - {fileID: 1214046814}
   - {fileID: 2073987181}

@@ -26,6 +26,7 @@ public class WorkPhaseTimer : MonoBehaviour
    [SerializeField]  public bool TaskTwoCompleted = false;
    [SerializeField]  public bool DisplayFinalTask = false;
    [SerializeField]  public bool FinalTaskCompleted = false;
+   [SerializeField]  public bool CanMarkTask1 = false;
    [SerializeField]  public bool CanMarkTask2 = false;
    [SerializeField]  public bool CanMarkTask3 = false;
 
@@ -147,10 +148,12 @@ public class WorkPhaseTimer : MonoBehaviour
         }
 
         //START THE COROUTINE TO SHOW NEXT OBJECTIVE//
-        if (!TaskOneCompleted)
+        if (!TaskOneCompleted && !CanMarkTask1 && outlet.complete)
         {
 
             StartCoroutine(ShowNextObjective());
+
+            CanMarkTask1 = true;
 
         }
 
@@ -192,6 +195,8 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
             StartCoroutine(ShowFinalTask());
+
+            DisplayFinalTask = true;
 
 
         }
@@ -250,9 +255,7 @@ public class WorkPhaseTimer : MonoBehaviour
         yield return new WaitForSeconds(0f);
 
         //THIS CROSSES OUT THE TASK TO MARK IT COMPLETE//
-        if (outlet.complete && !TaskOneCompleted)
-        {
-
+      
             ExclamationPoint.SetActive(false);
 
             TaskOneText.text = "<s> Repair the Broken Outlet </s>";
@@ -285,7 +288,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
 
-    }
+    
 
 
 
@@ -320,9 +323,6 @@ public class WorkPhaseTimer : MonoBehaviour
         yield return new WaitForSeconds(0f);
 
 
-        //FOR CIRCUIT BREAKER TASK//
-        if (CB.doublePanelComplete && !TaskTwoCompleted)
-        {
 
             ExclamationPoint2.SetActive(false);
 
@@ -350,14 +350,14 @@ public class WorkPhaseTimer : MonoBehaviour
             CanRunTimer = true;
 
 
-
-
             TaskTwoCompleted = true;
+       
+       
         }
 
 
 
-    }
+    
 
     //THIS FUNCTION SHOWS THE LAST TASK//
     
@@ -400,7 +400,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
             //CROSS OUT THE TASK TEXT//
-            TaskThreeText.text = "<s> Restore Bedroom power <s>";
+            TaskThreeText.text = "<s> Restore Bedroom power </s>";
 
 
             //ACTIVATE THE CHECKMARK 3 GAMEOBJECT//
