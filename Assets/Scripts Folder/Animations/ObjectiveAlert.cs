@@ -48,7 +48,8 @@ public class ObjectiveAlert : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+     
         
     }
 
@@ -103,6 +104,7 @@ public class ObjectiveAlert : MonoBehaviour
        
         WPT.CanRunTimer = true;
 
+   
     
 
 
