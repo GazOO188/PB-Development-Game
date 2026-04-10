@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   SpeakerName: Dialogue
   lines:
-  - Salutations my good sir. I'm in need of assistance with an outlet in my bathroom.
-  - The heat comes and go. It's hard to get a good night rest.
-  - The furnace is downstairs.
+  - Excuse me sir, I have a problem with the heat in my house.
+  - Everytime we try to crank the heat up it shuts off soon after.
+  - It gets pretty cold in this building, can you figure out the issue. The furnace
+    is located in the basement area, so it should be easy to spot.

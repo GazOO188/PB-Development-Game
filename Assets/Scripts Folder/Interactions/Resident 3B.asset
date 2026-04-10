@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   SpeakerName: Dialogue
   lines:
-  - "Well it\u2019s about time you came."
-  - I thought I had to end up doing everything myself. You mind actually doing your
-    job and fixing the light situation in my room.
-  - "It's been a pain having to go to the living room for entertainment. Get it done
-    and quick I\u2019m missing critical hours on marvel rivals."
+  - "The lights in my bedroom haven\u2019t been working as of late. It\u2019s only
+    my room with this issue."
+  - Every other room seems to work just fine. It's been a pain having to go to the
+    living room for entertainment.
+  - "Get it done and quick I\u2019m missing critical hours on marvel rivals. (Fix
+    bedroom electricity)"

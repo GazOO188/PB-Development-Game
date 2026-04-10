@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 268bf36e2c95048f4b4ca0fcdf827688, type: 3}
-  m_Name: Resident 2
+  m_Name: Resident 2A
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  SpeakerName: Dialogue
+  SpeakerName: 
   lines:
-  - "Hey there lately I\u2019ve been feeling a cool draft by the window in the kitchen."
-  - In the night time it gets really cold and it prevents me from having my late
-    night snack. Every time I go in there I have to wear something to keep me warm.
-  - "I would appreciate it if you can find out why there\u2019s a draft in there "
+  - Whenever it gets windy you can hear a large sound by the front door.
+  - "It feels like they didn\u2019t patch something up properly."
+  - "I try to investigate myself but I can\u2019t find the source of the issue."
+  - "Maybe you\u2019ll have better luck than me. "
