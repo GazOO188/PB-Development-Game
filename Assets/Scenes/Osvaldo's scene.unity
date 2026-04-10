@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 77542618296ee674682333bac0796668, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -475,6 +475,69 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1001 &108881433
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 72.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8549099
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 35.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6979444
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7161521
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -91.475
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      propertyPath: m_Name
+      value: apartmentbuilding
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1381953904}
+    - targetCorrespondingSourceObject: {fileID: -7931665318405419045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 692384932}
+  m_SourcePrefab: {fileID: 100100000, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
 --- !u!1 &180075421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,7 +1514,7 @@ MonoBehaviour:
   CI: {fileID: 793055456}
   OA: {fileID: 0}
   WPT: {fileID: 0}
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 2045573821}
   Dialogue: {fileID: 11400000, guid: 3df600ba208c84fac9ae68f807d0179e, type: 2}
   Resident1: {fileID: 0}
   Resident2: {fileID: 0}
@@ -1506,7 +1569,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _WeatherStrip:
-    m_Name: 
+    m_Name: Weather Strip
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 95e6da6d-4603-4e9b-92a4-78ff133c1d43
@@ -1515,7 +1578,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _CaulkGun:
-    m_Name: 
+    m_Name: Caulk Gun
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 303403d9-bf1e-4ad8-9468-62f4fa572a03
@@ -1524,7 +1587,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _SprayFoam:
-    m_Name: 
+    m_Name: Spray Foam
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: f3f293d6-80e4-4737-a158-323dff3f32cd
@@ -1953,6 +2016,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &692384928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7931665318405419045, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+  m_PrefabInstance: {fileID: 108881433}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &692384932
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692384928}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3936851902498768160, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
 --- !u!1 &734213207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,7 +2611,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949987812}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
@@ -5747,6 +5837,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1381953896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -516098083770646512, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
+  m_PrefabInstance: {fileID: 108881433}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1381953904
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381953896}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4493585093827132993, guid: b21bf8a1135d10541a0c8b60b009f319, type: 3}
 --- !u!1 &1389368570
 GameObject:
   m_ObjectHideFlags: 0
@@ -6797,15 +6914,15 @@ PrefabInstance:
       objectReference: {fileID: 256561769}
     - target: {fileID: 1591820558217536332, guid: 788b6bb78fb75b5498bf16601d9d934a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.36
+      value: 60.75
       objectReference: {fileID: 0}
     - target: {fileID: 1591820558217536332, guid: 788b6bb78fb75b5498bf16601d9d934a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 14.67
       objectReference: {fileID: 0}
     - target: {fileID: 1591820558217536332, guid: 788b6bb78fb75b5498bf16601d9d934a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.22
+      value: 29.9
       objectReference: {fileID: 0}
     - target: {fileID: 1591820558217536332, guid: 788b6bb78fb75b5498bf16601d9d934a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6896,3 +7013,4 @@ SceneRoots:
   - {fileID: 581060333}
   - {fileID: 1161273130}
   - {fileID: 469218969}
+  - {fileID: 108881433}
