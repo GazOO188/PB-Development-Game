@@ -15,11 +15,21 @@ MonoBehaviour:
   sounds:
   - key: howtoplay_click
     variants:
-    - {fileID: 8300000, guid: 61006ce1db69aaf499666207a19a3f0c, type: 3}
+    - {fileID: 8300000, guid: 6ec7c8ce08d0cdb44ab2342ceefcb15a, type: 3}
     volume: 1
     pitchVariance: 1.05
   - key: settings_click
     variants:
-    - {fileID: 8300000, guid: 9807e08e1940fc545bf449f2cfa46520, type: 3}
+    - {fileID: 8300000, guid: 6ec7c8ce08d0cdb44ab2342ceefcb15a, type: 3}
     volume: 1
     pitchVariance: 1.05
+  - key: switch_click
+    variants:
+    - {fileID: 8300000, guid: 36af20c1fe9278e438eed58753fdbdeb, type: 3}
+    volume: 1
+    pitchVariance: 1.026
+  - key: footstep_default
+    variants:
+    - {fileID: 8300000, guid: 402a21ce10377b94a89f42eb6798de9b, type: 3}
+    volume: 1
+    pitchVariance: 1.026

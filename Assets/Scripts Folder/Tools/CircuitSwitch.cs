@@ -10,6 +10,8 @@ public class CircuitSwitch : MonoBehaviour
     [SerializeField] CircuitBreaker circuitManager;
     [SerializeField] GameObject playerBreakers;
     [SerializeField] Quaternion on, off;
+    [SerializeField] WorldClickSound clickSound; // Change 1
+
     bool isMoving, isHovering;
     public bool isOn, isSinglePanel, isDamaged, needsDoublePanel;
     [Tooltip("Leave empty if 'Needs Double Panel' is false.")]
@@ -30,6 +32,7 @@ public class CircuitSwitch : MonoBehaviour
 
         if (isHovering && Input.GetMouseButtonDown(0) && !isMoving)
         {
+            clickSound.PlaySound(); // Change 2
             StartCoroutine(MoveSwitch());
         }
 
