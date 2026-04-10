@@ -128,9 +128,7 @@ public class LanguageConversion : MonoBehaviour
 
         English.Add("It does not work and I like to charge my devices when I am taking a shower.", "It does not work and I like to charge my devices when I am taking a shower.");
 
-        English.Add("The outlet is right next to my sink it’s really easy to find would appreciate your assistance", "The outlet is right next to my sink it’s really easy to find would appreciate your assistance."); 
-
-
+        English.Add("The outlet is right next to my sink it’s really easy to find. I would appreciate your assistance!", "The outlet is right next to my sink it’s really easy to find. I would appreciate your assistance!");
         //TASK 2//
 
         English.Add("Hello there sir, I’ve been having issues with an outlet in my kitchen by my microwave.", "Hello there sir, I’ve been having issues with an outlet in my kitchen by my microwave.");
@@ -146,7 +144,7 @@ public class LanguageConversion : MonoBehaviour
 
         English.Add("I thought I had to end up doing everything myself. You mind actually doing your job and fixing the light situation in my room.", "I thought I had to end up doing everything myself. You mind actually doing your job and fixing the light situation in my room.");
 
-        English.Add("It's been a pain having to go to the living room for entertainment. Get it done and quick I’m missing critical hours on marvel rivals.", "It's been a pain having to go to the living room for entertainment. Get it done and quick I’m missing critical hours on marvel rivals.");
+        English.Add("It's been a pain having to go to the living room for entertainment. Get it done and quick, I’m missing critical hours on marvel rivals.", "It's been a pain having to go to the living room for entertainment. Get it done and quick I’m missing critical hours on marvel rivals.");
 
         
 
