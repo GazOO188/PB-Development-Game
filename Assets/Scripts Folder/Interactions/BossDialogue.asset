@@ -14,4 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   SpeakerName: Dialogue
   lines:
-  - Welcome! It looks like we'll be dealing with a envelope issue today...
+  - 'Hey there friend you have a lot of tasks to complete on your shift today there
+    is a building with some defects that needs addressing. '
+  - This list contains issues involving some mechanical issues with a boiler, heat
+    pump, and some water pipes.
+  - "For electrical issues it seems that the tenants have issues with some outlets
+    in some bedrooms, bathrooms, and other areas you\u2019ll have to make sure you
+    check out the circuit panels it can help you out with finding the source of the
+    issues."
+  - "Last but not least are envelope issues some areas of the house weren\u2019t
+    properly sealed so you\u2019re going to have to check for any drafts and gaps
+    or holes around the house to figure out how to proceed with a resolution. "
+  - Here check out the tools available and figure out what is needed to fix the issues
+    around the building make sure you take the time to learn what each item does
+    so you can make sure you have the right tools.
+  - "You can\u2019t work there all day so take into account you\u2019re on a time
+    limit!"
