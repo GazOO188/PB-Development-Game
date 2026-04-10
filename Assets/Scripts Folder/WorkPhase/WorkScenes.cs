@@ -14,23 +14,23 @@ public class WorkScenes : MonoBehaviour
     [SerializeField] public WorkPhaseTimer WPT;
 
     public bool CanReload = false;
-    
-    
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         //THIS LOADS SCENE BACK SCENE ONE//
-        
-        if(!CanReload && WPT.TimerforWorkPhase <= 0)
+
+        if (!CanReload && WPT.TimerforWorkPhase <= 0)
         {
-            
+
             ReloadWorkPhaseOne();
 
             WPT.TimerforWorkPhase = 0;
@@ -57,14 +57,14 @@ public class WorkScenes : MonoBehaviour
     //SUCCESSFUL CONDITION//
     public void LoadWorkPhase()
     {
-        
-        if(TasksCompleted >= 3)
+
+        if (TasksCompleted >= 3)
         {
-            
-        SceneManager.LoadScene("Round One Scene");
+
+            SceneManager.LoadScene("Round One Scene");
 
         }
-       
+
 
 
     }
@@ -75,13 +75,13 @@ public class WorkScenes : MonoBehaviour
 
     public void ReloadWorkPhaseOne()
     {
-        
-    //GET THE CURRENT SCENE//
-    Scene currentScene = SceneManager.GetActiveScene();
-  
-  
-    //RELOAD IT BY ITS NAME//
-    SceneManager.LoadScene(currentScene.name);
+
+        //GET THE CURRENT SCENE//
+        Scene currentScene = SceneManager.GetActiveScene();
+
+
+        //RELOAD IT BY ITS NAME//
+        SceneManager.LoadScene(currentScene.name);
 
 
 

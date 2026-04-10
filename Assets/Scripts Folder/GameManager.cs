@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public bool englishLanguage = true;
-   
+    public bool GameOver = false;
+
     void Awake()
     {
         if (Instance == null)
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // <-- remove duplicate
         }
-     
+
     }
 
     void Update()

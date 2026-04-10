@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.UI;
 using TMPro;
 
 public class ConfirmSelection : MonoBehaviour

@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class CircuitBreaker : MonoBehaviour
 {
-    [SerializeField] GameObject[] circuits;
+    public GameObject circuitPanel;
+    [SerializeField] GameObject[] breakers;
     int index = 0;
     public bool active = true;
+    public bool playerDetected;
+    public bool singleReplaced, doubleReplaced;
     public bool complete = false;
+    public bool singlePanelComplete, doublePanelComplete;
+    [SerializeField] GameObject helpText;
     void Start()
     {
-        for (int i = 0; i < 2; i++)
-            circuits[i].GetComponent<Renderer>().material.color = Color.white;
+        circuitPanel.GetComponent<Renderer>().material.color = Color.white;
     }
 
     void Update()
@@ -17,29 +21,42 @@ public class CircuitBreaker : MonoBehaviour
         active = PlayerInventory.Instance.currentItem != null &&
                  PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker";
 
+        circuitPanel.GetComponent<Outline>().enabled = active && PlayerController.Instance.playerControl;
+
         if (!active)
         {
+            if (helpText.activeInHierarchy) helpText.SetActive(false);
+
             for (int i = 0; i < 2; i++)
             {
-                if (circuits[i].GetComponent<Renderer>().material.color != Color.gray)
-                    circuits[i].GetComponent<Renderer>().material.color = Color.white;
+                if (circuitPanel.GetComponent<Renderer>().material.color != Color.gray)
+                    circuitPanel.GetComponent<Renderer>().material.color = Color.white;
             }
             return;
         }
         else
         {
-            if (index == 0 && circuits[0].GetComponent<Renderer>().material.color != Color.green)
-                circuits[0].GetComponent<Renderer>().material.color = Color.green;
-            else if (index == 1 && circuits[1].GetComponent<Renderer>().material.color != Color.green)
-                circuits[01].GetComponent<Renderer>().material.color = Color.green;
+            if (singleReplaced && doubleReplaced) return;
 
-            if (complete) Debug.Log("YOU DID IT");
+            if (!helpText.activeInHierarchy) helpText.SetActive(true);
+
+            if (breakers[0].activeInHierarchy && Input.GetKeyDown(KeyCode.Alpha2) && !doubleReplaced)
+            {
+                breakers[0].SetActive(false);
+                breakers[1].SetActive(true);
+            }
+
+            if (breakers[1].activeInHierarchy && Input.GetKeyDown(KeyCode.Alpha1) && !singleReplaced)
+            {
+                breakers[1].SetActive(false);
+                breakers[0].SetActive(true);
+            }
         }
     }
 
     public void UpdateCircuit(GameObject panel)
     {
-        panel.GetComponent<Renderer>().material.color = Color.gray;
+        /*panel.GetComponent<Renderer>().material.color = Color.gray;
         PlayerInventory.Instance.panelIndex++;
         index++;
         if (index == 1) circuits[1].GetComponent<Renderer>().material.color = Color.green;
@@ -47,6 +64,6 @@ public class CircuitBreaker : MonoBehaviour
         {
             complete = true;
             PlayerInventory.Instance.currentItem = null;
-        }
+        }*/
     }
 }

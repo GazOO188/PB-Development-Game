@@ -7,9 +7,17 @@ TagManager:
   - Game Manager
   - Boss
   - Stairs
-  - Fastener
-  - RepairTool
-  - RepairJob
+  - Player Inventory
+  - Resident 1
+  - Resident 2
+  - Resident 3
+  - Outlet
+  - Circuit Breaker
+  - Outlet Tester
+  - WeatherStrip
+  - CaulkGun
+  - Tool UI
+  - SprayFoam
   layers:
   - Default
   - TransparentFX
@@ -19,13 +27,13 @@ TagManager:
   - UI
   - 
   - 
-  - Tool
-  - Interactable
+  - 
+  - 
   - Ground
   - 
   - 
-  - 
-  - 
+  - CanHit
+  - Walls
   - 
   - 
   - 
