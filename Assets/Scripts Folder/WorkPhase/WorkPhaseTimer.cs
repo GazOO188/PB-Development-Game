@@ -30,6 +30,10 @@ public class WorkPhaseTimer : MonoBehaviour
     [SerializeField] public bool CanMarkTask1 = false;
     [SerializeField] public bool CanMarkTask2 = false;
     [SerializeField] public bool CanMarkTask3 = false;
+    [SerializeField] public bool PlayerPressedI = false;
+    [SerializeField] public bool CanHideInventoryText = false;
+    [SerializeField] public bool CanHideSpaceText = false;
+    
 
 
     //GAMEOBJECT REFERENCES//
@@ -40,8 +44,14 @@ public class WorkPhaseTimer : MonoBehaviour
     [SerializeField] public GameObject CheckMark;
     [SerializeField] public GameObject CheckMarkForTask2;
     [SerializeField] public GameObject CheckMarkForTask3;
+    [SerializeField] public GameObject Task1;
     [SerializeField] public GameObject Task2;
     [SerializeField] public GameObject Task3;
+    [SerializeField] public GameObject ObjectiveText;
+    [SerializeField] public GameObject Timer;
+    [SerializeField] public GameObject HelperText;
+    [SerializeField] public GameObject InventoryHelperText;
+    [SerializeField] public GameObject PressSpacetoCycleText;
 
 
     //ANIMATION SECTION//
@@ -65,6 +75,7 @@ public class WorkPhaseTimer : MonoBehaviour
     public InputHandler IH;
     public CircuitBreaker CB;
     public Outlet outlet;
+    public ObjectiveAlert OA;
 
 
     void Awake()
@@ -86,6 +97,9 @@ public class WorkPhaseTimer : MonoBehaviour
         Task2.SetActive(false);
 
         Task3.SetActive(false);
+
+
+        
 
 
 
@@ -214,6 +228,45 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
         }
+
+
+
+  
+
+        //LOGIC FOR HIDING TEXT//
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            
+
+            HideInventory();
+
+            
+
+
+
+        }
+
+
+        //LOGIC FOR HIDING SPACE TEXT//
+
+        if(Input.GetKeyDown(KeyCode.Space) && !CanHideSpaceText)
+        {
+            
+
+          PressSpacetoCycleText.SetActive(false);
+
+          InventoryHelperText.SetActive(false);
+
+          CanHideSpaceText = true;
+
+
+
+        }
+
+
+        //FOR SHOWING INVENTORY PROMPT//
+        ShowInventory();
 
 
 
@@ -355,6 +408,64 @@ public class WorkPhaseTimer : MonoBehaviour
 
     }
 
+    //FOR PRESSING I//
+    
+    public void ShowInventory()
+    {
+
+        if (OA.TimerCheck)
+        {
+            
+         //TURN ON INVENTORY TEXT//
+        InventoryHelperText.SetActive(true);  
+
+        }
+
+
+    }
+
+    //HIDE THE INVENTORY PROMPT//
+    public void HideInventory()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            
+            PlayerPressedI = true;
+
+            OA.TimerCheck = false;
+
+            
+        }
+
+
+        if (PlayerPressedI && !CanHideInventoryText)
+        {
+            
+            InventoryHelperText.SetActive(false);
+
+            CanHideInventoryText = true;
+
+            ShowSpacePrompt();
+
+
+
+        }
+
+    }
+
+
+    //FOR PRESSING SPACE WHILE IN INVENTORY//
+
+
+    public void ShowSpacePrompt()
+    {
+        
+        PressSpacetoCycleText.SetActive(true);
+
+
+    }
+
 
 
 
@@ -384,6 +495,9 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
     }
+
+
+    
 
     //FOR MARKING THE FINAL TASK//
 
@@ -427,7 +541,28 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
             //EMPTY TEXT FOR NOW//
+
+            TaskOneText.text = "";
+
+            TaskTwoText.text = "";
+           
             TaskThreeText.text = "";
+
+
+            //EMPTY TASKS//
+
+            Task1.SetActive(false);
+            
+            Task2.SetActive(false);
+
+            Task3.SetActive(false);
+
+            ObjectiveText.SetActive(false);
+
+            Timer.SetActive(false);
+
+            HelperText.SetActive(false);
+
 
             // THANK YOU, JULS
             // MARK TASK AS COMPLETE//
