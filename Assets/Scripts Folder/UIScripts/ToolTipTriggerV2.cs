@@ -12,10 +12,15 @@ public class ToolTipTriggerV2 : MonoBehaviour
 
     [Header("Tooltip Settings")]
     [SerializeField] public GameObject ToolTipPanel;
+    [SerializeField] public GameObject ToolTipPanelInformation; //Second panel showcasing seperate data from the first one
     [SerializeField] private float fadeInDuration = 0.5f;
     [SerializeField] private float fadeOutDuration = 0.3f;
     [SerializeField] private CanvasGroup tooltipCanvasGroup;
+    [SerializeField] private CanvasGroup tooltipinformationCanvasGroup;
     [SerializeField] private TooltipUIManager tooltipUIManager;
+    [SerializeField] private TooltipUIManager tooltipInformationManager;
+
+
 
     [Header("Tag-Specific Tooltips")]
     [SerializeField] private List<TagTooltipMapping> tagTooltips = new List<TagTooltipMapping>();
