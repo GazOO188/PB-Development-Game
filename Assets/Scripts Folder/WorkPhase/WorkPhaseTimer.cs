@@ -311,7 +311,12 @@ public class WorkPhaseTimer : MonoBehaviour
 
         ExclamationPoint.SetActive(false);
 
-        TaskOneText.text = "<s> Repair the Broken Outlet </s>";
+ 
+        TaskOneText.GetComponent<KeyAnalyzer>().Word = "Repair the Broken Outlet";
+       
+        TaskOneText.GetComponent<KeyAnalyzer>().WordConversion();
+
+        TaskOneText.text = "<s>" + TaskOneText.text + "</s>";
 
 
 
@@ -329,9 +334,14 @@ public class WorkPhaseTimer : MonoBehaviour
         yield return new WaitForSeconds(2.3f);
 
         CheckMark.SetActive(false);
+        
+        TaskOneText.GetComponent<KeyAnalyzer>().CanOverWrite = false;
 
-        TaskOneText.text = "Report to the Resident";
+        TaskOneText.GetComponent<KeyAnalyzer>().Word = "Report to the Resident";
 
+        TaskOneText.GetComponent<KeyAnalyzer>().WordConversion();
+       
+       
         CanRunTimer = true;
 
 
@@ -359,9 +369,16 @@ public class WorkPhaseTimer : MonoBehaviour
 
         Task2Anim.Play("ShowTask2");
 
-        TaskOneText.text = "<s> Report to the Resident </s>";
+        
+        TaskOneText.GetComponent<KeyAnalyzer>().Word = "Report to the Resident";
+       
+        TaskOneText.GetComponent<KeyAnalyzer>().WordConversion();
 
+        TaskOneText.GetComponent<KeyAnalyzer>().CanOverWrite = true;
 
+        TaskOneText.text = "<s>" + TaskOneText.text + "</s>";
+
+        CheckMark.SetActive(true);
 
 
 
@@ -398,7 +415,13 @@ public class WorkPhaseTimer : MonoBehaviour
 
         CheckMarkForTask2.SetActive(false);
 
-        TaskTwoText.text = "Report to the Resident";
+        
+        TaskTwoText.GetComponent<KeyAnalyzer>().Word = "Report to the Resident";
+       
+        TaskTwoText.GetComponent<KeyAnalyzer>().WordConversion();
+
+       
+
 
         CanRunTimer = true;
 
@@ -455,7 +478,7 @@ public class WorkPhaseTimer : MonoBehaviour
     }
 
 
-    //FOR PRESSING SPACE WHILE IN INVENTORY//
+    //FOR PRESSING SPACE WHILE IN INVENTORY (PROMPT)//
 
 
     public void ShowSpacePrompt()
@@ -485,7 +508,16 @@ public class WorkPhaseTimer : MonoBehaviour
         FinalTaskAnim.Play("FinalTask");
 
         //CROSS OUT THE TASK TWO TASK//
-        TaskTwoText.text = "<s> Report to the Resident </s>";
+            
+        TaskTwoText.GetComponent<KeyAnalyzer>().Word = "Report to the Resident";
+       
+        TaskTwoText.GetComponent<KeyAnalyzer>().WordConversion();
+
+        TaskTwoText.GetComponent<KeyAnalyzer>().CanOverWrite = true;
+
+        TaskTwoText.text = "<s>" + TaskTwoText.text + "</s>";
+
+        CheckMarkForTask2.SetActive(true);
 
 
 
@@ -514,7 +546,12 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
             //CROSS OUT THE TASK TEXT//
-            TaskThreeText.text = "<s> Restore Bedroom power </s>";
+            TaskThreeText.GetComponent<KeyAnalyzer>().Word = "Repair the Broken Outlet";
+       
+            TaskThreeText.GetComponent<KeyAnalyzer>().WordConversion();
+
+            TaskThreeText.text = "<s>" + TaskThreeText.text + "</s>";
+
 
 
             //ACTIVATE THE CHECKMARK 3 GAMEOBJECT//
@@ -562,6 +599,10 @@ public class WorkPhaseTimer : MonoBehaviour
             Timer.SetActive(false);
 
             HelperText.SetActive(false);
+
+            CheckMarkForTask2.SetActive(false);
+
+            CheckMark.SetActive(false);
 
 
             // THANK YOU, JULS

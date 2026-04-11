@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class CircuitBreaker : MonoBehaviour
 {
     public GameObject circuitPanel;
@@ -10,7 +9,8 @@ public class CircuitBreaker : MonoBehaviour
     public bool singleReplaced, doubleReplaced;
     public bool complete = false;
     public bool singlePanelComplete, doublePanelComplete;
-    [SerializeField] GameObject helpText;
+    [SerializeField] GameObject helpText, helpText2;
+ 
     void Start()
     {
         circuitPanel.GetComponent<Renderer>().material.color = Color.white;
@@ -25,7 +25,7 @@ public class CircuitBreaker : MonoBehaviour
 
         if (!active)
         {
-            if (helpText.activeInHierarchy) helpText.SetActive(false);
+            if (helpText.activeInHierarchy) helpText.SetActive(false); helpText2.SetActive(false);
 
             for (int i = 0; i < 2; i++)
             {
@@ -38,7 +38,7 @@ public class CircuitBreaker : MonoBehaviour
         {
             if (singleReplaced && doubleReplaced) return;
 
-            if (!helpText.activeInHierarchy) helpText.SetActive(true);
+            if (!helpText.activeInHierarchy)helpText.SetActive(true); helpText2.SetActive(true);
 
             if (breakers[0].activeInHierarchy && Input.GetKeyDown(KeyCode.Alpha2) && !doubleReplaced)
             {

@@ -10,6 +10,8 @@ public class KeyAnalyzer : MonoBehaviour
     public string Word;
 
     public TextMeshProUGUI TextComponent;
+
+    public bool CanOverWrite = false;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,14 +30,17 @@ public class KeyAnalyzer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   void Update()
     {
-       WordConversion();  
-
-        
-    }
-
-
+     
+     if (!CanOverWrite && !string.IsNullOrEmpty(Word))
+     {
+        WordConversion();
+     }
+    
+    
+    }   
+   
     public void WordConversion()
     {
         
