@@ -12,7 +12,7 @@ public class WinLoseCondition : MonoBehaviour
         if ((timer.TimerforWorkPhase == 0f || timer.FinalTaskCompleted) && !endGameButtons.activeInHierarchy)
         {
             endGameButtons.SetActive(true);
-            endText.text = timer.FinalTaskCompleted ? "Thank you for playing!" : "Time's up!";
+            endText.text = timer.FinalTaskCompleted?LanguageConversion.Instance.WordConverter("Thank you for playing!"):LanguageConversion.Instance.WordConverter("Time's up!");
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             GameManager.Instance.GameOver = true;
