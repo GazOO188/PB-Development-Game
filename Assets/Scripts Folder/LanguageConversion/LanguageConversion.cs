@@ -60,9 +60,14 @@ public class LanguageConversion : MonoBehaviour
 
         //THIS IS FOR THE INSTRUCTIONS//
 
-        English.Add("Instructions go here :)", "Instructions go here :)");
+        English.Add("Press WASD to Move", "Press WASD to Move");
 
-        Spanish.Add("Instructions go here :)", "Las instrucciones van aquí");
+        Spanish.Add("Press WASD to Move", "Presiona WASD para moverte.");
+
+
+        English.Add("Use the Mouse to look around", "Use the Mouse to look around");
+
+        Spanish.Add("Use the Mouse to look around", "Usa el ratón para mirar alrededor");
 
 
 
