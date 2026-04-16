@@ -115,13 +115,13 @@ public class InputHandler : MonoBehaviour
                 {
                     displayDialouge(Resident3B);
 
-                    MetWithResidentOne = true;
+                   // MetWithResidentOne = true;
 
                     MetWithResidentOneFinalTime = true;
 
                     canMove = false;
 
-                    WPT.CanRunTimer = false;
+                   // WPT.CanRunTimer = false;
                 }
 
                 // SECOND DIALOGUE
@@ -129,13 +129,13 @@ public class InputHandler : MonoBehaviour
                 {
                     displayDialouge(Resident3A);
 
-                    MetWithResidentOne = true;
+                  //  MetWithResidentOne = true;
 
                     MetWithResidentOneAgain = true;
 
                     canMove = false;
 
-                    WPT.CanRunTimer = false;
+                   // WPT.CanRunTimer = false;
                 }
 
                 //FOR DISPLAYING THE FIRST DIALOGUE//
@@ -144,7 +144,7 @@ public class InputHandler : MonoBehaviour
                     displayDialouge(Resident3);
                     MetWithResidentOne = true;
                     canMove = false;
-                    WPT.CanRunTimer = false;
+                   // WPT.CanRunTimer = false;
 
                 }
 
@@ -184,6 +184,15 @@ public class InputHandler : MonoBehaviour
 
         }
 
+        else
+        {
+
+               
+ 
+
+    
+        }
+
 
 
         //DISPLAYS THE E BUTTON//
@@ -210,6 +219,7 @@ public class InputHandler : MonoBehaviour
 
         TemporarilyDisableRaycast();
 
+        WPT.CanRunTimer = false;
 
 
     }
@@ -247,14 +257,9 @@ public class InputHandler : MonoBehaviour
 
             canMove = true;
 
-            if (OA.TimerCheck)
-            {
+            
 
-                WPT.CanRunTimer = true;
-
-
-            }
-
+          
 
 
 
@@ -290,6 +295,13 @@ public class InputHandler : MonoBehaviour
         //PLAYER CAN CAST RAYCAST TO DETECT THINGS/
         player.CanCast = true;
 
+        if (OA.TimerCheck && !isTalking)
+        {
+              
+             WPT.CanRunTimer = true;
+
+
+        }
 
 
     }

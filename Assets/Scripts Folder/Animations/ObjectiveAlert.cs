@@ -59,6 +59,8 @@ public class ObjectiveAlert : MonoBehaviour
     {
         
         EP.SetActive(true);
+
+        //WPT.CanRunTimer = false;
        
         yield return new WaitForSeconds(0f);
 
