@@ -87,6 +87,7 @@ public class CollisionInteractions : MonoBehaviour
 
             yield return new WaitForSeconds(typeSpeed);
 
+            
         
         
         }

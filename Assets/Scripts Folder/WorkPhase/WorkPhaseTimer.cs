@@ -33,7 +33,7 @@ public class WorkPhaseTimer : MonoBehaviour
     [SerializeField] public bool PlayerPressedI = false;
     [SerializeField] public bool CanHideInventoryText = false;
     [SerializeField] public bool CanHideSpaceText = false;
-    
+    [SerializeField] public bool CanShowOnce= false;
 
 
     //GAMEOBJECT REFERENCES//
@@ -150,6 +150,10 @@ public class WorkPhaseTimer : MonoBehaviour
                     //SET TIMER TO BE 0, CAP TIMER//
                     TimerforWorkPhase = 0;
 
+                    //DISPLAY THE TIMER CORRECTLY//
+
+                    DisplayTimeronScreen(TimerforWorkPhase);
+
                     CanRunTimer = false;
                 }
 
@@ -235,11 +239,13 @@ public class WorkPhaseTimer : MonoBehaviour
 
         //LOGIC FOR HIDING TEXT//
 
-        if(Input.GetKeyDown(KeyCode.I))
+        if(Input.GetKeyDown(KeyCode.I) && !CanHideInventoryText)
         {
             
 
             HideInventory();
+
+            CanHideInventoryText = true;
 
             
 
@@ -256,9 +262,10 @@ public class WorkPhaseTimer : MonoBehaviour
 
           PressSpacetoCycleText.SetActive(false);
 
-          InventoryHelperText.SetActive(false);
-
           CanHideSpaceText = true;
+          
+
+    
 
 
 
@@ -266,9 +273,16 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
         //FOR SHOWING INVENTORY PROMPT//
+
+        if (!CanShowOnce)
+        {
+            
+        
         ShowInventory();
 
+        CanShowOnce = true;
 
+        }
 
     }
 
@@ -442,6 +456,7 @@ public class WorkPhaseTimer : MonoBehaviour
          //TURN ON INVENTORY TEXT//
         InventoryHelperText.SetActive(true);  
 
+
         }
 
 
@@ -451,29 +466,9 @@ public class WorkPhaseTimer : MonoBehaviour
     public void HideInventory()
     {
         
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            
-            PlayerPressedI = true;
+        InventoryHelperText.SetActive(false);
 
-            OA.TimerCheck = false;
-
-            
-        }
-
-
-        if (PlayerPressedI && !CanHideInventoryText)
-        {
-            
-            InventoryHelperText.SetActive(false);
-
-            CanHideInventoryText = true;
-
-            ShowSpacePrompt();
-
-
-
-        }
+        ShowSpacePrompt();
 
     }
 
