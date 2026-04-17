@@ -22,6 +22,23 @@ public class AnimationManager : MonoBehaviour
     [SerializeField] public RoamingAI RAI;
 
 
+
+    //TRACK STATES//
+
+    public enum PossibleStates
+    {
+        walking, 
+
+        waving, 
+
+        stopping,
+
+    }
+
+
+    public PossibleStates PS;
+
+
     void Awake()
     {
         
@@ -36,11 +53,14 @@ public class AnimationManager : MonoBehaviour
         
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        PlayWaveAnimation();
 
+      UpdateStates();
+
+      UpdateAnimations();
 
         //MAKE THE BOSS NPC FACE THE PLAYER//
 
@@ -52,88 +72,84 @@ public class AnimationManager : MonoBehaviour
     //THIS LOCKS THE ROTATION OF THE BOSS NPC//
     void LateUpdate()
     {   
-    Vector3 euler = BossTransform.eulerAngles;
+        Vector3 euler = BossTransform.eulerAngles;
 
-    // PREVENTS THE BOSS FROM TILTING BACKWARD WHEN GETTING TOO CLOSE//
-    euler.x = 0; 
-    euler.z = 0;
+        // PREVENTS THE BOSS FROM TILTING BACKWARD WHEN GETTING TOO CLOSE//
+        euler.x = 0; 
+        euler.z = 0;
    
-   
-   BossTransform.eulerAngles = euler;
+        BossTransform.eulerAngles = euler;
     
     }
 
 
+    public void UpdateAnimations()
+    {
+    
+     switch (PS)
+    {
+        case PossibleStates.walking:
+        {
+            BossAnim.SetBool("Walk", true);
+            BossAnim.SetBool("CanWave", false);
+            break;
+        }
 
-    public void PlayWaveAnimation()
+        case PossibleStates.waving:
+        {
+            BossAnim.SetBool("Walk", false);
+            BossAnim.SetBool("CanWave", true);
+
+            BossTransform.LookAt(PlayerTransform.position);
+            break;
+        }
+
+        case PossibleStates.stopping:
+        {
+            BossAnim.SetBool("Walk", false);
+            BossAnim.SetBool("CanWave", false);
+            break;
+        }
+    }
+}
+
+
+    public void UpdateStates()
     {
         
-
-        //THESE TURN TRANSFORM INTO VECTOR3 TO USE FOR DIST CALCUATION//
-        Vector3 PlayerPos = PlayerTransform.position;
-
-        Vector3 BossPos = BossTransform.position;
-
-
-        //GETS THE VECTOR FROM THE BOSS TO THE PLAYER//
-        Vector3 DirToBoss = PlayerPos - BossPos;
-
-
-    
-        //COMPARE SQUARED DISTANCE FOR OPTIMIZATION//
-
-        if(DirToBoss.sqrMagnitude < Range * Range)
-        {
-            
-       
-        BossAnim.SetBool("CanWave", true);
-
-        BossAnim.SetBool("Walk", false);
-
-        //TEMPORARILY STOP NAVMESH//
-        RAI.navMesh.isStopped = true;
-
-
-        BossTransform.LookAt(PlayerTransform.position);
-
-
-
-        }
-
-
-        else 
-        {
-
-        BossAnim.SetBool("CanWave", false);
-
-       
-        
-        BossAnim.SetBool("Walk", true);
-
-        //TEMPORARILY UNSTOP NAVMESH//
-        RAI.navMesh.isStopped = false;
-
-
-
-        }
-
+        float sqrDist = (PlayerTransform.position - BossTransform.position).sqrMagnitude;
 
 
         if (RAI.isWaiting)
         {
+            
+            PS = PossibleStates.stopping;
+           
+            return;
 
-            BossAnim.SetBool("Walk", false);
+        }
 
-                
+
+        if(sqrDist < Range * Range)
+        {
+            
+            PS = PossibleStates.waving;
+
+        
+        }
+
+
+        else
+        {
+            
+            PS = PossibleStates.walking;
+
         }
 
 
 
 
-
     }
-
-
 
 
 

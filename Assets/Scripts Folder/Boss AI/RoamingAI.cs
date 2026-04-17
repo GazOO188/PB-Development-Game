@@ -29,6 +29,8 @@ public class RoamingAI : MonoBehaviour
     // BOOLEAN TO CHECK IF THE NPC IS CURRENTLY WAITING
     public bool isWaiting = false;
 
+    public AnimationManager AM;
+
     void Awake()
     {
         // GETS THE REFERENCE TO THE NAVMESHAGENT COMPONENT
@@ -61,6 +63,23 @@ public class RoamingAI : MonoBehaviour
 
         // CHECK IF THE BOSS SHOULD FOLLOW THE NEXT WAYPOINT
         FollowPath();
+
+
+        //IF WAVING STOP MOVING//
+        if (AM.PS == AnimationManager.PossibleStates.waving)
+        {
+            
+            navMesh.isStopped = true;
+
+        }
+
+        else
+        {
+            
+            navMesh.isStopped = false;
+
+
+        }
     }
 
     void FollowPath()
