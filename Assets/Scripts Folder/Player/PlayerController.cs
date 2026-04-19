@@ -100,6 +100,8 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, raycastDist, layerMask))
             {
+                if (hit.collider.gameObject.layer == 0) return;
+
                 // Code here for interacting with object that player is looking at
                 /*if (hit.collider.CompareTag("Circuit Breaker") && PlayerInventory.Instance.currentItem != null && PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.gray)
                 {
