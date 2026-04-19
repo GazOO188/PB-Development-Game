@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] CollisionInteractions CI;
     [SerializeField] InputHandler IH;
 
+
     [Space]
     [Header("Movement")]
     public bool playerControl = true;
@@ -95,11 +96,7 @@ public class PlayerController : MonoBehaviour
         if (CanCast)
         {
 
-            CanSeeBoss = false;
-            ResidentOneSeen = false;
-            ResidentTwoSeen = false;
-            ResidentThreeSeen = false;
-
+           
 
             if (Physics.Raycast(ray, out hit, raycastDist, layerMask))
             {
@@ -113,6 +110,10 @@ public class PlayerController : MonoBehaviour
                         GameObject.Find("Circuit Manager").GetComponent<CircuitBreaker>().UpdateCircuit(hit.collider.gameObject);
                     }
                 }*/
+
+              //  Vector3 HitLocation = hit.point;
+
+
 
                 if (hit.collider.CompareTag("Outlet") && PlayerInventory.Instance.currentItem != null)
                 {
@@ -146,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
 
                 //FOR DETECTING THE FIRST RESIDENT//
-                if (hit.collider.CompareTag("Resident 1"))
+                if (hit.collider.CompareTag("Resident 1")) 
                 {
 
                     //Debug.Log("Resident one");
@@ -204,6 +205,8 @@ public class PlayerController : MonoBehaviour
             ResidentOneSeen = false;
             ResidentTwoSeen = false;
             ResidentThreeSeen = false;
+          
+            
         }
 
         // Change height when transitioning from crouch to stand and vise versa 
@@ -275,4 +278,11 @@ public class PlayerController : MonoBehaviour
         if (playerControl) Cursor.lockState = CursorLockMode.Locked;
         else Cursor.lockState = CursorLockMode.None;
     }
+
+
+
+
+
+
+    
 }

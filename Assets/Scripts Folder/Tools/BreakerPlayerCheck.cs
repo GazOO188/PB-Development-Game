@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 
 public class BreakerPlayerCheck : MonoBehaviour
@@ -10,6 +11,23 @@ public class BreakerPlayerCheck : MonoBehaviour
     [SerializeField] Transform camTarget;
     bool isMoving, usingBreaker;
     [SerializeField] GameObject panel;
+
+
+    [Header("TextMeshPro")]
+    
+    [SerializeField] public TextMeshProUGUI InteractText;
+
+
+    [SerializeField] public CollisionInteractions CI;
+
+
+    void Awake()
+    {
+        
+    InteractText.enabled = false;
+
+
+    }
 
     void Update()
     {
@@ -35,6 +53,7 @@ public class BreakerPlayerCheck : MonoBehaviour
     {
         PlayerController.Instance.playerControl = false;
         isMoving = true;
+        
 
         Vector3 start = Camera.main.transform.position;
         Quaternion rot = Camera.main.transform.rotation;
@@ -76,6 +95,12 @@ public class BreakerPlayerCheck : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             playerDetected = true;
+
+            InteractText.enabled = true;
+
+            CI.InteractText.enabled = false;
+
+            
         }
     }
 
@@ -84,6 +109,9 @@ public class BreakerPlayerCheck : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             playerDetected = false;
+
+            InteractText.enabled = false;
+
         }
     }
 }
