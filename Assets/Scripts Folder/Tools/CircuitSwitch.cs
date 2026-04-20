@@ -18,6 +18,9 @@ public class CircuitSwitch : MonoBehaviour
     [SerializeField] GameObject replacementPanel;
     [Tooltip("Leave empty if 'Is Damaged' is false.")]
     [SerializeField] GameObject replacementSinglePanel;
+    [Tooltip("Leave empty if breaker is broken.")]
+    [SerializeField] CircuitBreakerLights lights;
+    [SerializeField] string roomName;
     Outline outline;
 
     void Start()
@@ -32,7 +35,7 @@ public class CircuitSwitch : MonoBehaviour
 
         if (isHovering && Input.GetMouseButtonDown(0) && !isMoving)
         {
-            clickSound.PlaySound(); // Change 2
+            //clickSound.PlaySound(); // Change 2
             StartCoroutine(MoveSwitch());
         }
 
@@ -87,6 +90,8 @@ public class CircuitSwitch : MonoBehaviour
         transform.rotation = end;
 
         isOn = !isOn;
+
+        if (roomName != "") lights.LightSwitch(roomName, isOn);
 
         isMoving = false;
     }
