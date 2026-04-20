@@ -13,6 +13,8 @@ public class InputHandler : MonoBehaviour
 
     public WorkPhaseTimer WPT;
 
+    public UITrigger UIT;
+
     [SerializeField] PlayerCamera playerCamera;
 
     [SerializeField] public DialogueData Dialogue, Resident1, Resident2, Resident3, Resident3A, Resident3B;
@@ -45,11 +47,11 @@ public class InputHandler : MonoBehaviour
 
 
     //BOOL FOR ENABLING/DISABLING MOVEMENT//
-    public bool canMove = true;
+    public bool canMove = true, canLook = true;
 
     public bool canProgresstoNextDialogue = false;
 
-    public InputAction _move, _look, _crouch, _interact, _WeatherStrip, _CaulkGun, _SprayFoam;
+    public InputAction _move, _look, _crouch, _interact, _WeatherStrip, _CaulkGun, _SprayFoam, _OpenMenu;
 
     void Awake()
     {
@@ -63,6 +65,8 @@ public class InputHandler : MonoBehaviour
         _CaulkGun = InputSystem.actions.FindAction("CaulkGun");
 
         _SprayFoam = InputSystem.actions.FindAction("SprayFoam");
+
+        _OpenMenu = InputSystem.actions.FindAction("OpenMenu");
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -87,9 +91,17 @@ public class InputHandler : MonoBehaviour
 
         }
 
+
+        if (canLook)
+        {
+       
         Vector2 look = _look.ReadValue<Vector2>();
         playerCamera.Rotate(look);
-
+        
+        }
+       
+       
+       
         if (_crouch.WasPressedThisFrame() && player.characterController.isGrounded)
             player.Crouch();
 
@@ -184,15 +196,36 @@ public class InputHandler : MonoBehaviour
 
         }
 
-        else
+       
+        //FOR OPENING MENU//
+
+        if (_OpenMenu.WasPressedThisFrame())
         {
+            
 
-               
- 
+            //OPEN THE PAUSE MENU//
+            UIT.OpenPauseMenu();
 
-    
+
+            //MOVING AND LOOKING ARE DISABLED//
+            player.playerControl = false;
+
+            canLook = false;
+
+
+            //MAKE THE CURSOR APPEAR//
+            Cursor.lockState = CursorLockMode.None;
+
+            Cursor.visible = true;
+
+            //GAME FREEZES//
+            Time.timeScale = 0f;
+
+         
+
+
+
         }
-
 
 
         //DISPLAYS THE E BUTTON//

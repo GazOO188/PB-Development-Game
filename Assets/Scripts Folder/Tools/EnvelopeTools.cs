@@ -30,7 +30,7 @@ public class EnvelopeTools : MonoBehaviour
                 // Press T to activate WeatherStrip
                 if (PlayerInventory.Instance.currentTool == PlayerInventory.AllTools.WeatherStrip)
                  {
-                     //HandleWeatherStripTool();
+                     HandleWeatherStripTool();
                      Debug.Log("WeatherStrip tool activated");
                    
                  }
@@ -46,7 +46,7 @@ public class EnvelopeTools : MonoBehaviour
                 {
                         
 
-                   // HandleCaulkGunTool();
+                    HandleCaulkGunTool();
                     Debug.Log("CaulkGun Activated");
 
 
@@ -63,8 +63,8 @@ public class EnvelopeTools : MonoBehaviour
                 if(PlayerInventory.Instance.currentTool == PlayerInventory.AllTools.FoamSprayGun)
                 {
                         
-                    //SF.HandleFoamSpray();
-                    //SF.UpdateFoamGrowth();
+                    SF.HandleFoamSpray();
+                    SF.UpdateFoamGrowth();
                    
 
                 }
