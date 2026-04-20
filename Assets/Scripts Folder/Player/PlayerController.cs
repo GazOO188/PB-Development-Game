@@ -101,13 +101,13 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, raycastDist, layerMask))
             {
                 // Code here for interacting with object that player is looking at
-                /*if (hit.collider.CompareTag("Circuit Breaker") && PlayerInventory.Instance.currentItem != null && PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.gray)
+                if (hit.collider.CompareTag("Circuit Breaker") && PlayerInventory.Instance.currentItem != null && PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.gray)
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
                         GameObject.Find("Circuit Manager").GetComponent<CircuitBreaker>().UpdateCircuit(hit.collider.gameObject);
                     }
-                }*/
+                }
 
               //  Vector3 HitLocation = hit.point;
 
