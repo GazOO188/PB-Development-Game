@@ -20,6 +20,7 @@ public class BreakerPlayerCheck : MonoBehaviour
 
     [SerializeField] public CollisionInteractions CI;
 
+    [SerializeField] public PlayerController PC;
 
     void Awake()
     {
@@ -90,16 +91,15 @@ public class BreakerPlayerCheck : MonoBehaviour
         panel.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
             playerDetected = true;
 
-            InteractText.enabled = true;
+            PC.CanCast = false;
 
-            CI.InteractText.enabled = false;
-
+            Debug.Log("YO");
             
         }
     }
@@ -110,7 +110,9 @@ public class BreakerPlayerCheck : MonoBehaviour
         {
             playerDetected = false;
 
-            InteractText.enabled = false;
+            CI.InteractText.enabled = false;
+
+            PC.CanCast = true;
 
         }
     }
