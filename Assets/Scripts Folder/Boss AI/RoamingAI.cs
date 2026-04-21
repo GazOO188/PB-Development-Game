@@ -66,20 +66,20 @@ public class RoamingAI : MonoBehaviour
 
 
         //IF WAVING STOP MOVING//
-        if (AM.PS == AnimationManager.PossibleStates.waving)
-        {
+       // if (AM.PS == AnimationManager.PossibleStates.waving)
+       // {
             
-            navMesh.isStopped = true;
+            //navMesh.isStopped = true;
 
-        }
+       // }
 
-        else
-        {
+        //else
+       // {
             
-            navMesh.isStopped = false;
+           // navMesh.isStopped = false;
 
 
-        }
+      //  }
     }
 
     void FollowPath()

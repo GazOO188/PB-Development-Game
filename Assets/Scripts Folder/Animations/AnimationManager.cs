@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class AnimationManager : MonoBehaviour
 {
@@ -27,11 +28,11 @@ public class AnimationManager : MonoBehaviour
 
     public enum PossibleStates
     {
-        walking, 
+        Sitting, 
 
-        waving, 
+        Standing, 
 
-        stopping,
+        Waving,
 
     }
 
@@ -88,26 +89,27 @@ public class AnimationManager : MonoBehaviour
     
      switch (PS)
     {
-        case PossibleStates.walking:
+        case PossibleStates.Standing:
         {
-            BossAnim.SetBool("Walk", true);
-            BossAnim.SetBool("CanWave", false);
+            BossAnim.SetBool("CanStand", true);
+            //BossAnim.SetBool("CanWave", false);
             break;
         }
 
-        case PossibleStates.waving:
+        case PossibleStates.Waving:
         {
-            BossAnim.SetBool("Walk", false);
+           // BossAnim.SetBool("Walk", false);
             BossAnim.SetBool("CanWave", true);
 
             BossTransform.LookAt(PlayerTransform.position);
             break;
         }
 
-        case PossibleStates.stopping:
+        case PossibleStates.Sitting:
         {
-            BossAnim.SetBool("Walk", false);
+            BossAnim.SetBool("CanSit", true);
             BossAnim.SetBool("CanWave", false);
+            BossAnim.SetBool("CanStand", false);
             break;
         }
     }
@@ -117,23 +119,15 @@ public class AnimationManager : MonoBehaviour
     public void UpdateStates()
     {
         
+        //GET DISTANCE TO PLAYER
         float sqrDist = (PlayerTransform.position - BossTransform.position).sqrMagnitude;
 
-
-        if (RAI.isWaiting)
-        {
-            
-            PS = PossibleStates.stopping;
-           
-            return;
-
-        }
 
 
         if(sqrDist < Range * Range)
         {
             
-            PS = PossibleStates.waving;
+           StartCoroutine(ChangeToWave());
 
         
         }
@@ -142,9 +136,27 @@ public class AnimationManager : MonoBehaviour
         else
         {
             
-            PS = PossibleStates.walking;
+            PS = PossibleStates.Sitting;
 
         }
+
+
+
+
+    }
+
+
+    private IEnumerator ChangeToWave()
+    {
+        
+        yield return new WaitForSeconds(0f);
+
+
+         PS = PossibleStates.Standing;
+         
+        
+         yield return new WaitForSeconds(2f);
+         PS = PossibleStates.Waving;
 
 
 

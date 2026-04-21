@@ -258,6 +258,9 @@ public class InputHandler : MonoBehaviour
     }
 
 
+    
+
+
     //SHOWS THE CURRENT LINE//
     void ShowCurrentLine()
     {
