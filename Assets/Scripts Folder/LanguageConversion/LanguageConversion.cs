@@ -110,6 +110,11 @@ public class LanguageConversion : MonoBehaviour
         Spanish.Add("Press E to Talk", "Presiona E para hablar");
 
 
+        English.Add("Press E to Interact", "Press E to Interact");
+
+        Spanish.Add("Press E to Interact", "Presiona E para interactuar");
+
+
         //THIS IS FOR THE FIRST RESIDENT//
 
         English.Add("Hi! I have a heating problem in my room.","Hi! I have a heating problem in my room.");
