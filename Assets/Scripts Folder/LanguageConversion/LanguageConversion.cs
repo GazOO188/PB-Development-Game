@@ -345,6 +345,35 @@ public class LanguageConversion : MonoBehaviour
         English.Add("Kitchen", "Kitchen");
 
         Spanish.Add("Kitchen", "Cocina");
+
+
+
+        //TUTORIAL DIALOGUE//
+
+        English.Add("Welcome to your first day on the job!", "Welcome to your first day on the job!");
+
+       // Spanish.Add("Welcome to your first day on the job!")
+
+
+        English.Add("In order for you to have the smoothest shift, let's run down the basis.", "In order for you to have the smoothest shift, let's run down the basis.");
+
+
+        English.Add("Press the WASD Keys to move around.", "Press the WASD Keys to move around.");
+
+
+        English.Add("You need to be able to see where you going, the Mouse will do that for you.", "You need to be able to see where you going, the Mouse will do that for you.");
+
+
+        English.Add("If you ever feel lost, press P!", "If you ever feel lost, press P!");
+
+       
+        English.Add("I updated this call to your log, you can see all the important information.", "I updated this call to your log, you can see all the important information.");
+
+
+        English.Add("For now, there's a resident in need of your assistance.", "For now, there's a resident in need of your assistance.");
+
+
+        English.Add("Meet him at the first floor.", "Meet him at the first floor.");
         
 
 

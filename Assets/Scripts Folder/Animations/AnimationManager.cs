@@ -108,7 +108,7 @@ public class AnimationManager : MonoBehaviour
             BossAnim.SetBool("CanWave", true);
             if (hasPlayedSound == false)
                 {
-                    Npc_sound.PlayInteractSound();
+                   // Npc_sound.PlayInteractSound();
                     hasPlayedSound = true;
                     }
             BossTransform.LookAt(PlayerTransform.position);
