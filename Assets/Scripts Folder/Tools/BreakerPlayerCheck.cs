@@ -54,6 +54,8 @@ public class BreakerPlayerCheck : MonoBehaviour
     {
         PlayerController.Instance.playerControl = false;
         isMoving = true;
+
+        InteractText.enabled = false;
         
 
         Vector3 start = Camera.main.transform.position;
@@ -89,15 +91,17 @@ public class BreakerPlayerCheck : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         panel.SetActive(false);
+        InteractText.enabled = true;
     }
 
-    void OnTriggerStay(Collider col)
+
+    void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
             playerDetected = true;
 
-            PC.CanCast = false;
+            InteractText.enabled = true;
 
             Debug.Log("YO");
             
@@ -110,9 +114,9 @@ public class BreakerPlayerCheck : MonoBehaviour
         {
             playerDetected = false;
 
-            CI.InteractText.enabled = false;
+            InteractText.enabled = false;
 
-            PC.CanCast = true;
+           // PC.CanCast = true;
 
         }
     }
