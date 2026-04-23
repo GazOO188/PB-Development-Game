@@ -53,7 +53,7 @@ public class CollisionInteractions : MonoBehaviour
 
         InteractText.enabled = false;
 
-        DialogueText.enabled = false;
+        //DialogueText.enabled = false;
         
         DialgouePanel.enabled = false;
 

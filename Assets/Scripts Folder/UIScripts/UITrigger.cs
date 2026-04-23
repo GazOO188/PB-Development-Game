@@ -40,6 +40,13 @@ public class UITrigger : MonoBehaviour
     [SerializeField] public List<GameObject> Tutorials = new List<GameObject>();
 
 
+
+        
+    [Header("Miscellaneous")]
+
+    [SerializeField] public GameObject PhoneCasing;
+ 
+
     //ENUM TO SWITCH BETWEEN STATES
 
 
@@ -76,6 +83,8 @@ public class UITrigger : MonoBehaviour
         
         PauseMenu.SetActive(false);
 
+        PhoneCasing.SetActive(false);
+
 
 
 
@@ -106,6 +115,7 @@ public class UITrigger : MonoBehaviour
             //TURN OFF ALL PAUSE MENU BUTTONS//
             //DISABLE PAUSE TEXT//
             PauseMenu.SetActive(false);
+            PhoneCasing.SetActive(false);
 
              //ENABLE LOOKING AND MOVING AGAIN//
              IH.canLook = true;
@@ -143,6 +153,8 @@ public class UITrigger : MonoBehaviour
   
             //ACTIVATE PAUSEMENU//
             PauseMenu.SetActive(true);
+
+            PhoneCasing.SetActive(true);
 
             break;
 
@@ -199,6 +211,18 @@ public class UITrigger : MonoBehaviour
 
     }
 
+    //FUNCTIION TO ACTIVATE AND DEACTIVATE ALL TUTORIALS//
+
+    public void ShowTutorial(int index)
+    {
+    
+    for (int i = 0; i < Tutorials.Count; i++)
+    {
+        Tutorials[i].SetActive(i == index);
+    }
+   
+    }
+
 
 
     //FUNCTION TO OPEN HOW TO PLAY MENU//
@@ -210,13 +234,7 @@ public class UITrigger : MonoBehaviour
 
        Tutorial.SetActive(true);
 
-
-       Tutorials[1].SetActive(false);
-
-       Tutorials[2].SetActive(false);
-
-       Tutorials[3].SetActive(false);
-
+       ShowTutorial(0);
 
 
     }
@@ -229,7 +247,7 @@ public class UITrigger : MonoBehaviour
         
         //ACTIVATE HOW TO PLAY FROM TAB//
 
-        Tutorials[1].SetActive(true);
+        ShowTutorial(1);
 
 
 
@@ -243,12 +261,8 @@ public class UITrigger : MonoBehaviour
     public void GoBacktoTutorialOne()
     {
         
-        //ACTIVATE HOW TO PLAY FROM TAB//
-        Tutorials[1].SetActive(false);
-
-        //SET TUTORIAL ONE TO BE DEACTIVATED//
-        Tutorials[0].SetActive(true);
-
+      
+        ShowTutorial(0);
 
 
     }
@@ -261,11 +275,8 @@ public class UITrigger : MonoBehaviour
     public void GoBacktoTutorialTwo()
     {
         
-        //ACTIVATE HOW TO PLAY FROM TAB//
-        Tutorials[1].SetActive(true);
-
-        //SET TUTORIAL ONE TO BE DEACTIVATED//
-        Tutorials[2].SetActive(false);
+       
+         ShowTutorial(1);
 
 
 
@@ -280,16 +291,23 @@ public class UITrigger : MonoBehaviour
     {
         
         //ACTIVATE HOW TO PLAY FROM TAB//
-        Tutorials[2].SetActive(true);
-
-        //SET TUTORIAL ONE TO BE DEACTIVATED//
-        Tutorials[1].SetActive(false);
-
-        Tutorials[0].SetActive(false);
+       
+         ShowTutorial(2);
 
 
 
     }
+
+
+    public void OpenTutorialFour()
+    {
+    
+
+         ShowTutorial(3);
+
+
+    }
+
 
 
     
@@ -323,6 +341,8 @@ public class UITrigger : MonoBehaviour
 
         //ACTIVATE PAUSEMENU//
         PauseMenu.SetActive(true);
+
+        PhoneCasing.SetActive(true);
 
 
         //HIDE SETTINGSMENU//
