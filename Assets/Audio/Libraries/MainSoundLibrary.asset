@@ -33,3 +33,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 402a21ce10377b94a89f42eb6798de9b, type: 3}
     volume: 1
     pitchVariance: 1.026
+  - key: npc_interact
+    variants:
+    - {fileID: 8300000, guid: 7f5291bc30a266043a2547a8e40d6d36, type: 3}
+    - {fileID: 8300000, guid: 8cc3547219f64f1408cf81ea0b7105ca, type: 3}
+    volume: 1
+    pitchVariance: 1.026
