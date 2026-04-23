@@ -22,6 +22,11 @@ public class AnimationManager : MonoBehaviour
 
     [SerializeField] public RoamingAI RAI;
 
+    //REFERENCE TO NPC SOUND SCRIPT//
+
+    [SerializeField] public NPCSound Npc_sound;
+
+    private bool hasPlayedSound = false;
 
 
     //TRACK STATES//
@@ -44,6 +49,7 @@ public class AnimationManager : MonoBehaviour
     {
         
         RAI = GetComponent<RoamingAI>();
+        Npc_sound = GetComponent<NPCSound>();
 
     }
 
@@ -100,7 +106,11 @@ public class AnimationManager : MonoBehaviour
         {
            // BossAnim.SetBool("Walk", false);
             BossAnim.SetBool("CanWave", true);
-
+            if (hasPlayedSound == false)
+                {
+                    Npc_sound.PlayInteractSound();
+                    hasPlayedSound = true;
+                    }
             BossTransform.LookAt(PlayerTransform.position);
             break;
         }
@@ -128,7 +138,6 @@ public class AnimationManager : MonoBehaviour
         {
             
            StartCoroutine(ChangeToWave());
-
         
         }
 
@@ -153,9 +162,8 @@ public class AnimationManager : MonoBehaviour
 
 
          PS = PossibleStates.Standing;
-         
-        
-         yield return new WaitForSeconds(2f);
+
+        yield return new WaitForSeconds(2f);
          PS = PossibleStates.Waving;
 
 
