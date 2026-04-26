@@ -11,10 +11,11 @@ public class BreakerPlayerCheck : MonoBehaviour
     [SerializeField] Transform camTarget;
     bool isMoving, usingBreaker;
     [SerializeField] GameObject panel;
+    [SerializeField] GameObject breakerCollider;
 
 
     [Header("TextMeshPro")]
-    
+
     [SerializeField] public TextMeshProUGUI InteractText;
 
 
@@ -24,10 +25,15 @@ public class BreakerPlayerCheck : MonoBehaviour
 
     void Awake()
     {
-        
-    InteractText.enabled = false;
+
+        InteractText.enabled = false;
 
 
+    }
+
+    void Start()
+    {
+        breakerCollider.SetActive(false);
     }
 
     void Update()
@@ -56,7 +62,7 @@ public class BreakerPlayerCheck : MonoBehaviour
         isMoving = true;
 
         InteractText.enabled = false;
-        
+
 
         Vector3 start = Camera.main.transform.position;
         Quaternion rot = Camera.main.transform.rotation;
@@ -81,6 +87,7 @@ public class BreakerPlayerCheck : MonoBehaviour
 
         panel.SetActive(true);
         isMoving = false;
+        breakerCollider.SetActive(true);
         usingBreaker = true;
     }
 
@@ -90,6 +97,7 @@ public class BreakerPlayerCheck : MonoBehaviour
         PlayerController.Instance.playerControl = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        breakerCollider.SetActive(false);
         panel.SetActive(false);
         InteractText.enabled = true;
     }
@@ -103,8 +111,11 @@ public class BreakerPlayerCheck : MonoBehaviour
 
             InteractText.enabled = true;
 
-            Debug.Log("YO");
-            
+            CI.InteractText.enabled = false;
+
+
+            //Debug.Log("YO");
+
         }
     }
 
@@ -116,7 +127,7 @@ public class BreakerPlayerCheck : MonoBehaviour
 
             InteractText.enabled = false;
 
-           // PC.CanCast = true;
+            // PC.CanCast = true;
 
         }
     }

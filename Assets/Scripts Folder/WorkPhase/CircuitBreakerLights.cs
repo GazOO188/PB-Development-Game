@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 public class CircuitBreakerLights : MonoBehaviour
 {
-    public Dictionary<string, List<GameObject>> allLights = new Dictionary<string, List<GameObject>>();
-    [SerializeField] List<GameObject> kitchen = new List<GameObject>();
-    [SerializeField] List<GameObject> bedroom = new List<GameObject>();
+    public Dictionary<string, List<Light>> allLights = new Dictionary<string, List<Light>>();
+    [SerializeField] List<Light> kitchen = new List<Light>();
+    [SerializeField] List<Light> bedroom = new List<Light>();
+    float startIntensity = 13.25f;
     void Start()
     {
         allLights.Add("Kitchen", kitchen);
@@ -16,10 +17,9 @@ public class CircuitBreakerLights : MonoBehaviour
     public void LightSwitch(string roomName, bool flip)
     {
         if (allLights.ContainsKey(roomName))
-            foreach (GameObject light in allLights[roomName])
+            foreach (Light light in allLights[roomName])
             {
-                light.SetActive(flip);
+                light.intensity = flip ? startIntensity : 0f;
             }
-
     }
 }
