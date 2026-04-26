@@ -5400,6 +5400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: apartment4-2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21cf339c1de9f459bbe5351ae7fb83bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4610190679601818031, guid: 21cf339c1de9f459bbe5351ae7fb83bb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -5519,6 +5523,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1416352120}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &245223312
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.35477
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.35477
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.35477
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.5566397
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+      propertyPath: m_Name
+      value: Apartment(Bedroom doorway update)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: -168051006817133204, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+    - {fileID: 2654713335656134247, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+    - {fileID: -8700617353114198275, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 11b72e84aba3b984aa1920522a8713ff, type: 3}
 --- !u!1 &246154527 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1573461421715762494, guid: 78bfc12dbb2b64d55be12cb9a5c17540, type: 3}
@@ -11210,6 +11286,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8193
+  CurrentlyHit: {fileID: 0}
 --- !u!143 &836840582
 CharacterController:
   m_ObjectHideFlags: 0
@@ -12917,6 +12994,7 @@ MonoBehaviour:
   breakerCollider: {fileID: 1680191643}
   InteractText: {fileID: 324123922}
   CI: {fileID: 1719844004}
+  PC: {fileID: 0}
 --- !u!65 &1025071982
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23890,6 +23968,8 @@ MonoBehaviour:
   CI: {fileID: 1719844004}
   OA: {fileID: 1133474936}
   WPT: {fileID: 1173555239}
+  UIT: {fileID: 0}
+  TPC: {fileID: 0}
   playerCamera: {fileID: 1661498700}
   Dialogue: {fileID: 11400000, guid: 3df600ba208c84fac9ae68f807d0179e, type: 2}
   Resident1: {fileID: 11400000, guid: 47a5645e42f114ba08f01b2759c3ef43, type: 2}
@@ -23897,7 +23977,9 @@ MonoBehaviour:
   Resident3: {fileID: 11400000, guid: 6b2fd04c4ef8f46e8b988ac537d0b7bd, type: 2}
   Resident3A: {fileID: 11400000, guid: dc58f982496464c46bb7813f61836a7d, type: 2}
   Resident3B: {fileID: 11400000, guid: d58b7c33280d54c3593071ddafa3a385, type: 2}
+  TutorialDialogue: {fileID: 0}
   EButton: {fileID: 175884391}
+  BossIsSpeaking: {fileID: 0}
   currentLine: 0
   isTalking: 0
   MetWithResidentOne: 0
@@ -23906,7 +23988,10 @@ MonoBehaviour:
   MetWithResidentTwo: 0
   MetWithResidentThree: 0
   CanTriggerObjectiveAnimation: 0
+  Answeredcall: 0
+  canPause: 0
   canMove: 1
+  canLook: 1
   canProgresstoNextDialogue: 0
   _move:
     m_Name: Move
@@ -23967,6 +24052,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 3e4a8a66-5151-42d5-99d4-eafec047a7ac
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _OpenMenu:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 40e555b5-fc1d-4d62-962b-0d65ae10b539
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -26913,6 +27007,7 @@ MonoBehaviour:
   BossTransform: {fileID: 1719843998}
   Range: 3.5
   RAI: {fileID: 1719844002}
+  Npc_sound: {fileID: 0}
   PS: 0
 --- !u!114 &1719844004
 MonoBehaviour:
@@ -30136,11 +30231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3740859973734378251, guid: f6fdfb1f491974d4b90780dc478bfc54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.44700003
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 3740859973734378251, guid: f6fdfb1f491974d4b90780dc478bfc54, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.092999995
+      value: 0.093
       objectReference: {fileID: 0}
     - target: {fileID: 3740859973734378251, guid: f6fdfb1f491974d4b90780dc478bfc54, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31756,6 +31851,7 @@ SceneRoots:
   - {fileID: 1619346063}
   - {fileID: 1133474937}
   - {fileID: 1535974589}
+  - {fileID: 245223312}
   - {fileID: 205948740}
   - {fileID: 1583596535}
   - {fileID: 1907112066}
