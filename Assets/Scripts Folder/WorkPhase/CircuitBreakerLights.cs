@@ -7,6 +7,7 @@ public class CircuitBreakerLights : MonoBehaviour
     public Dictionary<string, List<Light>> allLights = new Dictionary<string, List<Light>>();
     [SerializeField] List<Light> kitchen = new List<Light>();
     [SerializeField] List<Light> bedroom = new List<Light>();
+    float startIntensity = 13.25f;
     void Start()
     {
         allLights.Add("Kitchen", kitchen);
@@ -18,8 +19,7 @@ public class CircuitBreakerLights : MonoBehaviour
         if (allLights.ContainsKey(roomName))
             foreach (Light light in allLights[roomName])
             {
-                //light.SetActive(flip);
+                light.intensity = flip ? startIntensity : 0f;
             }
-
     }
 }
