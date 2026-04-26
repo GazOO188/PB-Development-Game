@@ -21,6 +21,7 @@ public class BreakerPlayerCheck : MonoBehaviour
 
     [SerializeField] public CollisionInteractions CI;
 
+    [SerializeField] public PlayerController PC;
 
     void Awake()
     {
@@ -60,6 +61,8 @@ public class BreakerPlayerCheck : MonoBehaviour
         PlayerController.Instance.playerControl = false;
         isMoving = true;
 
+        InteractText.enabled = false;
+
 
         Vector3 start = Camera.main.transform.position;
         Quaternion rot = Camera.main.transform.rotation;
@@ -96,7 +99,9 @@ public class BreakerPlayerCheck : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         breakerCollider.SetActive(false);
         panel.SetActive(false);
+        InteractText.enabled = true;
     }
+
 
     void OnTriggerEnter(Collider col)
     {
@@ -109,6 +114,8 @@ public class BreakerPlayerCheck : MonoBehaviour
             CI.InteractText.enabled = false;
 
 
+            //Debug.Log("YO");
+
         }
     }
 
@@ -119,6 +126,8 @@ public class BreakerPlayerCheck : MonoBehaviour
             playerDetected = false;
 
             InteractText.enabled = false;
+
+            // PC.CanCast = true;
 
         }
     }

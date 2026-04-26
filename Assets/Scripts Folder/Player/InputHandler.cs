@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
+
 public class InputHandler : MonoBehaviour
 {
     // Source: https://www.youtube.com/watch?v=T2T82MWbbew
@@ -15,11 +16,15 @@ public class InputHandler : MonoBehaviour
 
     public UITrigger UIT;
 
+    public TutorialPhoneCall TPC;
+
     [SerializeField] PlayerCamera playerCamera;
 
-    [SerializeField] public DialogueData Dialogue, Resident1, Resident2, Resident3, Resident3A, Resident3B;
+    [SerializeField] public DialogueData Dialogue, Resident1, Resident2, Resident3, Resident3A, Resident3B, TutorialDialogue;
 
-    [SerializeField] public GameObject EButton;
+    [SerializeField] public GameObject EButton, BossIsSpeaking;
+
+
 
 
     private Coroutine typewriterCoroutine, ObjectiveCouroutine;
@@ -43,7 +48,17 @@ public class InputHandler : MonoBehaviour
 
     public bool MetWithResidentThree = false;
 
+
     public bool CanTriggerObjectiveAnimation = false;
+
+    public bool Answeredcall = false;
+
+    public bool canPause = false;
+
+
+
+
+   
 
 
     //BOOL FOR ENABLING/DISABLING MOVEMENT//
@@ -68,11 +83,24 @@ public class InputHandler : MonoBehaviour
 
         _OpenMenu = InputSystem.actions.FindAction("OpenMenu");
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
 
 
         //OA = GameObject.Find("UI Manager").GetComponent<ObjectiveAlert>();
+
+
+    }
+
+
+    void Start()
+    {
+        
+        //SET MOVE AND LOOK TO BE FALSE//
+        canLook = false;
+        canMove = false;
+
 
 
     }
@@ -199,7 +227,7 @@ public class InputHandler : MonoBehaviour
        
         //FOR OPENING MENU//
 
-        if (_OpenMenu.WasPressedThisFrame())
+        if (_OpenMenu.WasPressedThisFrame() && canPause)
         {
             
 
@@ -222,14 +250,23 @@ public class InputHandler : MonoBehaviour
             Time.timeScale = 0f;
 
          
-
-
-
         }
 
 
         //DISPLAYS THE E BUTTON//
         ShowEButton();
+
+
+        //FOR DISPLAYING THE TUTORIAL TEXT//s
+        if (TPC.accepted && !Answeredcall)
+        {
+            
+            displayDialouge2(TutorialDialogue);
+
+            Answeredcall = true;
+
+
+        }
     }
 
     //DISPLAYS THE DIALOGUE PHYSICALLY//
@@ -256,6 +293,37 @@ public class InputHandler : MonoBehaviour
 
 
     }
+
+
+
+      //DISPLAYS THE DIALOGUE PHYSICALLY//
+    public void displayDialouge2(DialogueData data)
+    {
+
+        currentDialogue = data;
+
+        currentLine = 0;
+
+        isTalking = true;
+
+        CI.DialgouePanel.enabled = true;
+
+        CI.DialogueText.enabled = true;
+
+        BossIsSpeaking.SetActive(true);
+
+        ShowCurrentLine();
+
+        TemporarilyDisableRaycast();
+
+        WPT.CanRunTimer = false;
+
+
+    }
+
+
+
+    
 
 
     //SHOWS THE CURRENT LINE//
@@ -289,6 +357,8 @@ public class InputHandler : MonoBehaviour
             EndDialogue();
 
             canMove = true;
+
+
 
             
 
@@ -324,9 +394,16 @@ public class InputHandler : MonoBehaviour
         CI.DialogueText.enabled = false;
         CI.DialgouePanel.enabled = false;
         CI.WhoIsSpeakingTab.SetActive(false);
+        BossIsSpeaking.SetActive(false);
 
         //PLAYER CAN CAST RAYCAST TO DETECT THINGS/
         player.CanCast = true;
+
+        canLook = true;
+
+        canMove = true;
+
+        canPause = true;
 
         if (OA.TimerCheck && !isTalking)
         {
@@ -363,7 +440,7 @@ public class InputHandler : MonoBehaviour
     {
 
         //SETS IT TO TRUE IF THE LINE HAS FINISHED//
-        if (isTalking && (MetWithResidentOne || MetWithResidentThree || MetWithResidentTwo))
+        if (isTalking && (MetWithResidentOne || MetWithResidentThree || MetWithResidentTwo || TPC.accepted))
         {
 
             EButton.SetActive(CI.LineFinished);

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class UITrigger : MonoBehaviour
 {
@@ -18,14 +19,33 @@ public class UITrigger : MonoBehaviour
 
     [SerializeField] public GameObject PauseMenu;
 
+    
+    [Header("How To Play Menu")]
 
+    [SerializeField] public GameObject ControlsMenu;
+    
+    [SerializeField] public GameObject Tutorial;
 
+    
     [Header("Script References")]
 
     [SerializeField] public InputHandler IH;
     
     [SerializeField] public PlayerController PC;
 
+
+    
+    [Header("Tutorial")]
+
+    [SerializeField] public List<GameObject> Tutorials = new List<GameObject>();
+
+
+
+        
+    [Header("Miscellaneous")]
+
+    [SerializeField] public GameObject PhoneCasing;
+ 
 
     //ENUM TO SWITCH BETWEEN STATES
 
@@ -38,6 +58,8 @@ public class UITrigger : MonoBehaviour
         Pause,
 
         Settings,
+
+        HowToPlay,
 
 
 
@@ -60,6 +82,8 @@ public class UITrigger : MonoBehaviour
 
         
         PauseMenu.SetActive(false);
+
+        PhoneCasing.SetActive(false);
 
 
 
@@ -91,6 +115,7 @@ public class UITrigger : MonoBehaviour
             //TURN OFF ALL PAUSE MENU BUTTONS//
             //DISABLE PAUSE TEXT//
             PauseMenu.SetActive(false);
+            PhoneCasing.SetActive(false);
 
              //ENABLE LOOKING AND MOVING AGAIN//
              IH.canLook = true;
@@ -129,6 +154,25 @@ public class UITrigger : MonoBehaviour
             //ACTIVATE PAUSEMENU//
             PauseMenu.SetActive(true);
 
+            PhoneCasing.SetActive(true);
+
+            break;
+
+
+
+            }
+
+
+
+            case UIMenuStates.HowToPlay:
+            {
+                    
+            
+            ControlsMenu.SetActive(true);
+            
+            Tutorial.SetActive(false);
+            
+            
             break;
 
 
@@ -156,6 +200,122 @@ public class UITrigger : MonoBehaviour
 
     }
 
+    //FUNCTION TO OPEN CONTROLS MENU WITH THE CONTROLS AND HOW TO PLAY TAB//
+    public void OpenControls()
+    {
+        
+        //ACTIVATE HOW TO PLAY MENU//
+        SetUIState(UIMenuStates.HowToPlay);
+
+
+
+    }
+
+    //FUNCTIION TO ACTIVATE AND DEACTIVATE ALL TUTORIALS//
+
+    public void ShowTutorial(int index)
+    {
+    
+    for (int i = 0; i < Tutorials.Count; i++)
+    {
+        Tutorials[i].SetActive(i == index);
+    }
+   
+    }
+
+
+
+    //FUNCTION TO OPEN HOW TO PLAY MENU//
+
+    public void TutorialGuide()
+    {
+        
+        //ACTIVATE HOW TO PLAY FROM TAB//
+
+       Tutorial.SetActive(true);
+
+       ShowTutorial(0);
+
+
+    }
+
+
+    //FUNCTION TO OPEN TUTORIAL 1 MENU//
+
+    public void OpenTutorialOne()
+    {
+        
+        //ACTIVATE HOW TO PLAY FROM TAB//
+
+        ShowTutorial(1);
+
+
+
+    }
+
+
+
+
+    //FUNCTION TO GO BACK TO TUTORIAL 1 MENU//
+
+    public void GoBacktoTutorialOne()
+    {
+        
+      
+        ShowTutorial(0);
+
+
+    }
+
+
+
+
+    //FUNCTION TO OPEN TUTORIAL 2 MENU//
+
+    public void GoBacktoTutorialTwo()
+    {
+        
+       
+         ShowTutorial(1);
+
+
+
+    }
+
+
+
+
+    //FUNCTION TO OPEN TUTORIAL 1 MENU//
+
+    public void OpenTutorialTwo()
+    {
+        
+        //ACTIVATE HOW TO PLAY FROM TAB//
+       
+         ShowTutorial(2);
+
+
+
+    }
+
+
+    public void OpenTutorialFour()
+    {
+    
+
+         ShowTutorial(3);
+
+
+    }
+
+
+
+    
+
+
+
+
+
 
     //FUNCTION TO OPEN PAUSE MENU//
 
@@ -181,6 +341,8 @@ public class UITrigger : MonoBehaviour
 
         //ACTIVATE PAUSEMENU//
         PauseMenu.SetActive(true);
+
+        PhoneCasing.SetActive(true);
 
 
         //HIDE SETTINGSMENU//
@@ -213,6 +375,21 @@ public class UITrigger : MonoBehaviour
     {
         
         SceneManager.LoadScene("Title");
+
+
+
+
+
+    }
+
+
+
+    //FUNCTION TO GO BACK TO MAIN MENU//
+
+    public void GoBackToMenuOptions()
+    {
+        
+        ControlsMenu.SetActive(false);
 
 
 
