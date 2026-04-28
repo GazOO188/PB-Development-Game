@@ -129,3 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeatherStripTool
   stripPrefab: {fileID: 8063538632027381121, guid: 6a0888d94fba84e5eac9ada8a2d6c585, type: 3}
   IH: {fileID: 0}
+  weatherStripLayer:
+    serializedVersion: 2
+    m_Bits: 0
