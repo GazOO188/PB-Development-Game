@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
-public class SprayFoam : MonoBehaviour 
+public class SprayFoam : MonoBehaviour
 {
-    public GameObject foamPrefab;  
-    public InputHandler IH;         
+    public GameObject foamPrefab;
+    public InputHandler IH;
 
     [Header("Spray Settings")]
     public float spawnRate = 0.03f;
@@ -21,9 +21,9 @@ public class SprayFoam : MonoBehaviour
     // Track all spawned foam blobs
     private List<FoamData> foamBlobs = new List<FoamData>();
 
-    void Update() 
+    void Update()
     {
-       
+
     }
 
     public void HandleFoamSpray()
@@ -32,6 +32,10 @@ public class SprayFoam : MonoBehaviour
 
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (!Physics.Raycast(ray, out RaycastHit hit)) return;
+
+        // CHECK FOR FOAM LAYER
+        if (hit.transform.gameObject.layer != 9) return;
+
 
         Vector3 point = hit.point;
         Vector3 normal = hit.normal;

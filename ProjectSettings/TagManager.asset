@@ -18,6 +18,8 @@ TagManager:
   - CaulkGun
   - Tool UI
   - SprayFoam
+  - Strip
+  - Foam
   layers:
   - Default
   - TransparentFX
@@ -27,15 +29,15 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - WeatherStrip
+  - FoamGun
   - Ground
   - 
   - 
   - CanHit
   - Walls
   - 
-  - 
+  - Foam Material
   - 
   - 
   - 
