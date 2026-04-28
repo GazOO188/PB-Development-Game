@@ -26,7 +26,6 @@ public class WorkPhaseTimer : MonoBehaviour
     [SerializeField] public bool DisplaySecondTask = false;
     [SerializeField] public bool TaskTwoCompleted = false;
     [SerializeField] public bool DisplayFinalTask = false;
-    [SerializeField] public bool FinalTaskCompleted = false;
     [SerializeField] public bool CanMarkTask1 = false;
     [SerializeField] public bool CanMarkTask2 = false;
     [SerializeField] public bool CanMarkTask3 = false;
@@ -112,7 +111,17 @@ public class WorkPhaseTimer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+    
+    //THIS
+    
+    if (GameManager.Instance.FinalTaskCompleted)
+    {
+        // Player already finished everything
+        Debug.Log("Final task already done");
 
+        // Do whatever you want:
+        // hide UI, skip tasks, etc.
+    }
 
     }
 
@@ -223,7 +232,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
         //CHECKS OFF THE FINAL TASK//
-        if (!FinalTaskCompleted && !CanMarkTask3 && CB.singlePanelComplete)
+        if (!GameManager.Instance.FinalTaskCompleted && !CanMarkTask3 && CB.singlePanelComplete)
         {
 
             StartCoroutine(MarkTask3());
@@ -535,7 +544,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
         //FOR CIRCUIT BREAKER TASK//
-        if (CB.singlePanelComplete && !FinalTaskCompleted)
+        if (CB.singlePanelComplete && !GameManager.Instance.FinalTaskCompleted)
         {
             ExclamtionPoint3.SetActive(false);
 
@@ -602,7 +611,9 @@ public class WorkPhaseTimer : MonoBehaviour
 
             // THANK YOU, JULS
             // MARK TASK AS COMPLETE//
-            FinalTaskCompleted = true;
+            GameManager.Instance.FinalTaskCompleted = true;
+
+      
         }
 
 

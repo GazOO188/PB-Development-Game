@@ -6,6 +6,8 @@ using System.Collections;
 public class InputHandler : MonoBehaviour
 {
     // Source: https://www.youtube.com/watch?v=T2T82MWbbew
+    
+    [Header("Scripts")]
     public PlayerController player;
 
     public CollisionInteractions CI;
@@ -18,10 +20,38 @@ public class InputHandler : MonoBehaviour
 
     public TutorialPhoneCall TPC;
 
+    public WinLoseCondition WLC;
+
+    public EnvelopePhase Ep;
+
     [SerializeField] PlayerCamera playerCamera;
 
-    [SerializeField] public DialogueData Dialogue, Resident1, Resident2, Resident3, Resident3A, Resident3B, TutorialDialogue;
 
+    [Header("Dialgoues")]
+
+     public DialogueData Dialogue; 
+    
+     public DialogueData Resident1;
+    
+     public DialogueData Resident2;
+    
+     public DialogueData Resident3;
+     
+     public DialogueData Resident3A;
+     
+     public DialogueData Resident3B;
+    
+     public DialogueData TutorialDialogue;
+    
+     public DialogueData BossRoundOneEnd;
+
+     
+
+     [Header("Envlope Dialogue")]
+     public DialogueData Envelope1;
+
+    
+    
     [SerializeField] public GameObject EButton, BossIsSpeaking;
 
 
@@ -54,6 +84,12 @@ public class InputHandler : MonoBehaviour
     public bool Answeredcall = false;
 
     public bool canPause = false;
+
+
+    public bool canRestartScene = false;
+
+
+    public bool MetWithResidentOneInEnvelopeScene = false;
 
 
 
@@ -93,18 +129,21 @@ public class InputHandler : MonoBehaviour
 
     }
 
-
     void Start()
     {
-        
-        //SET MOVE AND LOOK TO BE FALSE//
-        canLook = false;
-        canMove = false;
-
-
-
+    if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted)
+    {
+        canMove = true;
+        canLook = true;
     }
 
+    else
+    {   
+        //SET CANMOVE AND CANLOOK TO BE FALSE//
+        canMove = false;
+        canLook = false;
+    }
+}
     void Update()
     {
         if (!player.playerControl || GameManager.Instance.GameOver) return;
@@ -140,10 +179,24 @@ public class InputHandler : MonoBehaviour
         // return;
         if (_interact.WasPressedThisFrame())
         {
-
-            if (!isTalking)
+            
+            
+            if (!isTalking) 
             {
-                if (player.CanSeeBoss)
+
+                //ENVELOPE DIALOGUE//
+                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted)
+                {           
+                
+                    displayDialouge(Envelope1);
+                    canMove = false;
+                    MetWithResidentOneInEnvelopeScene = true;
+                
+                }
+            
+
+
+                else if (player.CanSeeBoss)
                 {
                     displayDialouge(Dialogue);
                 }
@@ -188,6 +241,8 @@ public class InputHandler : MonoBehaviour
 
                 }
 
+
+                
 
 
 
@@ -357,6 +412,7 @@ public class InputHandler : MonoBehaviour
             EndDialogue();
 
             canMove = true;
+            
 
 
 
@@ -368,18 +424,35 @@ public class InputHandler : MonoBehaviour
 
 
             //START THE OBJECTIVE TASK ANIMATION IF MET WITH EITHER NPC//
-
-
             if (!CanTriggerObjectiveAnimation && (MetWithResidentOne || MetWithResidentTwo || MetWithResidentThree))
             {
                 StartCoroutine(OA.TriggerAnimation());
+    
+                CanTriggerObjectiveAnimation = true;
+               
+                // Reset NPC flags so they don't interfere
+                MetWithResidentOne = false;
+                MetWithResidentTwo = false;
+                MetWithResidentThree = false;
+            }
+
+
+            //TRIGGER ENVELOPE ANIMATION//
+             if (!CanTriggerObjectiveAnimation && MetWithResidentOneInEnvelopeScene)
+            {
+                StartCoroutine(Ep.TriggerAnimationForEnvelopePhase());
                 CanTriggerObjectiveAnimation = true;
 
                 // Reset NPC flags so they don't interfere
                 MetWithResidentOne = false;
                 MetWithResidentTwo = false;
                 MetWithResidentThree = false;
+                MetWithResidentOneInEnvelopeScene = false;
             }
+
+
+
+     
         }
     }
 
@@ -405,6 +478,10 @@ public class InputHandler : MonoBehaviour
 
         canPause = true;
 
+        canRestartScene = true;
+
+       
+       
         if (OA.TimerCheck && !isTalking)
         {
               
@@ -414,7 +491,17 @@ public class InputHandler : MonoBehaviour
         }
 
 
-    }
+        //RESTART THE SCENE//
+
+        if (canRestartScene && !GameManager.Instance.inEnvelopeScene && GameManager.Instance.FinalTaskCompleted)
+        {
+            
+            StartCoroutine(WLC.LoadSceneAfterSomeDelay());
+   
+            canRestartScene = false;
+        }
+
+        }
 
 
     //THIS FUNCTION TEMPORARILY DISABLES RAYCAST//
@@ -440,7 +527,7 @@ public class InputHandler : MonoBehaviour
     {
 
         //SETS IT TO TRUE IF THE LINE HAS FINISHED//
-        if (isTalking && (MetWithResidentOne || MetWithResidentThree || MetWithResidentTwo || TPC.accepted))
+        if (isTalking && (MetWithResidentOne || MetWithResidentThree || MetWithResidentTwo || TPC.accepted || MetWithResidentOneInEnvelopeScene))
         {
 
             EButton.SetActive(CI.LineFinished);
