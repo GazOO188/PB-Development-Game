@@ -124,13 +124,13 @@ public class LanguageConversion : MonoBehaviour
         English.Add("The furnace is downstairs.", "The furnace is downstairs.");
 
 
-        //THIS IS FOR THE SECOND RESIDENT//
+        //THIS THE ENVELOPE DIALOUFE//
 
-        English.Add("Hi! Lately the Kitchen has been really cold.", "Hi! Lately the Kitchen has been really cold.");
+        English.Add("Hey there lately I’ve been feeling a cool draft by the window in the kitchen.", "Hey there lately I’ve been feeling a cool draft by the window in the kitchen.");
 
-        English.Add("I constantly feel a draft coming the window.", "I constantly feel a draft coming the window.");
+        English.Add("In the night time it gets really cold and it prevents me from having my late night snack. Every time I go in there I have to wear something to keep me warm.", "In the night time it gets really cold and it prevents me from having my late night snack. Every time I go in there I have to wear something to keep me warm.");
 
-        English.Add("I wonder what it could be...", "I wonder what it could be...");
+        English.Add("I would appreciate it if you can find out why there is a draft in there.", "I would appreciate it if you can find out why there is a draft in there.");
 
 
 
@@ -235,6 +235,14 @@ public class LanguageConversion : MonoBehaviour
 
         Spanish.Add("Thank you for playing!", "¡Gracias por jugar!");
 
+
+        //ENVELOPE TASKS//
+
+        
+        English.Add("Investigate the Window", "Investigate the Window");
+       
+
+
        
         English.Add("Time's up!", "Time's up!");
 
@@ -249,6 +257,13 @@ public class LanguageConversion : MonoBehaviour
         English.Add("Restart Level", "Restart Level");
 
         Spanish.Add("Restart Level", "Nivel de reinicio");
+
+
+        //BOSS ENDING DAILOGUE FOR ELECTRICAL PHASE//
+
+        English.Add("Great Job!", "Great Job!");
+        English.Add("The tenant may need your assistance again.", "The tenant may need your assistance again.");
+        English.Add("For now take a well-deserved break!", "For now take a well-deserved break!");
 
 
 

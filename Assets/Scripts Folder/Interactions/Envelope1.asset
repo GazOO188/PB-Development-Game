@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 268bf36e2c95048f4b4ca0fcdf827688, type: 3}
-  m_Name: Resident 2B
+  m_Name: Envelope1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  SpeakerName: 
+  SpeakerName: Dialogue
   lines:
-  - "I have a crack on my wall in the bathroom that\u2019s been there for a while."
-  - "It\u2019s by the window and sometimes it leaks when it rains"
-  - "Can you patch that hole up so the wall doesn\u2019t leak again.  "
+  - "Hey there lately I\u2019ve been feeling a cool draft by the window in the kitchen."
+  - In the night time it gets really cold and it prevents me from having my late
+    night snack. Every time I go in there I have to wear something to keep me warm.
+  - 'I would appreciate it if you can find out why there is a draft in there. '

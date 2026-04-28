@@ -9,6 +9,17 @@ public class TutorialPhoneCall : MonoBehaviour
     [Header("State Control")]
     [SerializeField] public bool canStartPulsing = false, denied = false, accepted = false;
 
+    
+    [Header("GameObject")]
+    [SerializeField] private GameObject Phonecall;
+
+
+        
+    [Header("Scripts")]
+    [SerializeField] private InputHandler IH;
+
+    
+
     public enum PhoneStates
     {
         Accept,
@@ -19,15 +30,27 @@ public class TutorialPhoneCall : MonoBehaviour
 
     public PhoneStates PS;
 
+   void Awake()
+   {
+    Debug.Log("PHONE AWAKE: " + GameManager.Instance.FinalTaskCompleted);
+
+    if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted)
+    {
+        Debug.Log("DISABLING PHONE OBJECT");
+        Phonecall.SetActive(false);
+    }
+   }   
+
+
     void Start()
     {
-        
-            
+  
         StartCoroutine(Pulse());
      
         
     
     }
+    
     void Update()
     {
         // You can keep this for future logic if needed
@@ -38,9 +61,15 @@ public class TutorialPhoneCall : MonoBehaviour
         switch (ps)
         {
             case PhoneStates.Accept:
-                PhoneAnim.SetTrigger("Accept");
-                break;
 
+           if (GameManager.Instance.CanDisplayPhoneCallAgain)
+           {
+                 PhoneAnim.SetTrigger("Accept");
+                 GameManager.Instance.CanDisplayPhoneCallAgain = false;
+           }
+            break;  
+           
+           
             case PhoneStates.Pulsing:
                 PhoneAnim.SetBool("CanPulse", true);
                 break;

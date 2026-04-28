@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 268bf36e2c95048f4b4ca0fcdf827688, type: 3}
-  m_Name: Resident 2
+  m_Name: BossEndDialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  SpeakerName: Dialogue
+  SpeakerName: All Tasks Completed (Electrical)
   lines:
-  - "Hey there lately I\u2019ve been feeling a cool draft by the window in the kitchen."
-  - In the night time it gets really cold and it prevents me from having my late
-    night snack. Every time I go in there I have to wear something to keep me warm.
-  - "I would appreciate it if you can find out why there\u2019s a draft in there "
+  - Great Job!
+  - The tenant may need your assistance again.
+  - For now take a well-deserved break!

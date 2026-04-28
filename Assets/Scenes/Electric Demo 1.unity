@@ -6631,6 +6631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   englishLanguage: 1
   GameOver: 0
+  CanDisplayPhoneCallAgain: 1
 --- !u!4 &354160754
 Transform:
   m_ObjectHideFlags: 0
@@ -14055,6 +14056,11 @@ MonoBehaviour:
   timer: {fileID: 1173555239}
   endGameButtons: {fileID: 794059975}
   endText: {fileID: 1993436992}
+  DialoguePanel: {fileID: 0}
+  SpeakerTab: {fileID: 0}
+  KA: {fileID: 0}
+  EnvelopeDirector: {fileID: 0}
+  HasEndedElectrical: 0
 --- !u!1 &1146419258
 GameObject:
   m_ObjectHideFlags: 0
@@ -14462,7 +14468,6 @@ MonoBehaviour:
   DisplaySecondTask: 0
   TaskTwoCompleted: 0
   DisplayFinalTask: 0
-  FinalTaskCompleted: 0
   CanMarkTask1: 0
   CanMarkTask2: 0
   CanMarkTask3: 0
@@ -24057,7 +24062,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _OpenMenu:
-    m_Name: 
+    m_Name: Open Menu
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 40e555b5-fc1d-4d62-962b-0d65ae10b539

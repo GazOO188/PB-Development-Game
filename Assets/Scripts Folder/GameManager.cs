@@ -8,6 +8,14 @@ public class GameManager : MonoBehaviour
     public bool englishLanguage = true;
     public bool GameOver = false;
 
+    public bool FinalTaskCompleted = false;
+
+    public bool CanDisplayPhoneCallAgain = true;
+
+    public bool EndSequenceStarted = false;
+
+    public bool inEnvelopeScene = false;
+   
     void Awake()
     {
         if (Instance == null)
@@ -24,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+
+        //Debug.Log(CanDisplayPhoneCallAgain);
 
     }
 
