@@ -51,4 +51,12 @@ public class MusicManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void SetVolume(float v)
+    {
+        // Scale both sources by the new volume
+        // isTense determines which one is actually audible
+        normalSource.volume = isTense ? 0f : v;
+        tenseSource.volume = isTense ? v : 0f;
+    }
 }

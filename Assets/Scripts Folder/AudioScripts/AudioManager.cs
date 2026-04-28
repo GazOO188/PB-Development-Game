@@ -104,4 +104,20 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
     }
+    // --- Volume Settings ---
+
+    public void SetMusicVolume(float v)
+    {
+        MusicManager.Instance.SetVolume(v);
+    }
+
+    public void SetAmbienceVolume(float v)
+    {
+        ambienceSource.volume = v;
+    }
+
+    public void SetSFXVolume(float v)
+    {
+        sfxPool.ForEach(s => s.volume = v);
+    }
 }
