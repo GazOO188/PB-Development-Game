@@ -68,9 +68,10 @@ public class UITrigger : MonoBehaviour
 
     public UIMenuStates CurrentUIState;
 
+    private bool volumeOpen = true;
 
-   
-   
+    [SerializeField] private GameObject volumeIcon;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -194,8 +195,9 @@ public class UITrigger : MonoBehaviour
     public void OpenSettings()
     {
         
-
-     SetUIState(UIMenuStates.Settings);
+        //volumeOpen = !volumeOpen;
+        //volumeIcon.SetActive(volumeOpen);
+        SetUIState(UIMenuStates.Settings);
 
 
     }

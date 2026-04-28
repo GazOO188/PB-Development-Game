@@ -39,3 +39,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8cc3547219f64f1408cf81ea0b7105ca, type: 3}
     volume: 1
     pitchVariance: 1.026
+  - key: answer_click
+    variants:
+    - {fileID: 8300000, guid: ef8dd35dd862f0f458a7c1e1ebc5835a, type: 3}
+    volume: 1
+    pitchVariance: 1.026
+  - key: deny_click
+    variants:
+    - {fileID: 8300000, guid: 8388b7d63545ade45b4cf989bcc71c20, type: 3}
+    volume: 1
+    pitchVariance: 1.026

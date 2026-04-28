@@ -23,4 +23,24 @@ public class ClickSound : MonoBehaviour
         //Pitch not passed to defaults to 1.0f.
         );
     }
+
+    public void PlayAnswerClick()
+    {
+        var entry = sounds.Get("answer_click");
+        AudioManager.Instance.PlaySFX(
+            entry.variants[Random.Range(0, entry.variants.Length)], //AudioClip
+            entry.volume
+        //Pitch not passed to defaults to 1.0f.
+        );
+    }
+
+    public void PlayDenyClick()
+    {
+        var entry = sounds.Get("deny_click");
+        AudioManager.Instance.PlaySFX(
+            entry.variants[Random.Range(0, entry.variants.Length)], //AudioClip
+            entry.volume
+        //Pitch not passed to defaults to 1.0f.
+        );
+    }
 }
