@@ -49,6 +49,8 @@ public class InputHandler : MonoBehaviour
 
      [Header("Envlope Dialogue")]
      public DialogueData Envelope1;
+     public DialogueData Envelope2;
+     public DialogueData Envelope3;
 
     
     
@@ -185,7 +187,7 @@ public class InputHandler : MonoBehaviour
             {
 
                 //ENVELOPE DIALOGUE//
-                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted)
+                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && !Ep.EnvelopeTask1Completed)
                 {           
                 
                     displayDialouge(Envelope1);
@@ -193,6 +195,29 @@ public class InputHandler : MonoBehaviour
                     MetWithResidentOneInEnvelopeScene = true;
                 
                 }
+
+                
+                //AFTER COMPLETING TASK 1 FOR ENVELOPE, DISPLAY THE RESIDENT TASK//
+                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && Ep.EnvelopeTask1Completed)
+                {           
+                
+                    displayDialouge(Envelope2);
+                    canMove = false;
+                    MetWithResidentOneInEnvelopeScene = true;
+                
+                }
+            
+
+                //AFTER COMPLETING TASK 2 FOR ENVELOPE, DISPLAY THE FINAL RESIDENT TASK//
+                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && Ep.EnvelopeTask2Completed)
+                {           
+                
+                    displayDialouge(Envelope3);
+                    canMove = false;
+                    MetWithResidentOneInEnvelopeScene = true;
+                
+                }
+            
             
 
 
@@ -204,7 +229,7 @@ public class InputHandler : MonoBehaviour
 
 
                 // THIRD DIALOGUE (MOST ADVANCED)
-                else if (player.ResidentOneSeen && WPT.TaskTwoCompleted)
+                else if (player.ResidentOneSeen && WPT.TaskTwoCompleted && !GameManager.Instance.FinalTaskCompleted)
                 {
                     displayDialouge(Resident3B);
 
@@ -218,7 +243,7 @@ public class InputHandler : MonoBehaviour
                 }
 
                 // SECOND DIALOGUE
-                else if (player.ResidentOneSeen && WPT.TaskOneCompleted)
+                else if (player.ResidentOneSeen && WPT.TaskOneCompleted && !GameManager.Instance.FinalTaskCompleted) 
                 {
                     displayDialouge(Resident3A);
 
@@ -232,7 +257,7 @@ public class InputHandler : MonoBehaviour
                 }
 
                 //FOR DISPLAYING THE FIRST DIALOGUE//
-                else if (player.ResidentOneSeen)
+                else if (player.ResidentOneSeen && !GameManager.Instance.FinalTaskCompleted)
                 {
                     displayDialouge(Resident3);
                     MetWithResidentOne = true;
