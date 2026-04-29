@@ -10,6 +10,11 @@ public class EnvelopePhase : MonoBehaviour
 
     [Header("Bool")]
     [SerializeField] public bool DisplayEnvelopeIssues;
+    
+    [SerializeField] public bool DisplayEnvelopeIssues2 = false;
+   
+    [SerializeField] public bool DisplayEnvelopeIssues3 = false;
+    
     [SerializeField] public bool TimerCheck = false;
 
 
@@ -32,10 +37,74 @@ public class EnvelopePhase : MonoBehaviour
 
 
     [Header("GameObjects")]
-    [SerializeField] public GameObject Objectives, Task1, EP, TimerText;
+    [SerializeField] public GameObject Objectives, EP, TimerText;
+    
 
 
-       
+
+    //TEXT//
+    [Header("TextMeshPro")]
+    [SerializeField] public TextMeshProUGUI TaskOneText;
+    [SerializeField] public TextMeshProUGUI TaskTwoText;
+    [SerializeField] public TextMeshProUGUI TaskThreeText;
+
+
+    
+    [Header("CheckMarks")] 
+    
+    [SerializeField] public GameObject CheckMarkForTask1;
+    
+    [SerializeField] public GameObject CheckMarkForTask2;
+    
+    [SerializeField] public GameObject CheckMarkForTask3;
+
+
+
+
+    [Header("Tasks")] 
+    
+    [SerializeField] public GameObject Task1;
+    
+    [SerializeField] public GameObject Task2;
+    
+    [SerializeField] public GameObject Task3;
+
+
+
+     //ANIMATION SECTION//
+    [Header("Animation Settings")]
+    
+    [SerializeField] public Animator CheckAnim;
+
+    [SerializeField] public Animator CheckAnim2;
+
+    [SerializeField] public Animator CheckAnim3;
+
+   
+    //FOR THE 2ND AND 3RD ENVELOPE TASK//
+    [SerializeField] public Animator Task2Anim;
+
+    [SerializeField] public Animator FinalTaskAnim;
+
+
+
+
+    [Header("Exclamation Points")]
+    [SerializeField] public GameObject ExclamationPoint;
+    [SerializeField] public GameObject ExclamationPoint2;
+    [SerializeField] public GameObject ExclamtionPoint3;
+
+
+
+
+    public bool CompletedTaskOne = true;
+
+
+
+
+
+
+
 
 
 
@@ -53,6 +122,36 @@ public class EnvelopePhase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(IH.MetWithResidentOneInEnvelopeScene && !IH.isTalking && !DisplayEnvelopeIssues2)
+        {
+            
+
+            StartCoroutine(ShowTheNextTaskInList(Task2, CheckMarkForTask1, TaskOneText, TaskTwoText, "Investigate the door", Task2Anim, "ShowTask2"));
+
+            DisplayEnvelopeIssues2 = true;
+        }
+
+
+        if (EnvelopeTask2Completed)
+        {
+            
+
+            StartCoroutine(MarkObjectiveAsComplete(CheckMarkForTask2, ExclamationPoint2, CheckAnim2, TaskTwoText, WPT.CanRunTimer, "Investigate the door", "Mark2"));
+
+            EnvelopeTask2Completed = false;
+
+        }
+
+
+        if(IH.MetWithResidentOneInEnvelopeScene && !IH.isTalking && !DisplayEnvelopeIssues3 && DisplayEnvelopeIssues2)
+        {
+            
+
+            StartCoroutine(ShowTheNextTaskInList(Task3, CheckMarkForTask2, TaskTwoText, TaskThreeText, "Seal the crack", FinalTaskAnim, "FinalTask"));
+
+            DisplayEnvelopeIssues3 = true;
+        }
 
 
         
@@ -118,10 +217,97 @@ public class EnvelopePhase : MonoBehaviour
        
         WPT.CanRunTimer = true;
 
+        StartCoroutine(MarkObjectiveAsComplete(CheckMarkForTask1, ExclamationPoint, CheckAnim, TaskOneText, WPT.CanRunTimer, "Investigate the Window", "MarkTask"));
+    }
+
+
+      // CUSTOM COROUTINE FOR STARTING THE NEXT OBJECTIVE//
+    public IEnumerator MarkObjectiveAsComplete(GameObject Checkmark, GameObject EP, Animator CheckAnimator, TextMeshProUGUI TaskText, bool timerBool, string TaskDescription, string Animation)
+    {
+
+        yield return new WaitForSeconds(0f);
+
+        //THIS CROSSES OUT THE TASK TO MARK IT COMPLETE//
+
+        EP.SetActive(false);
+
+       
+        TaskText.GetComponent<KeyAnalyzer>().Word = TaskDescription;
+       
+        TaskText.GetComponent<KeyAnalyzer>().WordConversion();
+
+        TaskText.text = "<s>" + TaskText.text + "</s>";
+
+
+
+        Checkmark.SetActive(true);
+
+
+        CheckAnimator.enabled = true;
+
+        CheckAnimator.Play(Animation);
+        
+       
+        timerBool = false;
+
    
+
+        yield return new WaitForSeconds(2.3f);
+
+        Checkmark.SetActive(false);
+
+       
+        
+        KeyAnalyzer ka = TaskText.GetComponent<KeyAnalyzer>();
+        ka.Word = "Report to the Resident";   // SET WORD FIRST
+        ka.WordConversion();                  // APPLY IT
+        ka.CanOverWrite = false;              // THEN allow updates
+        
+       
+        
 
     }
 
 
+    
+    
+    //FUNCTION FOR SHOWING NEXT TASK IN THE LIST//
+   public IEnumerator ShowTheNextTaskInList(GameObject NextTask, GameObject checkmark, TextMeshProUGUI PreviousText, TextMeshProUGUI NewText, string NextObjectiveText, Animator NextTaskAnim, string AnimationClip)
+  {
+    yield return new WaitForSeconds(0f);
 
+    // SHOW NEXT TASK
+    NextTask.SetActive(true);
+    NextTaskAnim.enabled = true;
+    NextTaskAnim.Play(AnimationClip);
+
+    // CROSS OUT PREVIOUS TASK
+    KeyAnalyzer kaPrev = PreviousText.GetComponent<KeyAnalyzer>();
+
+    kaPrev.CanOverWrite = true;
+
+    PreviousText.text = "<s>" + PreviousText.text + "</s>";
+
+    checkmark.SetActive(true);
+
+    // SET NEW TASK TEXT
+    KeyAnalyzer kaNew = NewText.GetComponent<KeyAnalyzer>();
+
+    kaNew.CanOverWrite = false; 
+
+    kaNew.Word = NextObjectiveText;
+    kaNew.WordConversion();
+
+    yield return new WaitForSeconds(0f);
+}
+
+
+public void MarkFinalTask()
+ {
+        
+
+
+
+
+}
 }

@@ -80,7 +80,6 @@ public class LanguageConversion : MonoBehaviour
 
 
         
-        
         English.Add("Welcome! It looks like we'll be dealing with a envelope issue today...", "Welcome! It looks like we'll be dealing with a envelope issue today...");
 
         Spanish.Add("Welcome! It looks like we'll be dealing with a envelope issue today...", "¡Bienvenido! Parece que hoy tendremos un problema con un sobre…");
@@ -124,13 +123,24 @@ public class LanguageConversion : MonoBehaviour
         English.Add("The furnace is downstairs.", "The furnace is downstairs.");
 
 
-        //THIS THE ENVELOPE DIALOUFE//
+        //THIS THE ENVELOPE DIALOUGE//
 
+        //DIALOGUE 1//
         English.Add("Hey there lately I’ve been feeling a cool draft by the window in the kitchen.", "Hey there lately I’ve been feeling a cool draft by the window in the kitchen.");
 
         English.Add("In the night time it gets really cold and it prevents me from having my late night snack. Every time I go in there I have to wear something to keep me warm.", "In the night time it gets really cold and it prevents me from having my late night snack. Every time I go in there I have to wear something to keep me warm.");
 
         English.Add("I would appreciate it if you can find out why there is a draft in there.", "I would appreciate it if you can find out why there is a draft in there.");
+
+        
+        //DIALOGUE 2//
+        English.Add("Whenever it gets windy you can hear a large sound by the front door.", "Whenever it gets windy you can hear a large sound by the front door.");
+
+        English.Add("It feels like they didn’t patch something up properly.", "It feels like they didn’t patch something up properly.");
+
+        English.Add("I try to investigate myself but I can’t find the source of the issue.", "I try to investigate myself but I can’t find the source of the issue.");
+
+        English.Add("Maybe you’ll have better luck than me.", " Maybe you’ll have better luck than me.");
 
 
 
@@ -240,6 +250,10 @@ public class LanguageConversion : MonoBehaviour
 
         
         English.Add("Investigate the Window", "Investigate the Window");
+
+        English.Add("Investigate the door", "Investigate the door");
+
+        English.Add("Seal the crack", "Seal the crack");
        
 
 
