@@ -9011,6 +9011,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   englishLanguage: 1
   GameOver: 0
+  FinalTaskCompleted: 0
+  CanDisplayPhoneCallAgain: 1
+  EndSequenceStarted: 0
+  inEnvelopeScene: 0
 --- !u!4 &354160754
 Transform:
   m_ObjectHideFlags: 0
@@ -23578,6 +23582,7 @@ MonoBehaviour:
   - {fileID: 219324996}
   PhoneCasing: {fileID: 564988906}
   CurrentUIState: 0
+  volumeIcon: {fileID: 0}
 --- !u!1 &1135133788
 GameObject:
   m_ObjectHideFlags: 0
@@ -23654,8 +23659,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinLoseCondition
   timer: {fileID: 1173555239}
+  IH: {fileID: 0}
   endGameButtons: {fileID: 794059975}
   endText: {fileID: 1993436992}
+  DialoguePanel: {fileID: 0}
+  SpeakerTab: {fileID: 0}
+  FadeOut: {fileID: 0}
+  EnvelopeDirector: {fileID: 0}
+  HasEndedElectrical: 0
 --- !u!1 &1145937305
 GameObject:
   m_ObjectHideFlags: 0
@@ -24491,7 +24502,6 @@ MonoBehaviour:
   DisplaySecondTask: 0
   TaskTwoCompleted: 0
   DisplayFinalTask: 0
-  FinalTaskCompleted: 0
   CanMarkTask1: 0
   CanMarkTask2: 0
   CanMarkTask3: 0
@@ -36125,7 +36135,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1500752508}
   - component: {fileID: 1500752507}
-  - component: {fileID: 1500752506}
   m_Layer: 0
   m_Name: Player Inventory
   m_TagString: Player Inventory
@@ -36133,18 +36142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1500752506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500752505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70b4835cf2a01b45a63035b468ef661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DontDestroy
 --- !u!114 &1500752507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36769,6 +36766,8 @@ MonoBehaviour:
   canStartPulsing: 0
   denied: 0
   accepted: 0
+  Phonecall: {fileID: 0}
+  IH: {fileID: 0}
   PS: 0
 --- !u!4 &1536709223
 Transform:
@@ -37140,6 +37139,8 @@ MonoBehaviour:
   WPT: {fileID: 1173555239}
   UIT: {fileID: 1133474938}
   TPC: {fileID: 1536709222}
+  WLC: {fileID: 0}
+  Ep: {fileID: 0}
   playerCamera: {fileID: 1661498700}
   Dialogue: {fileID: 11400000, guid: 3df600ba208c84fac9ae68f807d0179e, type: 2}
   Resident1: {fileID: 11400000, guid: 47a5645e42f114ba08f01b2759c3ef43, type: 2}
@@ -37148,6 +37149,10 @@ MonoBehaviour:
   Resident3A: {fileID: 11400000, guid: dc58f982496464c46bb7813f61836a7d, type: 2}
   Resident3B: {fileID: 11400000, guid: d58b7c33280d54c3593071ddafa3a385, type: 2}
   TutorialDialogue: {fileID: 11400000, guid: 765fada9718804de3806e3f61512c5d5, type: 2}
+  BossRoundOneEnd: {fileID: 0}
+  Envelope1: {fileID: 0}
+  Envelope2: {fileID: 0}
+  Envelope3: {fileID: 0}
   EButton: {fileID: 175884391}
   BossIsSpeaking: {fileID: 631721087}
   currentLine: 0
@@ -37160,6 +37165,8 @@ MonoBehaviour:
   CanTriggerObjectiveAnimation: 0
   Answeredcall: 0
   canPause: 0
+  canRestartScene: 0
+  MetWithResidentOneInEnvelopeScene: 0
   canMove: 1
   canLook: 1
   canProgresstoNextDialogue: 0
