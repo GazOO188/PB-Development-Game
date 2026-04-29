@@ -30,14 +30,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(Instance);
-            return;
-        }
-
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
