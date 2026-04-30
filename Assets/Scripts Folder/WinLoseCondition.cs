@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
@@ -8,14 +9,23 @@ public class WinLoseCondition : MonoBehaviour
 {
     [SerializeField] WorkPhaseTimer timer;
     [SerializeField] InputHandler IH;
+    [SerializeField] EnvelopePhase EP;
     [SerializeField] GameObject endGameButtons;
     [SerializeField] TextMeshProUGUI endText;
+
     [SerializeField] GameObject DialoguePanel;
     [SerializeField] GameObject SpeakerTab;
     [SerializeField] GameObject FadeOut;
+
     [SerializeField] public PlayableDirector EnvelopeDirector;
     [SerializeField] bool HasEndedElectrical = false;
     bool canLoad = true;
+
+
+    [Header("GameObject")]
+    [SerializeField] public List<GameObject> ObjectstoTurnOff = new List<GameObject>();
+
+
 
 
     void Start()
@@ -28,32 +38,52 @@ public class WinLoseCondition : MonoBehaviour
 
     void Update()
     {
-        if ((timer.TimerforWorkPhase == 0f) && !endGameButtons.activeInHierarchy)
+        //FOR DISPLAYING GAMEOVER TEXT, WHEN TIMER IS 0//
+        if ((timer.TimerforWorkPhase == 0f) && !endGameButtons.activeInHierarchy || GameManager.Instance.inEnvelopeScene && (timer.TimerforWorkPhase == 0f))
         {
             endGameButtons.SetActive(true);
-            endText.text = GameManager.Instance.FinalTaskCompleted?LanguageConversion.Instance.WordConverter("Thank you for playing!"):LanguageConversion.Instance.WordConverter("Time's up!");
+            endText.text = LanguageConversion.Instance.WordConverter("Time's up!");
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             GameManager.Instance.GameOver = true;
+
+            TurnOffGameObjects();
         }
 
-        // FIXED PART ONLY
       
-    if (!GameManager.Instance.EndSequenceStarted && GameManager.Instance.FinalTaskCompleted)
-    {
-        GameManager.Instance.EndSequenceStarted = true;
+       if (!GameManager.Instance.EndSequenceStarted && GameManager.Instance.FinalTaskCompleted)
+       {
+            GameManager.Instance.EndSequenceStarted = true;
 
-        endText.text = GameManager.Instance.FinalTaskCompleted
-            ? LanguageConversion.Instance.WordConverter("Thank you for playing!")
-            : LanguageConversion.Instance.WordConverter("Time's up!");
+            //StartCoroutine(LoadSceneAfterDelay());
 
-        //StartCoroutine(LoadSceneAfterDelay());
-
-        StartCoroutine(DisplayWellDoneText());
+            StartCoroutine(DisplayWellDoneText());
 
 
-        Debug.Log("End sequence triggered");
-    }
+            Debug.Log("End sequence triggered");
+       }
+
+
+        //DISPLAY THANK YOU FOR PLAYING TEXT//
+
+        if (EP.EnvelopeTask3Completed && GameManager.Instance.FinalTaskCompleted)
+        {
+            
+            
+            endText.text = LanguageConversion.Instance.WordConverter("Thank you for playing!");
+ 
+            Cursor.visible = true;
+            
+            Cursor.lockState = CursorLockMode.None;
+            
+            GameManager.Instance.GameOver = true;
+
+            endGameButtons.SetActive(true);
+
+
+            TurnOffGameObjects();
+
+        }
 
     }
 
@@ -62,9 +92,13 @@ public class WinLoseCondition : MonoBehaviour
     {
         //FadeOut.SetActive(true);
         EnvelopeDirector.Play();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         yield return new WaitForSeconds(2f);
        
         LoadEnvelopeScene();
+
+        GameManager.Instance.inEnvelopeScene = true;
 
     }
 
@@ -77,9 +111,16 @@ public class WinLoseCondition : MonoBehaviour
     public void RestartLevel()
     {
         GameManager.Instance.GameOver = false;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneLoader.Instance.ReloadCurrentScene();
+
+        //THE PLAYER SHOULD NOT BE IN THE ENVELOPE SCENE AND THE FINALTASK OF THE ELECTRIC IS NOT COMPLETED//
+        GameManager.Instance.FinalTaskCompleted = false;
+
+        GameManager.Instance.inEnvelopeScene = false;
+
+       
     }
 
     public void LoadEnvelopeScene()
@@ -101,7 +142,7 @@ public class WinLoseCondition : MonoBehaviour
     {
         yield return new WaitForSeconds(1.3f);
 
-        GameManager.Instance.CanDisplayPhoneCallAgain = false;
+
         DialoguePanel.SetActive(true);
         SpeakerTab.SetActive(true);
 
@@ -109,5 +150,26 @@ public class WinLoseCondition : MonoBehaviour
 
         
         
+    }
+
+
+    //FUNCTION TO TURN OFF ALL GAMEOBJECTS IN SCENE WHEN GAME OVER HAPPENS//
+
+
+    public void TurnOffGameObjects()
+    {
+        
+        foreach(GameObject Obj in ObjectstoTurnOff)
+        {
+            
+            Obj.SetActive(false);
+
+
+        }
+
+
+
+
+
     }
 }

@@ -61,11 +61,9 @@ public class TutorialPhoneCall : MonoBehaviour
         switch (ps)
         {
             case PhoneStates.Accept:
-
-           if (GameManager.Instance.CanDisplayPhoneCallAgain)
            {
                  PhoneAnim.SetTrigger("Accept");
-                 GameManager.Instance.CanDisplayPhoneCallAgain = false;
+                // GameManager.Instance.CanDisplayPhoneCallAgain = false;
            }
             break;  
            

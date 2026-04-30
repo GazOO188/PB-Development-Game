@@ -28,7 +28,18 @@ public class EnvelopePhase : MonoBehaviour
 
     [Header("Scripts")]
     [SerializeField] private InputHandler IH;
+   
     [SerializeField] public WorkPhaseTimer WPT;
+    
+    //WEATHERSTRIP//
+    [SerializeField] public TrackWS TWS;
+
+    //SPRAYFOAM//
+    [SerializeField] public CheckForFoam CFF;
+
+    //CAULK GUN//
+    [SerializeField] public CrackEdges CE;
+    
 
 
     [Header("Animation")]
@@ -97,18 +108,18 @@ public class EnvelopePhase : MonoBehaviour
 
 
 
-    public bool CompletedTaskOne = true;
 
 
 
+    public bool CompletedTaskOne = true, noreset = false;
 
+   
+    private bool envelopeTask2Triggered = false;
 
+    
 
-
-
-
-
-
+    //FOR TRACKING TASKS COMPLETED//
+    public int TaskComp = 0;
     
     
     
@@ -126,34 +137,68 @@ public class EnvelopePhase : MonoBehaviour
         if(IH.MetWithResidentOneInEnvelopeScene && !IH.isTalking && !DisplayEnvelopeIssues2)
         {
             
-
+            DisplayEnvelopeIssues2 = true;
+        
             StartCoroutine(ShowTheNextTaskInList(Task2, CheckMarkForTask1, TaskOneText, TaskTwoText, "Investigate the door", Task2Anim, "ShowTask2"));
 
-            DisplayEnvelopeIssues2 = true;
         }
 
 
-        if (EnvelopeTask2Completed)
+
+        //THIS IS FOR COMPLETING THE WEATHERSTRIP TASK//
+
+        if (TWS.complete && !EnvelopeTask1Completed && !noreset)
         {
             
 
-            StartCoroutine(MarkObjectiveAsComplete(CheckMarkForTask2, ExclamationPoint2, CheckAnim2, TaskTwoText, WPT.CanRunTimer, "Investigate the door", "Mark2"));
-
-            EnvelopeTask2Completed = false;
-
+        
+         StartCoroutine(MarkObjectiveAsComplete(CheckMarkForTask1, ExclamationPoint, CheckAnim, TaskOneText, WPT.CanRunTimer, "Investigate the Window", "MarkTask"));
+        
+         TaskComp++;
+        
+         EnvelopeTask1Completed = true;
+         
+        
         }
 
 
-        if(IH.MetWithResidentOneInEnvelopeScene && !IH.isTalking && !DisplayEnvelopeIssues3 && DisplayEnvelopeIssues2)
+
+
+        //THIS IS FOR COMPLETING THE SPRAY FOAM TASK//
+
+        if(CFF.complete && !EnvelopeTask2Completed && EnvelopeTask1Completed && !envelopeTask2Triggered)
         {
             
+            envelopeTask2Triggered = true;
+            noreset = true;
+            EnvelopeTask2Completed = true;
 
-            StartCoroutine(ShowTheNextTaskInList(Task3, CheckMarkForTask2, TaskTwoText, TaskThreeText, "Seal the crack", FinalTaskAnim, "FinalTask"));
+            TaskComp++;
 
-            DisplayEnvelopeIssues3 = true;
+            StartCoroutine(MarkObjectiveAsComplete(CheckMarkForTask2, ExclamationPoint2, CheckAnim2, TaskTwoText, WPT.CanRunTimer, "Investigate the door", "Task3Check"));
+
         }
 
 
+
+
+
+
+        //THIS IS FOR SHOWING THE FINAL TASK -> CAULK GUN//
+
+
+        if(CE.Fullysealed && !EnvelopeTask3Completed)
+        {
+            
+            StartCoroutine(MarkObjectiveAsComplete(CheckMarkForTask3, ExclamtionPoint3, FinalTaskAnim, TaskThreeText, WPT.CanRunTimer, "Seal the crack", "MarkTask2"));
+
+            EnvelopeTask3Completed = true;
+
+
+        }
+
+
+       
         
     }
 
@@ -217,7 +262,7 @@ public class EnvelopePhase : MonoBehaviour
        
         WPT.CanRunTimer = true;
 
-        StartCoroutine(MarkObjectiveAsComplete(CheckMarkForTask1, ExclamationPoint, CheckAnim, TaskOneText, WPT.CanRunTimer, "Investigate the Window", "MarkTask"));
+       
     }
 
 
@@ -236,7 +281,7 @@ public class EnvelopePhase : MonoBehaviour
        
         TaskText.GetComponent<KeyAnalyzer>().WordConversion();
 
-        TaskText.text = "<s>" + TaskText.text + "</s>";
+        TaskText.text = "<s>" + TaskDescription + "</s>";
 
 
 
@@ -256,14 +301,15 @@ public class EnvelopePhase : MonoBehaviour
 
         Checkmark.SetActive(false);
 
-       
-        
         KeyAnalyzer ka = TaskText.GetComponent<KeyAnalyzer>();
-        ka.Word = "Report to the Resident";   // SET WORD FIRST
-        ka.WordConversion();                  // APPLY IT
-        ka.CanOverWrite = false;              // THEN allow updates
-        
-       
+
+        Debug.Log("Setting new objective: Report to the Resident");
+
+        ka.Word = "Report to the Resident";
+
+        ka.WordConversion();
+
+        TaskText.text = ka.Word;
         
 
     }
@@ -306,8 +352,14 @@ public void MarkFinalTask()
  {
         
 
+  StartCoroutine(ShowTheNextTaskInList(Task3, CheckMarkForTask2, TaskTwoText, TaskThreeText, "Seal the crack", FinalTaskAnim, "FinalTask"));
 
 
 
 }
+
+
+
+    //CUSTOM COROUTINE FOR FINISHING THE LAST ENVELOPE TASK//
+   
 }

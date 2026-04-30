@@ -89,20 +89,16 @@ public class EnvelopeTools : MonoBehaviour
     
 
     void HandleCaulkGunTool()
-    {
+{
     if (IH._CaulkGun == null) return;
 
     // Read current trigger value
     float triggerValue = IH._CaulkGun.ReadValue<float>();
 
-    // Reset hasLastPoint on first frame pressed
-    if (IH._CaulkGun.triggered)
-    {
-        CG.hasLastPoint = false; // start a new line
-    }
+    bool isPressing = triggerValue > 0.1f; 
 
-    // While holding the trigger, spray caulk
-    if (triggerValue > 0f)
+    // SPRAY THE CAULK WHILE PRESSING//
+    if (isPressing)
     {
         if (Time.time - CG.lastUsedTime >= CG.sprayRate)
         {
@@ -110,13 +106,12 @@ public class EnvelopeTools : MonoBehaviour
             CG.lastUsedTime = Time.time;
         }
     }
-
-    // Reset hasLastPoint on release
-    if (IH._CaulkGun.phase == InputActionPhase.Canceled)
+    else
     {
+        //RESET WHEN NOT PRESSING//
         CG.hasLastPoint = false;
     }
-    }
+}
 
 }
 

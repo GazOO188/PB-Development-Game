@@ -117,7 +117,7 @@ public class WorkPhaseTimer : MonoBehaviour
     if (GameManager.Instance.FinalTaskCompleted)
     {
         // Player already finished everything
-        Debug.Log("Final task already done");
+       // Debug.Log("Final task already done");
 
         // Do whatever you want:
         // hide UI, skip tasks, etc.
