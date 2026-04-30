@@ -16,7 +16,15 @@ public class UIManager : MonoBehaviour
 
     public void StartGame()
     {
+        //GAME UNFREEZES//
+        Time.timeScale = 1f; 
         SceneLoader.Instance.LoadNextScene();
+
+        //THE PLAYER SHOULD NOT BE IN THE ENVELOPE SCENE AND THE FINALTASK OF THE ELECTRIC IS NOT COMPLETED//
+        GameManager.Instance.FinalTaskCompleted = false;
+
+        GameManager.Instance.inEnvelopeScene = false;
+
     }
 
     public void QuitGame()

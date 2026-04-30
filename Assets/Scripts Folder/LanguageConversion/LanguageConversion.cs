@@ -125,7 +125,7 @@ public class LanguageConversion : MonoBehaviour
 
         //THIS THE ENVELOPE DIALOUGE//
 
-        //DIALOGUE 1//
+        //DIALOGUE 1 -> WEATHERSTRIP//
         English.Add("Hey there lately I’ve been feeling a cool draft by the window in the kitchen.", "Hey there lately I’ve been feeling a cool draft by the window in the kitchen.");
 
         English.Add("In the night time it gets really cold and it prevents me from having my late night snack. Every time I go in there I have to wear something to keep me warm.", "In the night time it gets really cold and it prevents me from having my late night snack. Every time I go in there I have to wear something to keep me warm.");
@@ -133,7 +133,7 @@ public class LanguageConversion : MonoBehaviour
         English.Add("I would appreciate it if you can find out why there is a draft in there.", "I would appreciate it if you can find out why there is a draft in there.");
 
         
-        //DIALOGUE 2//
+        //DIALOGUE 2 -> SPRAY FOAM//
         English.Add("Whenever it gets windy you can hear a large sound by the front door.", "Whenever it gets windy you can hear a large sound by the front door.");
 
         English.Add("It feels like they didn’t patch something up properly.", "It feels like they didn’t patch something up properly.");
@@ -141,6 +141,16 @@ public class LanguageConversion : MonoBehaviour
         English.Add("I try to investigate myself but I can’t find the source of the issue.", "I try to investigate myself but I can’t find the source of the issue.");
 
         English.Add("Maybe you’ll have better luck than me.", " Maybe you’ll have better luck than me.");
+
+
+        //DIALOGUE 3 -> CAULK GUN//
+
+
+        English.Add("I have a crack on my wall in the bathroom that’s been there for a while.", "I have a crack on my wall in the bathroom that’s been there for a while.");
+
+        English.Add("It’s by the window and sometimes it leaks when it rains.", "It’s by the window and sometimes it leaks when it rains.");
+
+        English.Add("Can you patch that hole up so the wall doesn’t leak again.", "Can you patch that hole up so the wall doesn’t leak again.");
 
 
 

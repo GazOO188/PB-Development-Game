@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 
     public bool FinalTaskCompleted = false;
 
-    public bool CanDisplayPhoneCallAgain = true;
 
     public bool EndSequenceStarted = false;
 

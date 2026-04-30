@@ -24,6 +24,15 @@ public class InputHandler : MonoBehaviour
 
     public EnvelopePhase Ep;
 
+
+     
+    //WEATHERSTRIP//
+     public TrackWS TWS;
+
+    //SPRAYFOAM//
+     public CheckForFoam CFF;
+    
+
     [SerializeField] PlayerCamera playerCamera;
 
 
@@ -92,6 +101,8 @@ public class InputHandler : MonoBehaviour
 
 
     public bool MetWithResidentOneInEnvelopeScene = false;
+
+    public bool LastTaskForEnvelope = false;
 
 
 
@@ -187,7 +198,7 @@ public class InputHandler : MonoBehaviour
             {
 
                 //ENVELOPE DIALOGUE//
-                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && !Ep.EnvelopeTask1Completed)
+                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && player.ResidentOneSeen && !TWS.complete)
                 {           
                 
                     displayDialouge(Envelope1);
@@ -198,7 +209,7 @@ public class InputHandler : MonoBehaviour
 
                 
                 //AFTER COMPLETING TASK 1 FOR ENVELOPE, DISPLAY THE RESIDENT TASK//
-                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && Ep.EnvelopeTask1Completed)
+                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && TWS.complete && player.ResidentOneSeen)
                 {           
                 
                     displayDialouge(Envelope2);
@@ -209,12 +220,14 @@ public class InputHandler : MonoBehaviour
             
 
                 //AFTER COMPLETING TASK 2 FOR ENVELOPE, DISPLAY THE FINAL RESIDENT TASK//
-                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && Ep.EnvelopeTask2Completed)
+                if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && Ep.EnvelopeTask2Completed && player.ResidentOneSeen)
                 {           
                 
                     displayDialouge(Envelope3);
                     canMove = false;
                     MetWithResidentOneInEnvelopeScene = true;
+                    LastTaskForEnvelope = true;
+                    Ep.TaskComp++;
                 
                 }
             
@@ -228,7 +241,7 @@ public class InputHandler : MonoBehaviour
 
 
 
-                // THIRD DIALOGUE (MOST ADVANCED)
+                // THIRD DIALOGUE 
                 else if (player.ResidentOneSeen && WPT.TaskTwoCompleted && !GameManager.Instance.FinalTaskCompleted)
                 {
                     displayDialouge(Resident3B);
@@ -307,7 +320,7 @@ public class InputHandler : MonoBehaviour
        
         //FOR OPENING MENU//
 
-        if (_OpenMenu.WasPressedThisFrame() && canPause)
+        if (_OpenMenu.WasPressedThisFrame() && !canPause)
         {
             
 
@@ -337,7 +350,7 @@ public class InputHandler : MonoBehaviour
         ShowEButton();
 
 
-        //FOR DISPLAYING THE TUTORIAL TEXT//s
+        //FOR DISPLAYING THE TUTORIAL TEXT//
         if (TPC.accepted && !Answeredcall)
         {
             
@@ -504,6 +517,7 @@ public class InputHandler : MonoBehaviour
         canPause = true;
 
         canRestartScene = true;
+        
 
        
        
@@ -525,6 +539,18 @@ public class InputHandler : MonoBehaviour
    
             canRestartScene = false;
         }
+
+
+        //FOR DISPLAYING THE FINAL TASK IN THE ENVELOPE SCENE -> CAULK GUN TASK//
+        
+        if(Ep.TaskComp >= 3 && !isTalking)
+        {
+            
+        Ep.MarkFinalTask();
+
+        }
+
+       
 
         }
 

@@ -25,7 +25,7 @@ public class CheckForFoam : MonoBehaviour
 
     void Update()
     {
-        RaycastCheck();
+       // RaycastCheck();
         if (FoamDetected() && !complete)
         {
             Debug.Log("FOAM SET");
@@ -39,7 +39,7 @@ public class CheckForFoam : MonoBehaviour
         for (int i = 0; i < checks.Length; i++)
         {
             Vector3 direction = -checks[i].transform.forward;
-            //Debug.DrawRay(checks[i].position, direction * 0.2f, Color.magenta);
+            Debug.DrawRay(checks[i].position, direction * 0.2f, Color.magenta);
 
             RaycastHit hit;
             if (Physics.Raycast(checks[i].position, direction, out hit, 0.5f, foamLayer))

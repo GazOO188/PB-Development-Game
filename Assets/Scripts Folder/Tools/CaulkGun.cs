@@ -88,7 +88,7 @@ public class CaulkGun : MonoBehaviour
         //IF YOU PUT DISTANCE IN X -> THE CAULK WOULD STRETCH SIDEWAYS//
         //IF YOU PUT DISTANCE IN Y -> THE CAULK WOULD STRETCH VERTICALLY//
         //IF YOU PUT DISTANCE IN Z -> THE CAULK WOULD STRETCH FROM START TO END//
-        segment.transform.localScale = new Vector3(0.1f, 0.1f, distance);
+        segment.transform.localScale = new Vector3(0.04f, 0.04f,distance);
 
         // ROTATE SEGMENT TO MATCH THE SURFACE
         segment.transform.rotation = Quaternion.LookRotation(direction.normalized, normal);
