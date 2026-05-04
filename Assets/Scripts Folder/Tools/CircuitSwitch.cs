@@ -13,7 +13,7 @@ public class CircuitSwitch : MonoBehaviour
     [SerializeField] WorldClickSound clickSound; // Change 1
 
     bool isMoving, isHovering;
-    public bool isOn, isSinglePanel, isDamaged, needsDoublePanel;
+    public bool isOn, isSinglePanel, isDamaged, needsDoublePanel, correctPanel;
     [Tooltip("Leave empty if 'Needs Double Panel' is false.")]
     [SerializeField] GameObject replacementPanel;
     [Tooltip("Leave empty if 'Is Damaged' is false.")]
@@ -26,12 +26,14 @@ public class CircuitSwitch : MonoBehaviour
     void Start()
     {
         outline = GetComponent<Outline>();
+        outline.OutlineColor = Color.red;
         outline.enabled = false;
     }
 
     void Update()
     {
         outline.enabled = isHovering;
+        UpdateOutlines();
 
         if (isHovering && Input.GetMouseButtonDown(0) && !isMoving)
         {
@@ -53,6 +55,7 @@ public class CircuitSwitch : MonoBehaviour
             circuitManager.doubleReplaced = true;
             circuitManager.doublePanelComplete = true;
             if (!circuitManager.singleReplaced) playerBreakers.transform.GetChild(0).gameObject.SetActive(true);
+            GameManager.Instance.PanelsPlaced++;
             gameObject.SetActive(false);
         }
 
@@ -65,6 +68,7 @@ public class CircuitSwitch : MonoBehaviour
             circuitManager.singleReplaced = true;
             circuitManager.singlePanelComplete = true;
             if (!circuitManager.doubleReplaced) playerBreakers.transform.GetChild(1).gameObject.SetActive(true);
+            GameManager.Instance.PanelsPlaced++;
             gameObject.SetActive(false);
         }
     }
@@ -94,6 +98,44 @@ public class CircuitSwitch : MonoBehaviour
         if (roomName != "") lights.LightSwitch(roomName, isOn);
 
         isMoving = false;
+    }
+
+    void UpdateOutlines()
+    {
+        if (outline.enabled)
+        {
+            if (correctPanel)
+            {
+                if (isOn && outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
+                else if (!isOn && outline.OutlineColor != Color.red) outline.OutlineColor = Color.red;
+            }
+            else
+            {
+                if (PlayerInventory.Instance.currentTool is PlayerInventory.AllTools.CircuitBreaker
+                    && timer.TaskOneCompleted)
+                {
+                    if (playerBreakers.transform.GetChild(0).gameObject.activeInHierarchy && isDamaged
+                        && GameManager.Instance.PanelsPlaced == 1 && timer.DisplayFinalTask)
+                    {
+                        if (outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
+                    }
+                    else if (playerBreakers.transform.GetChild(1).gameObject.activeInHierarchy && needsDoublePanel
+                             && GameManager.Instance.PanelsPlaced == 0)
+                    {
+                        if (outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
+                    }
+                    else
+                    {
+                        if (outline.OutlineColor != Color.red) outline.OutlineColor = Color.red;
+                    }
+                }
+                else
+                {
+                    if (outline.OutlineColor != Color.red)
+                        outline.OutlineColor = Color.red;
+                }
+            }
+        }
     }
 
     public void MouseEnter()

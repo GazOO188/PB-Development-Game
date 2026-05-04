@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     public bool EndSequenceStarted = false;
 
     public bool inEnvelopeScene = false;
-   
+    public int PanelsPlaced = 0;
+    public bool CurtainDraft = false;
+
     void Awake()
     {
         if (Instance == null)

@@ -7,6 +7,12 @@ public class OutletTester : MonoBehaviour
     [SerializeField] GameObject tester, testLight;
     [SerializeField] float yRot;
     bool inProgress;
+    Outlet outlet;
+
+    void Start()
+    {
+        outlet = GetComponent<Outlet>();
+    }
 
     public IEnumerator TestOutlets(GameObject currentOutlet)
     {
@@ -25,6 +31,8 @@ public class OutletTester : MonoBehaviour
             testLight.GetComponent<Renderer>().material.color = Color.red;
 
         yield return new WaitForSeconds(1);
+
+        outlet.outletTested = true;
 
         testLight.GetComponent<Renderer>().material.color = Color.white;
 

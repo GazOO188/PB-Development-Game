@@ -96,78 +96,78 @@ public class PlayerController : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(centerScreen);
         RaycastHit hit = new RaycastHit();
 
-      if (CanCast)
-{
-    if (Physics.Raycast(ray, out hit, raycastDist, layerMask))
-    {
-
-        //WHAT THE PLAYER IS CURRENTLY LOOKING AT//
-        CurrentlyHit = hit.collider.gameObject;
-
-        // Circuit Breaker
-        if (hit.collider.CompareTag("Circuit Breaker") && PlayerInventory.Instance.currentItem != null && PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.gray)
+        if (CanCast)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Physics.Raycast(ray, out hit, raycastDist, layerMask))
             {
-                GameObject.Find("Circuit Manager").GetComponent<CircuitBreaker>().UpdateCircuit(hit.collider.gameObject);
-            }
-        }
 
-        // Outlet
-        if (hit.collider.CompareTag("Outlet") && PlayerInventory.Instance.currentItem != null)
-        {
-            if (PlayerInventory.Instance.currentItem.itemName == "Outlet" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.white)
-            {
-                ShowOutline(hit);
+                //WHAT THE PLAYER IS CURRENTLY LOOKING AT//
+                CurrentlyHit = hit.collider.gameObject;
 
-                if (Input.GetMouseButtonDown(0))
+                // Circuit Breaker
+                if (hit.collider.CompareTag("Circuit Breaker") && PlayerInventory.Instance.currentItem != null && PlayerInventory.Instance.currentItem.itemName == "Circuit Breaker" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.gray)
                 {
-                    GameObject.Find("Outlet Manager").GetComponent<Outlet>().UpdateOutlet(hit.collider.gameObject);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        GameObject.Find("Circuit Manager").GetComponent<CircuitBreaker>().UpdateCircuit(hit.collider.gameObject);
+                    }
+                }
 
-                    RemoveOutline();
+                // Outlet
+                if (hit.collider.CompareTag("Outlet") && hit.transform.parent.GetComponent<Outlet>().canBeTested && PlayerInventory.Instance.currentItem != null)
+                {
+                    if (PlayerInventory.Instance.currentItem.itemName == "Outlet" && hit.transform.gameObject.GetComponent<Renderer>().material.color != Color.white)
+                    {
+                        //ShowOutline(hit);
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            GameObject.Find("Outlet Manager").GetComponent<Outlet>().UpdateOutlet(hit.collider.gameObject);
+
+                            //RemoveOutline();
+                        }
+                    }
+                    else if (PlayerInventory.Instance.currentItem.itemName == "Outlet Tester" && !hit.transform.parent.GetComponent<Outlet>().outletTested)
+                    {
+                        //ShowOutline(hit);
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            StartCoroutine(GameObject.Find("Outlet Manager").GetComponent<OutletTester>().TestOutlets(hit.transform.gameObject));
+
+                            //RemoveOutline();
+                        }
+                    }
+                }
+
+                // MAKE THE DETECTION A BIT MORE NEATER//
+                CanSeeBoss = hit.collider.CompareTag("Boss");
+                ResidentOneSeen = hit.collider.CompareTag("Resident 1");
+
+                //ENABLED INTERACT TEXT//
+                if (CanSeeBoss || ResidentOneSeen)
+                {
+                    CI.InteractText.enabled = true;
+                }
+                else
+                {
+                    CI.InteractText.enabled = false;
                 }
             }
-            else if (PlayerInventory.Instance.currentItem.itemName == "Outlet Tester")
+            else
             {
-                ShowOutline(hit);
+                //NOT LOOKING AT ANYTHING CLEARING THE VARIABLE//
+                CurrentlyHit = null;
 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    StartCoroutine(GameObject.Find("Outlet Manager").GetComponent<OutletTester>().TestOutlets(hit.transform.gameObject));
+                if (outline != null) RemoveOutline();
 
-                    RemoveOutline();
-                }
+                CI.InteractText.enabled = false;
+                ResidentOneSeen = false;
+                ResidentTwoSeen = false;
+                ResidentThreeSeen = false;
+                CanSeeBoss = false;
             }
         }
-
-        // MAKE THE DETECTION A BIT MORE NEATER//
-        CanSeeBoss = hit.collider.CompareTag("Boss");
-        ResidentOneSeen = hit.collider.CompareTag("Resident 1");
-
-        //ENABLED INTERACT TEXT//
-        if (CanSeeBoss || ResidentOneSeen)
-        {
-            CI.InteractText.enabled = true;
-        }
-        else
-        {
-            CI.InteractText.enabled = false;
-        }
-    }
-    else
-    {
-        //NOT LOOKING AT ANYTHING CLEARING THE VARIABLE//
-        CurrentlyHit = null;
-
-        if (outline != null) RemoveOutline();
-
-        CI.InteractText.enabled = false;
-        ResidentOneSeen = false;
-        ResidentTwoSeen = false;
-        ResidentThreeSeen = false;
-        CanSeeBoss = false;
-    }
-}
 
 
         // Change height when transitioning from crouch to stand and vise versa 
@@ -186,19 +186,21 @@ public class PlayerController : MonoBehaviour
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), 1f - Mathf.Exp(-15f * Time.deltaTime));
         }
     }
-    
+
 
     void ShowOutline(RaycastHit hit)
     {
         if (outline == null)
         {
             outline = hit.collider.GetComponent<Outline>();
-            outline.enabled = true;
+            if (!outline.enabled) outline.enabled = true;
+            //outline.OutlineWidth = 10f;
         }
     }
 
     void RemoveOutline()
     {
+        //outline.OutlineWidth = 0;
         outline.enabled = false;
         outline = null;
     }
@@ -246,5 +248,5 @@ public class PlayerController : MonoBehaviour
 
 
 
-    
+
 }

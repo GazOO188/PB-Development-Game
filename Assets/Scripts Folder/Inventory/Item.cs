@@ -8,7 +8,7 @@ public class Item : MonoBehaviour
 {
     Vector2 startPosition;
     Image sprite;
-    public bool inFront;
+    public bool inFront = true;
     bool canSelectItem, isHovering, mouseCheck;
     public string itemName;
     void Start()
