@@ -7,6 +7,8 @@ public class CheckForFoam : MonoBehaviour
     bool[] isHitting;
     [SerializeField] LayerMask foamLayer;
     public bool complete;
+    RaycastHit hit;
+    [SerializeField] bool playerNearby;
 
     void Start()
     {
@@ -25,7 +27,7 @@ public class CheckForFoam : MonoBehaviour
 
     void Update()
     {
-       // RaycastCheck();
+        // RaycastCheck();
         if (FoamDetected() && !complete)
         {
             Debug.Log("FOAM SET");
@@ -35,13 +37,13 @@ public class CheckForFoam : MonoBehaviour
 
     void RaycastCheck()
     {
+        if (!playerNearby) return;
         /// Draw a ray from each child and check to see if it is hitting foam ///
         for (int i = 0; i < checks.Length; i++)
         {
             Vector3 direction = -checks[i].transform.forward;
-            Debug.DrawRay(checks[i].position, direction * 0.2f, Color.magenta);
+            //Debug.DrawRay(checks[i].position, direction * 0.2f, Color.magenta);
 
-            RaycastHit hit;
             if (Physics.Raycast(checks[i].position, direction, out hit, 0.5f, foamLayer))
             {
                 if (hit.transform.CompareTag("Foam") && !isHitting[i]) isHitting[i] = true;
@@ -59,5 +61,15 @@ public class CheckForFoam : MonoBehaviour
         }
 
         return true;
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("Player")) playerNearby = true;
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.CompareTag("Player")) playerNearby = false;
     }
 }
