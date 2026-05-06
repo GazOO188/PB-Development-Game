@@ -27,7 +27,7 @@ public class CheckForFoam : MonoBehaviour
 
     void Update()
     {
-        // RaycastCheck();
+            RaycastCheck();
         if (FoamDetected() && !complete)
         {
             Debug.Log("FOAM SET");
