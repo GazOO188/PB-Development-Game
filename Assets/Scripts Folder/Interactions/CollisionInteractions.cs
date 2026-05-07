@@ -57,7 +57,7 @@ public class CollisionInteractions : MonoBehaviour
         
         DialgouePanel.enabled = false;
 
-        WhoIsSpeakingTab.SetActive(false);
+        //WhoIsSpeakingTab.SetActive(false);
 
 
         
