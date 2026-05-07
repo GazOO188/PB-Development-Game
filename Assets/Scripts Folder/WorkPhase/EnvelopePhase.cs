@@ -345,10 +345,6 @@ public class EnvelopePhase : MonoBehaviour
     kaNew.WordConversion();
 
     yield return new WaitForSeconds(0f);
-
-    WPT.CanRunTimer = true;
-
-
 }
 
 
