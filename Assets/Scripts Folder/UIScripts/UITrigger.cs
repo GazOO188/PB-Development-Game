@@ -33,6 +33,8 @@ public class UITrigger : MonoBehaviour
     
     [SerializeField] public PlayerController PC;
 
+    [SerializeField] public TutorialPhoneCall TPC;
+
 
     
     [Header("Tutorial")]
@@ -84,7 +86,7 @@ public class UITrigger : MonoBehaviour
         
         PauseMenu.SetActive(false);
 
-        PhoneCasing.SetActive(false);
+       // PhoneCasing.SetActive(false);
 
 
 
@@ -156,6 +158,11 @@ public class UITrigger : MonoBehaviour
             PauseMenu.SetActive(true);
 
             PhoneCasing.SetActive(true);
+
+           
+
+
+              
 
             break;
 
