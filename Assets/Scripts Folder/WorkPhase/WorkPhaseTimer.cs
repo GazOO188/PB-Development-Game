@@ -248,7 +248,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
         //LOGIC FOR HIDING TEXT//
 
-        if(Input.GetKeyDown(KeyCode.I) && !CanHideInventoryText)
+        if(Input.GetKeyDown(KeyCode.I) && !CanHideInventoryText && !GameManager.Instance.inEnvelopeScene)
         {
             
 
@@ -265,7 +265,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
         //LOGIC FOR HIDING SPACE TEXT//
 
-        if(Input.GetKeyDown(KeyCode.Space) && !CanHideSpaceText)
+        if(Input.GetKeyDown(KeyCode.Space) && !CanHideSpaceText && !GameManager.Instance.inEnvelopeScene)
         {
             
 
@@ -459,7 +459,7 @@ public class WorkPhaseTimer : MonoBehaviour
     public void ShowInventory()
     {
 
-        if (OA.TimerCheck)
+        if (OA.TimerCheck && !GameManager.Instance.inEnvelopeScene)
         {
             
          //TURN ON INVENTORY TEXT//

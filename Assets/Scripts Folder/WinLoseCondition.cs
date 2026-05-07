@@ -11,19 +11,25 @@ public class WinLoseCondition : MonoBehaviour
     [SerializeField] InputHandler IH;
     [SerializeField] EnvelopePhase EP;
     [SerializeField] GameObject endGameButtons;
-    [SerializeField] TextMeshProUGUI endText;
+    [SerializeField] TextMeshProUGUI endText, TrueEndText;
 
     [SerializeField] GameObject DialoguePanel;
     [SerializeField] GameObject SpeakerTab;
     [SerializeField] GameObject FadeOut;
+    
 
     [SerializeField] public PlayableDirector EnvelopeDirector;
     [SerializeField] bool HasEndedElectrical = false;
     bool canLoad = true;
+    bool GameCompleted = false;
 
 
     [Header("GameObject")]
     [SerializeField] public List<GameObject> ObjectstoTurnOff = new List<GameObject>();
+
+    
+    [Header("Animator")]
+    [SerializeField] public Animator EndingCreditsAnim;
 
 
 
@@ -33,6 +39,8 @@ public class WinLoseCondition : MonoBehaviour
         
 
    //HasEndedElectrical = false;
+
+   EndingCreditsAnim.enabled = false;
 
     }
 
@@ -64,24 +72,18 @@ public class WinLoseCondition : MonoBehaviour
        }
 
 
-        //DISPLAY THANK YOU FOR PLAYING TEXT//
-
-        if (EP.EnvelopeTask3Completed && GameManager.Instance.FinalTaskCompleted)
+        //DISPLAY THANK YOU FOR PLAYING TEXT && END CREDIT SCENE////
+        if (EP.EnvelopeTask3Completed && GameManager.Instance.FinalTaskCompleted && !GameCompleted)
         {
             
-            
-            endText.text = LanguageConversion.Instance.WordConverter("Thank you for playing!");
- 
-            Cursor.visible = true;
-            
-            Cursor.lockState = CursorLockMode.None;
-            
-            GameManager.Instance.GameOver = true;
-
-            endGameButtons.SetActive(true);
-
-
+        
             TurnOffGameObjects();
+
+            StartCoroutine(DisplayEndCredits());
+
+            GameCompleted = true;
+
+
 
         }
 
@@ -167,6 +169,53 @@ public class WinLoseCondition : MonoBehaviour
 
         }
 
+
+    }
+
+
+
+    //FUNCTION TO DISPLAY END CREDITS//
+
+    public IEnumerator DisplayEndCredits()
+    {
+        
+            yield return new WaitForSeconds(2f);
+            
+            EnvelopeDirector.Play();
+
+            IH.canPause = false;
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            yield return new WaitForSeconds(2f);
+
+            EndingCreditsAnim.enabled = true;
+            
+            EndingCreditsAnim.Play("Ending");
+
+        
+            Cursor.visible = true;
+            
+            Cursor.lockState = CursorLockMode.None;
+ 
+
+
+          
+
+
+    
+           // endText.text = LanguageConversion.Instance.WordConverter("Thank you for playing!");
+
+
+         
+           // Cursor.visible = true;
+            
+            //Cursor.lockState = CursorLockMode.None;
+            
+            //GameManager.Instance.GameOver = true;
+
+            //endGameButtons.SetActive(true);
 
 
 

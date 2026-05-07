@@ -96,6 +96,8 @@ public class InputHandler : MonoBehaviour
 
     public bool canPause = false;
 
+    public bool TalkingWithBossonPhone = false;
+
 
     public bool canRestartScene = false;
 
@@ -320,7 +322,7 @@ public class InputHandler : MonoBehaviour
        
         //FOR OPENING MENU//
 
-        if (_OpenMenu.WasPressedThisFrame() && !canPause)
+        if (_OpenMenu.WasPressedThisFrame() && canPause && !TalkingWithBossonPhone)
         {
             
 
@@ -357,6 +359,11 @@ public class InputHandler : MonoBehaviour
             displayDialouge2(TutorialDialogue);
 
             Answeredcall = true;
+
+
+            TalkingWithBossonPhone = true;
+
+            
 
 
         }
@@ -514,10 +521,13 @@ public class InputHandler : MonoBehaviour
 
         canMove = true;
 
-        canPause = true;
-
         canRestartScene = true;
         
+
+        TalkingWithBossonPhone = false;
+
+
+        canPause = true;
 
        
        
