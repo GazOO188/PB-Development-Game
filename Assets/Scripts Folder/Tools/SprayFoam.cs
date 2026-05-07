@@ -63,7 +63,7 @@ public class SprayFoam : MonoBehaviour
             data.currentSize = 0.05f;
 
             //
-            data.randomScale = new Vector3(Random.Range(0.5f, 0.5f), Random.Range(0.5f, 0.5f), Random.Range(0.5f, 0.5f));
+            data.randomScale = new Vector3(Random.Range(0.25f, 0.25f), Random.Range(0.25f, 0.25f), Random.Range(0.25f, 0.25f));
 
             foam.transform.localScale = Vector3.one * data.currentSize;
 
