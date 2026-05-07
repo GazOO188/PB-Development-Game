@@ -226,6 +226,11 @@ public class LanguageConversion : MonoBehaviour
 
         Spanish.Add("Objectives", "Objetivos");
 
+        
+        English.Add("Test the Outlet", "Test the Outlet");
+
+        Spanish.Add("Test the Outlet", "Prueba el enchufe");
+
 
         //TASKS//
 

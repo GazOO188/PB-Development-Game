@@ -17,6 +17,7 @@ public class TutorialPhoneCall : MonoBehaviour
         
     [Header("Scripts")]
     [SerializeField] private InputHandler IH;
+    [SerializeField] private PlayerController PC;
 
     
 
@@ -46,6 +47,8 @@ public class TutorialPhoneCall : MonoBehaviour
     {
   
         StartCoroutine(Pulse());
+
+        PC.canSummonInventory = false;
      
         
     

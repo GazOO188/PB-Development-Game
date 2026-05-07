@@ -560,6 +560,9 @@ public class InputHandler : MonoBehaviour
 
         }
 
+        //PLAYER CAN USE INVENTORY//
+        player.canSummonInventory = true;
+
        
 
         }

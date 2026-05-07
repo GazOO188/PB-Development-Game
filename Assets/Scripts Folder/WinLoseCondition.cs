@@ -10,6 +10,9 @@ public class WinLoseCondition : MonoBehaviour
     [SerializeField] WorkPhaseTimer timer;
     [SerializeField] InputHandler IH;
     [SerializeField] EnvelopePhase EP;
+    [SerializeField] PlayerController PC;
+    
+    
     [SerializeField] GameObject endGameButtons;
     [SerializeField] TextMeshProUGUI endText, TrueEndText;
 
@@ -140,15 +143,19 @@ public class WinLoseCondition : MonoBehaviour
     
     }
 
+    //THIS CORUITNE IS FOR DISPLAYING THE TEXT TO TRANSITION TO THE ENVELOPE SCENE//
     public IEnumerator DisplayWellDoneText()
     {
         yield return new WaitForSeconds(1.3f);
 
+        IH.canMove = false;
 
         DialoguePanel.SetActive(true);
-        SpeakerTab.SetActive(true);
-
-        IH.displayDialouge(IH.BossRoundOneEnd);
+        
+        SpeakerTab.SetActive(true);   
+        
+        
+        IH.displayDialouge2(IH.BossRoundOneEnd);
 
         
         
@@ -182,6 +189,8 @@ public class WinLoseCondition : MonoBehaviour
             yield return new WaitForSeconds(2f);
             
             EnvelopeDirector.Play();
+
+            PC.canSummonInventory = false;
 
             IH.canPause = false;
 
