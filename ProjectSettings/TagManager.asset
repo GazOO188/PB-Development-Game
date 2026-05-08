@@ -20,6 +20,7 @@ TagManager:
   - SprayFoam
   - Strip
   - Foam
+  - Caulk
   layers:
   - Default
   - TransparentFX
@@ -36,9 +37,9 @@ TagManager:
   - 
   - CanHit
   - Walls
-  - 
+  - Tools
   - Foam Material
-  - 
+  - Crack
   - 
   - 
   - 

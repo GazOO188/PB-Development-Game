@@ -31,7 +31,6 @@ public class WorkPhaseTimer : MonoBehaviour
     [SerializeField] public bool CanMarkTask3 = false;
     [SerializeField] public bool PlayerPressedI = false;
     [SerializeField] public bool CanHideInventoryText = false;
-    [SerializeField] public bool CanHideSpaceText = false;
     [SerializeField] public bool CanShowOnce= false;
     [SerializeField] public bool UsedOutletTester = false;
 
@@ -50,8 +49,9 @@ public class WorkPhaseTimer : MonoBehaviour
     [SerializeField] public GameObject ObjectiveText;
     [SerializeField] public GameObject Timer;
     [SerializeField] public GameObject HelperText;
+    [SerializeField] public GameObject BreakerText2;
     [SerializeField] public GameObject InventoryHelperText;
-    [SerializeField] public GameObject PressSpacetoCycleText;
+    
 
 
     //ANIMATION SECTION//
@@ -271,22 +271,7 @@ public class WorkPhaseTimer : MonoBehaviour
         }
 
 
-        //LOGIC FOR HIDING SPACE TEXT//
-
-        if(Input.GetKeyDown(KeyCode.Space) && !CanHideSpaceText && !GameManager.Instance.inEnvelopeScene)
-        {
-            
-
-          PressSpacetoCycleText.SetActive(false);
-
-          CanHideSpaceText = true;
-          
-
-    
-
-
-
-        }
+     
 
 
         //FOR SHOWING INVENTORY PROMPT//
@@ -485,23 +470,8 @@ public class WorkPhaseTimer : MonoBehaviour
         
         InventoryHelperText.SetActive(false);
 
-        ShowSpacePrompt();
 
     }
-
-
-    //FOR PRESSING SPACE WHILE IN INVENTORY (PROMPT)//
-
-
-    public void ShowSpacePrompt()
-    {
-        
-        PressSpacetoCycleText.SetActive(true);
-
-
-    }
-
-
 
 
 
@@ -612,6 +582,8 @@ public class WorkPhaseTimer : MonoBehaviour
 
             HelperText.SetActive(false);
 
+            BreakerText2.SetActive(false);
+
             CheckMarkForTask2.SetActive(false);
 
             CheckMark.SetActive(false);
@@ -627,6 +599,9 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
     }
+
+
+
 
 
 

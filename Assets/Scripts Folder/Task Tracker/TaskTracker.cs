@@ -28,14 +28,22 @@ public class TaskTracker : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
+        //IF IN THE ENVELOPE SCENE, SHUT OFF//
+        if (GameManager.Instance.inEnvelopeScene)
+        {
+            
+            Bar.SetActive(false);
+
+        }
+       
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (!CanTrack)
+        if (!CanTrack && !GameManager.Instance.FinalTaskCompleted && !GameManager.Instance.inEnvelopeScene)
         {
             
             StartCoroutine(TrackProgressForFirstTask(ProgressBarParts, Bar, Completion));
