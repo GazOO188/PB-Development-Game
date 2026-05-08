@@ -39,6 +39,8 @@ public class EnvelopePhase : MonoBehaviour
 
     //CAULK GUN//
     [SerializeField] public CrackEdges CE;
+
+
     
 
 
@@ -134,10 +136,10 @@ public class EnvelopePhase : MonoBehaviour
     void Update()
     {
 
-        if(IH.MetWithResidentOneInEnvelopeScene && !IH.isTalking && !DisplayEnvelopeIssues2)
+        if(IH.MetWithResidentOneInEnvelopeScene && !IH.isTalking && DisplayEnvelopeIssues2)
         {
             
-            DisplayEnvelopeIssues2 = true;
+            DisplayEnvelopeIssues2 = false;
         
             StartCoroutine(ShowTheNextTaskInList(Task2, CheckMarkForTask1, TaskOneText, TaskTwoText, "Investigate the door", Task2Anim, "ShowTask2"));
 

@@ -27,6 +27,9 @@ public class CaulkGun : MonoBehaviour
     // TRACK SEGMENTS OF THE CURRENT LINE
     private List<GameObject> currentLineSegments = new List<GameObject>();
 
+    //LAYER TO MAKE THE CAULK ONLY APPLY ON CRACKS//
+    public LayerMask Crack;
+
     void Update()
     {
         
@@ -34,9 +37,9 @@ public class CaulkGun : MonoBehaviour
 
     public void ShootCaulk()
     {
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+      Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance))
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, Crack))
         {
             //GETS THE CURRENT HIT POINT//
             Vector3 currentPoint = hit.point;
@@ -60,6 +63,9 @@ public class CaulkGun : MonoBehaviour
 
             // UPDATE LAST POINT
             lastPoint = currentPoint;
+
+
+             Debug.Log("Hit crack: " + hit.collider.name);
         }
     }
 

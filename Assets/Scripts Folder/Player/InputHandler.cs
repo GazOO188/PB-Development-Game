@@ -25,6 +25,10 @@ public class InputHandler : MonoBehaviour
     public EnvelopePhase Ep;
 
 
+    //CURTAIN DRAFT//
+    [SerializeField] public CurtainDraft CD;
+
+
      
     //WEATHERSTRIP//
      public TrackWS TWS;
@@ -103,6 +107,9 @@ public class InputHandler : MonoBehaviour
 
 
     public bool MetWithResidentOneInEnvelopeScene = false;
+
+
+  
 
     public bool LastTaskForEnvelope = false;
 
@@ -206,6 +213,8 @@ public class InputHandler : MonoBehaviour
                     displayDialouge(Envelope1);
                     canMove = false;
                     MetWithResidentOneInEnvelopeScene = true;
+
+                    CD.active = true;
                 
                 }
 
@@ -217,6 +226,7 @@ public class InputHandler : MonoBehaviour
                     displayDialouge(Envelope2);
                     canMove = false;
                     MetWithResidentOneInEnvelopeScene = true;
+                    Ep.DisplayEnvelopeIssues2 = true;
                 
                 }
             
@@ -318,6 +328,8 @@ public class InputHandler : MonoBehaviour
 
 
         }
+
+      
 
        
         //FOR OPENING MENU//
@@ -528,7 +540,7 @@ public class InputHandler : MonoBehaviour
 
 
         canPause = true;
-
+        
        
        
         if (OA.TimerCheck && !isTalking)

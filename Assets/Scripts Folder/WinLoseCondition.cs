@@ -19,6 +19,7 @@ public class WinLoseCondition : MonoBehaviour
     [SerializeField] GameObject DialoguePanel;
     [SerializeField] GameObject SpeakerTab;
     [SerializeField] GameObject FadeOut;
+    [SerializeField] GameObject BossText;
     
 
     [SerializeField] public PlayableDirector EnvelopeDirector;
@@ -33,6 +34,8 @@ public class WinLoseCondition : MonoBehaviour
     
     [Header("Animator")]
     [SerializeField] public Animator EndingCreditsAnim;
+    [SerializeField] public Animator BossTextAnim;
+
 
 
 
@@ -43,8 +46,9 @@ public class WinLoseCondition : MonoBehaviour
 
    //HasEndedElectrical = false;
 
-   EndingCreditsAnim.enabled = false;
+    EndingCreditsAnim.enabled = false;
 
+    BossTextAnim.enabled = false;
     }
 
     void Update()
@@ -76,13 +80,14 @@ public class WinLoseCondition : MonoBehaviour
 
 
         //DISPLAY THANK YOU FOR PLAYING TEXT && END CREDIT SCENE////
-        if (EP.EnvelopeTask3Completed && GameManager.Instance.FinalTaskCompleted && !GameCompleted)
+        if (EP.EnvelopeTask3Completed && GameManager.Instance.FinalTaskCompleted && !GameCompleted && EP.EnvelopeTask2Completed && EP.EnvelopeTask1Completed)
         {
             
         
             TurnOffGameObjects();
 
-            StartCoroutine(DisplayEndCredits());
+            //PLAYER RECIEVES TEXT FROM BOSS THEN PLAYS CREDITS//
+            StartCoroutine(DisplayBossText());
 
             GameCompleted = true;
 
@@ -168,13 +173,18 @@ public class WinLoseCondition : MonoBehaviour
     public void TurnOffGameObjects()
     {
         
-        foreach(GameObject Obj in ObjectstoTurnOff)
-        {
-            
+       foreach (GameObject Obj in ObjectstoTurnOff)
+       {
             Obj.SetActive(false);
 
-
-        }
+            
+            if (Obj.TryGetComponent(out Animator anim))
+            {
+                anim.enabled = false;
+            }
+       
+       
+       }
 
 
     }
@@ -186,9 +196,13 @@ public class WinLoseCondition : MonoBehaviour
     public IEnumerator DisplayEndCredits()
     {
         
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(7f);
             
             EnvelopeDirector.Play();
+
+            BossText.SetActive(false);
+
+            BossTextAnim.enabled = false;
 
             PC.canSummonInventory = false;
 
@@ -229,5 +243,17 @@ public class WinLoseCondition : MonoBehaviour
 
 
 
+    }
+
+
+
+    private IEnumerator DisplayBossText()
+    {
+        
+        yield return new WaitForSeconds(1.9f);
+        //PLAYER RECIEVES TEXT FROM BOSS THEN PLAYS CREDITS//
+        BossTextAnim.enabled = true;
+        BossTextAnim.Play("BossText");
+        StartCoroutine(DisplayEndCredits());
     }
 }

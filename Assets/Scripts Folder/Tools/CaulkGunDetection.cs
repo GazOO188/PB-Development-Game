@@ -13,6 +13,9 @@ public class CaulkGunDetection : MonoBehaviour
 
 
     public CrackEdges parentCheck;
+
+
+    public EnvelopePhase EP;
     
 
 
@@ -37,7 +40,7 @@ public class CaulkGunDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Caulk"))
+        if (other.CompareTag("Caulk") && EP.EnvelopeTask2Completed && EP.EnvelopeTask1Completed)
         {
             isTouched = true;
             parentCheck.CheckForCompletion();
