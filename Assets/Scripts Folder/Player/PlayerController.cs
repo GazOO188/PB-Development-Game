@@ -21,10 +21,11 @@ public class PlayerController : MonoBehaviour
     public bool playerControl = true;
     public Stance _state;
     [SerializeField] float moveSpeed;
+    float walkSpeed, crouchSpeed;
     [SerializeField] float gravity = -90f;
     [SerializeField] float airMultiplier;
-    float standHeight = 2.0f;
-    float crouchHeight = 1.0f;
+    float standHeight = 1.0f;
+    float crouchHeight = 0.62f;
     [Space]
     [Header("Ground Check")]
     [SerializeField] LayerMask isGround;
@@ -69,6 +70,9 @@ public class PlayerController : MonoBehaviour
         //PlayerInventory.Instance.UpdateInventory();
         characterController = GetComponent<CharacterController>();
         _state = Stance.Stand;
+
+        walkSpeed = moveSpeed;
+        crouchSpeed = moveSpeed * 0.45f;
     }
 
     void Update()
@@ -176,18 +180,17 @@ public class PlayerController : MonoBehaviour
 
         // Change height when transitioning from crouch to stand and vise versa 
         // Source: https://www.youtube.com/watch?v=NsSk58un8E0
-        var currentHeight = transform.localScale.y;
-        var normalizeHeight = currentHeight / standHeight;
-
-        var rootTargetScale = new Vector3(1.0f, normalizeHeight, 1.0f);
 
         if (_state is Stance.Crouch)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, rootTargetScale, 1f - Mathf.Exp(-15f * Time.deltaTime));
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, crouchHeight, 1f), 1f - Mathf.Exp(-15f * Time.deltaTime));
+
+            if (moveSpeed != crouchSpeed) moveSpeed = crouchSpeed;
         }
         else
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), 1f - Mathf.Exp(-15f * Time.deltaTime));
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, standHeight, 1f), 1f - Mathf.Exp(-15f * Time.deltaTime));
+            if (moveSpeed != walkSpeed) moveSpeed = walkSpeed;
         }
     }
 
