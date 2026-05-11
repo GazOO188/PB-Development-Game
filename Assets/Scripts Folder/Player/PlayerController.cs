@@ -21,10 +21,11 @@ public class PlayerController : MonoBehaviour
     public bool playerControl = true;
     public Stance _state;
     [SerializeField] float moveSpeed;
+    float walkSpeed, crouchSpeed;
     [SerializeField] float gravity = -90f;
     [SerializeField] float airMultiplier;
-    float standHeight = 2.0f;
-    float crouchHeight = 1.0f;
+    float standHeight = 1.0f;
+    float crouchHeight = 0.62f;
     [Space]
     [Header("Ground Check")]
     [SerializeField] LayerMask isGround;
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
     [Header("Reticle")]
     [SerializeField] Image ret;
     Vector3 centerScreen = new Vector3(0.5f, 0.5f, 0f);
-    [SerializeField] float raycastDist = 7.8f;
+    float raycastDist = 3.0f;
 
     [Header("Bool")]
 
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool ResidentOneSeen = false, ResidentTwoSeen = false, ResidentThreeSeen = false;
 
     [SerializeField] public bool CanCast = true;
-    [SerializeField] LayerMask layerMask;
+    //[SerializeField] LayerMask layerMask;
 
 
     [SerializeField] public GameObject CurrentlyHit;
@@ -69,6 +70,9 @@ public class PlayerController : MonoBehaviour
         //PlayerInventory.Instance.UpdateInventory();
         characterController = GetComponent<CharacterController>();
         _state = Stance.Stand;
+
+        walkSpeed = moveSpeed;
+        crouchSpeed = moveSpeed * 0.45f;
     }
 
     void Update()
@@ -77,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I) && !toolInUse && canSummonInventory)
         {
-         
+
             if (!playerControl)
             {
                 GameObject[] tools = GameObject.FindGameObjectsWithTag("Tool UI");
@@ -87,11 +91,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-           
+
             InventoryScreen();
         }
 
-        
+
 
         if (!playerControl) return;
         // Rotate player with camera
@@ -103,9 +107,8 @@ public class PlayerController : MonoBehaviour
 
         if (CanCast)
         {
-            if (Physics.Raycast(ray, out hit, raycastDist, layerMask))
+            if (Physics.Raycast(ray, out hit, raycastDist))
             {
-
                 //WHAT THE PLAYER IS CURRENTLY LOOKING AT//
                 CurrentlyHit = hit.collider.gameObject;
 
@@ -177,18 +180,17 @@ public class PlayerController : MonoBehaviour
 
         // Change height when transitioning from crouch to stand and vise versa 
         // Source: https://www.youtube.com/watch?v=NsSk58un8E0
-        var currentHeight = transform.localScale.y;
-        var normalizeHeight = currentHeight / standHeight;
-
-        var rootTargetScale = new Vector3(1.0f, normalizeHeight, 1.0f);
 
         if (_state is Stance.Crouch)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, rootTargetScale, 1f - Mathf.Exp(-15f * Time.deltaTime));
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, crouchHeight, 1f), 1f - Mathf.Exp(-15f * Time.deltaTime));
+
+            if (moveSpeed != crouchSpeed) moveSpeed = crouchSpeed;
         }
         else
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), 1f - Mathf.Exp(-15f * Time.deltaTime));
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, standHeight, 1f), 1f - Mathf.Exp(-15f * Time.deltaTime));
+            if (moveSpeed != walkSpeed) moveSpeed = walkSpeed;
         }
     }
 
@@ -244,11 +246,11 @@ public class PlayerController : MonoBehaviour
         playerControl = !playerControl;
 
         inventory.SetActive(!playerControl);
-        
+
         Cursor.visible = !playerControl;
-       
+
         if (playerControl) Cursor.lockState = CursorLockMode.Locked;
-        
+
         else Cursor.lockState = CursorLockMode.None;
     }
 
