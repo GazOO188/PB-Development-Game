@@ -15,9 +15,9 @@ MonoBehaviour:
   SpeakerName: Dialogue
   lines:
   - Welcome to your first day on the job!
-  - In order for you to have the smoothest shift, let's run down the basis.
+  - In order for you to have the smoothest shift, let's run down the basics.
   - Press the WASD Keys to move around.
-  - You need to be able to see where you going, the Mouse will do that for you.
+  - You need to be able to see where you are going, the Mouse will do that for you.
   - If you ever feel lost, press P!
   - 'I updated this call to your log, you can see all the important information. '
   - For now, there's a resident in need of your assistance.

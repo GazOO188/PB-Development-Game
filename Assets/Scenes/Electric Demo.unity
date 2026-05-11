@@ -16561,7 +16561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &618325940
 RectTransform:
   m_ObjectHideFlags: 0
@@ -45310,8 +45310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
   cameraTarget: {fileID: 1523811056}
-  camSpeed: 168.5
-  rotSpeed: 126.3
+  camSpeed: 57.7
+  rotSpeed: 43.6
 --- !u!114 &1661498701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47196,7 +47196,7 @@ MonoBehaviour:
   DialogueText: {fileID: 1423467451}
   DialgouePanel: {fileID: 817990488}
   WhoIsSpeakingTab: {fileID: 1723788411}
-  typeSpeed: 0.01
+  typeSpeed: 0.03
   LineFinished: 0
   Dialogue: {fileID: 11400000, guid: d58b7c33280d54c3593071ddafa3a385, type: 2}
   PC: {fileID: 836840581}
@@ -49938,7 +49938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1874518096
 RectTransform:
   m_ObjectHideFlags: 0
