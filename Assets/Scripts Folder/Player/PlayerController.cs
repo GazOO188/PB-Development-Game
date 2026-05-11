@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     [Header("Reticle")]
     [SerializeField] Image ret;
     Vector3 centerScreen = new Vector3(0.5f, 0.5f, 0f);
-    [SerializeField] float raycastDist = 7.8f;
+    float raycastDist = 3.0f;
 
     [Header("Bool")]
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool ResidentOneSeen = false, ResidentTwoSeen = false, ResidentThreeSeen = false;
 
     [SerializeField] public bool CanCast = true;
-    [SerializeField] LayerMask layerMask;
+    //[SerializeField] LayerMask layerMask;
 
 
     [SerializeField] public GameObject CurrentlyHit;
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I) && !toolInUse && canSummonInventory)
         {
-         
+
             if (!playerControl)
             {
                 GameObject[] tools = GameObject.FindGameObjectsWithTag("Tool UI");
@@ -87,11 +87,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-           
+
             InventoryScreen();
         }
 
-        
+
 
         if (!playerControl) return;
         // Rotate player with camera
@@ -103,9 +103,8 @@ public class PlayerController : MonoBehaviour
 
         if (CanCast)
         {
-            if (Physics.Raycast(ray, out hit, raycastDist, layerMask))
+            if (Physics.Raycast(ray, out hit, raycastDist))
             {
-
                 //WHAT THE PLAYER IS CURRENTLY LOOKING AT//
                 CurrentlyHit = hit.collider.gameObject;
 
@@ -244,11 +243,11 @@ public class PlayerController : MonoBehaviour
         playerControl = !playerControl;
 
         inventory.SetActive(!playerControl);
-        
+
         Cursor.visible = !playerControl;
-       
+
         if (playerControl) Cursor.lockState = CursorLockMode.Locked;
-        
+
         else Cursor.lockState = CursorLockMode.None;
     }
 
