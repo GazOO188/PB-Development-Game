@@ -399,13 +399,13 @@ public class LanguageConversion : MonoBehaviour
        // Spanish.Add("Welcome to your first day on the job!")
 
 
-        English.Add("In order for you to have the smoothest shift, let's run down the basis.", "In order for you to have the smoothest shift, let's run down the basis.");
+        English.Add("In order for you to have the smoothest shift, let's run down the basics.", "In order for you to have the smoothest shift, let's run down the basics.");
 
 
         English.Add("Press the WASD Keys to move around.", "Press the WASD Keys to move around.");
 
 
-        English.Add("You need to be able to see where you going, the Mouse will do that for you.", "You need to be able to see where you going, the Mouse will do that for you.");
+        English.Add("You need to be able to see where you are going, the Mouse will do that for you.", "You need to be able to see where you are going, the Mouse will do that for you.");
 
 
         English.Add("If you ever feel lost, press P!", "If you ever feel lost, press P!");
