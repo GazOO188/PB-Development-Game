@@ -31,8 +31,8 @@ public class WorkPhaseTimer : MonoBehaviour
     [SerializeField] public bool CanMarkTask3 = false;
     [SerializeField] public bool PlayerPressedI = false;
     [SerializeField] public bool CanHideInventoryText = false;
-    [SerializeField] public bool CanHideSpaceText = false;
     [SerializeField] public bool CanShowOnce= false;
+    [SerializeField] public bool UsedOutletTester = false;
 
 
     //GAMEOBJECT REFERENCES//
@@ -49,8 +49,9 @@ public class WorkPhaseTimer : MonoBehaviour
     [SerializeField] public GameObject ObjectiveText;
     [SerializeField] public GameObject Timer;
     [SerializeField] public GameObject HelperText;
+    [SerializeField] public GameObject BreakerText2;
     [SerializeField] public GameObject InventoryHelperText;
-    [SerializeField] public GameObject PressSpacetoCycleText;
+    
 
 
     //ANIMATION SECTION//
@@ -119,8 +120,7 @@ public class WorkPhaseTimer : MonoBehaviour
         // Player already finished everything
        // Debug.Log("Final task already done");
 
-        // Do whatever you want:
-        // hide UI, skip tasks, etc.
+       
     }
 
     }
@@ -184,10 +184,18 @@ public class WorkPhaseTimer : MonoBehaviour
 
         }
 
+        
+        //FOR CHANGING THE TEXT TO REPLACE THE OUTLET, ONCE TESTING//
+
+        if (outlet.outletTested && !UsedOutletTester)
+        {
+             TaskOneText.GetComponent<KeyAnalyzer>().Word = "Repair the Broken Outlet";
+             TaskOneText.GetComponent<KeyAnalyzer>().WordConversion();
+             UsedOutletTester = true;
+        
+        }
 
         //STARTS THE COROUTINE FOR SHOWING NEXT OBJECTIVE AFTER OBJ 2//
-
-
         if (!TaskTwoCompleted && !CanMarkTask2 && CB.doublePanelComplete)
         {
 
@@ -248,7 +256,7 @@ public class WorkPhaseTimer : MonoBehaviour
 
         //LOGIC FOR HIDING TEXT//
 
-        if(Input.GetKeyDown(KeyCode.I) && !CanHideInventoryText)
+        if(Input.GetKeyDown(KeyCode.I) && !CanHideInventoryText && !GameManager.Instance.inEnvelopeScene)
         {
             
 
@@ -263,22 +271,7 @@ public class WorkPhaseTimer : MonoBehaviour
         }
 
 
-        //LOGIC FOR HIDING SPACE TEXT//
-
-        if(Input.GetKeyDown(KeyCode.Space) && !CanHideSpaceText)
-        {
-            
-
-          PressSpacetoCycleText.SetActive(false);
-
-          CanHideSpaceText = true;
-          
-
-    
-
-
-
-        }
+     
 
 
         //FOR SHOWING INVENTORY PROMPT//
@@ -328,52 +321,52 @@ public class WorkPhaseTimer : MonoBehaviour
     public IEnumerator ShowNextObjective()
     {
 
-        yield return new WaitForSeconds(0f);
+    yield return new WaitForSeconds(0f);
 
-        //THIS CROSSES OUT THE TASK TO MARK IT COMPLETE//
+    //THIS CROSSES OUT THE TASK TO MARK IT COMPLETE//
 
-        ExclamationPoint.SetActive(false);
+    ExclamationPoint.SetActive(false);
 
- 
-        TaskOneText.GetComponent<KeyAnalyzer>().Word = "Repair the Broken Outlet";
-       
-        TaskOneText.GetComponent<KeyAnalyzer>().WordConversion();
+    KeyAnalyzer analyzer = TaskOneText.GetComponent<KeyAnalyzer>();
+
+    if (!outlet.outletTested)
+    {
+        analyzer.Word = "Test the Outlet";
+        analyzer.WordConversion();
 
         TaskOneText.text = "<s>" + TaskOneText.text + "</s>";
+    }
+    else
+    {
+        analyzer.Word = "Repair the Broken Outlet";
+        analyzer.WordConversion();
 
-
-
-        CheckMark.SetActive(true);
-
-
-        CheckAnim.enabled = true;
-
-        CheckAnim.Play("MarkTask");
-
-        CanRunTimer = false;
-
-
-
-        yield return new WaitForSeconds(2.3f);
-
-        CheckMark.SetActive(false);
-        
-        TaskOneText.GetComponent<KeyAnalyzer>().CanOverWrite = false;
-
-        TaskOneText.GetComponent<KeyAnalyzer>().Word = "Report to the Resident";
-
-        TaskOneText.GetComponent<KeyAnalyzer>().WordConversion();
-       
-       
-        CanRunTimer = true;
-
-
-        TaskOneCompleted = true;
-
+        TaskOneText.text = "<s>" + TaskOneText.text + "</s>";
     }
 
+    CheckMark.SetActive(true);
 
+    CheckAnim.enabled = true;
 
+    CheckAnim.Play("MarkTask");
+
+    CanRunTimer = false;
+
+    yield return new WaitForSeconds(2.3f);
+
+    CheckMark.SetActive(false);
+    
+    TaskOneText.GetComponent<KeyAnalyzer>().CanOverWrite = false;
+
+    TaskOneText.GetComponent<KeyAnalyzer>().Word = "Report to the Resident";
+
+    TaskOneText.GetComponent<KeyAnalyzer>().WordConversion();
+   
+    CanRunTimer = true;
+
+    TaskOneCompleted = true;
+
+}
 
 
 
@@ -459,7 +452,7 @@ public class WorkPhaseTimer : MonoBehaviour
     public void ShowInventory()
     {
 
-        if (OA.TimerCheck)
+        if (OA.TimerCheck && !GameManager.Instance.inEnvelopeScene)
         {
             
          //TURN ON INVENTORY TEXT//
@@ -477,23 +470,8 @@ public class WorkPhaseTimer : MonoBehaviour
         
         InventoryHelperText.SetActive(false);
 
-        ShowSpacePrompt();
 
     }
-
-
-    //FOR PRESSING SPACE WHILE IN INVENTORY (PROMPT)//
-
-
-    public void ShowSpacePrompt()
-    {
-        
-        PressSpacetoCycleText.SetActive(true);
-
-
-    }
-
-
 
 
 
@@ -604,6 +582,8 @@ public class WorkPhaseTimer : MonoBehaviour
 
             HelperText.SetActive(false);
 
+            BreakerText2.SetActive(false);
+
             CheckMarkForTask2.SetActive(false);
 
             CheckMark.SetActive(false);
@@ -619,6 +599,9 @@ public class WorkPhaseTimer : MonoBehaviour
 
 
     }
+
+
+
 
 
 

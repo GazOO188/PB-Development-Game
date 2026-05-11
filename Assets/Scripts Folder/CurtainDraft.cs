@@ -3,7 +3,7 @@ using UnityEngine;
 public class CurtainDraft : MonoBehaviour
 {
     Cloth cloth;
-    bool active;
+    public bool active;
     void Start()
     {
         cloth = GetComponent<Cloth>();

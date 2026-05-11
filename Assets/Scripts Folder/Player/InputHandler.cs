@@ -25,6 +25,10 @@ public class InputHandler : MonoBehaviour
     public EnvelopePhase Ep;
 
 
+    //CURTAIN DRAFT//
+    [SerializeField] public CurtainDraft CD;
+
+
      
     //WEATHERSTRIP//
      public TrackWS TWS;
@@ -96,11 +100,16 @@ public class InputHandler : MonoBehaviour
 
     public bool canPause = false;
 
+    public bool TalkingWithBossonPhone = false;
+
 
     public bool canRestartScene = false;
 
 
     public bool MetWithResidentOneInEnvelopeScene = false;
+
+
+  
 
     public bool LastTaskForEnvelope = false;
 
@@ -204,6 +213,8 @@ public class InputHandler : MonoBehaviour
                     displayDialouge(Envelope1);
                     canMove = false;
                     MetWithResidentOneInEnvelopeScene = true;
+
+                    CD.active = true;
                 
                 }
 
@@ -215,6 +226,7 @@ public class InputHandler : MonoBehaviour
                     displayDialouge(Envelope2);
                     canMove = false;
                     MetWithResidentOneInEnvelopeScene = true;
+                    Ep.DisplayEnvelopeIssues2 = true;
                 
                 }
             
@@ -317,10 +329,12 @@ public class InputHandler : MonoBehaviour
 
         }
 
+      
+
        
         //FOR OPENING MENU//
 
-        if (_OpenMenu.WasPressedThisFrame() && !canPause)
+        if (_OpenMenu.WasPressedThisFrame() && canPause && !TalkingWithBossonPhone)
         {
             
 
@@ -357,6 +371,11 @@ public class InputHandler : MonoBehaviour
             displayDialouge2(TutorialDialogue);
 
             Answeredcall = true;
+
+
+            TalkingWithBossonPhone = true;
+
+            
 
 
         }
@@ -514,11 +533,14 @@ public class InputHandler : MonoBehaviour
 
         canMove = true;
 
-        canPause = true;
-
         canRestartScene = true;
         
 
+        TalkingWithBossonPhone = false;
+
+
+        canPause = true;
+        
        
        
         if (OA.TimerCheck && !isTalking)
@@ -549,6 +571,9 @@ public class InputHandler : MonoBehaviour
         Ep.MarkFinalTask();
 
         }
+
+        //PLAYER CAN USE INVENTORY//
+        player.canSummonInventory = true;
 
        
 

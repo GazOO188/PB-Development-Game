@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Bool")]
 
-    [SerializeField] public bool CanSeeBoss = false;
+    [SerializeField] public bool CanSeeBoss = false, canSummonInventory = true;
     [Space]
 
     [Header("Inventory")]
@@ -75,8 +75,9 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.GameOver) return;
 
-        if (Input.GetKeyDown(KeyCode.I) && !toolInUse)
+        if (Input.GetKeyDown(KeyCode.I) && !toolInUse && canSummonInventory)
         {
+         
             if (!playerControl)
             {
                 GameObject[] tools = GameObject.FindGameObjectsWithTag("Tool UI");
@@ -85,8 +86,12 @@ public class PlayerController : MonoBehaviour
                     tool.GetComponent<Item>().CloseUI();
                 }
             }
+
+           
             InventoryScreen();
         }
+
+        
 
         if (!playerControl) return;
         // Rotate player with camera
@@ -237,9 +242,13 @@ public class PlayerController : MonoBehaviour
     public void InventoryScreen()
     {
         playerControl = !playerControl;
+
         inventory.SetActive(!playerControl);
+        
         Cursor.visible = !playerControl;
+       
         if (playerControl) Cursor.lockState = CursorLockMode.Locked;
+        
         else Cursor.lockState = CursorLockMode.None;
     }
 
