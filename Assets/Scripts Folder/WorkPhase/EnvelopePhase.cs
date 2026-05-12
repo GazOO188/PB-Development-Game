@@ -141,7 +141,7 @@ public class EnvelopePhase : MonoBehaviour
             
             DisplayEnvelopeIssues2 = false;
         
-            StartCoroutine(ShowTheNextTaskInList(Task2, CheckMarkForTask1, TaskOneText, TaskTwoText, "Investigate the door", Task2Anim, "ShowTask2"));
+            StartCoroutine(ShowTheNextTaskInList(Task2, CheckMarkForTask1, TaskOneText, TaskTwoText, "Investigate the door", Task2Anim, "ShowTask2", "Investigate the Window"));
 
         }
 
@@ -157,6 +157,8 @@ public class EnvelopePhase : MonoBehaviour
          StartCoroutine(MarkObjectiveAsComplete(CheckMarkForTask1, ExclamationPoint, CheckAnim, TaskOneText, WPT.CanRunTimer, "Investigate the Window", "MarkTask"));
         
          TaskComp++;
+
+         GameManager.Instance.CurtainDraft = true;
         
          EnvelopeTask1Completed = true;
          
@@ -320,7 +322,7 @@ public class EnvelopePhase : MonoBehaviour
     
     
     //FUNCTION FOR SHOWING NEXT TASK IN THE LIST//
-   public IEnumerator ShowTheNextTaskInList(GameObject NextTask, GameObject checkmark, TextMeshProUGUI PreviousText, TextMeshProUGUI NewText, string NextObjectiveText, Animator NextTaskAnim, string AnimationClip)
+   public IEnumerator ShowTheNextTaskInList(GameObject NextTask, GameObject checkmark, TextMeshProUGUI PreviousText, TextMeshProUGUI NewText, string NextObjectiveText, Animator NextTaskAnim, string AnimationClip, string TaskDescription)
   {
     yield return new WaitForSeconds(0f);
 
@@ -329,19 +331,22 @@ public class EnvelopePhase : MonoBehaviour
     NextTaskAnim.enabled = true;
     NextTaskAnim.Play(AnimationClip);
 
-    // CROSS OUT PREVIOUS TASK
-    KeyAnalyzer kaPrev = PreviousText.GetComponent<KeyAnalyzer>();
 
-    kaPrev.CanOverWrite = true;
+    PreviousText.GetComponent<KeyAnalyzer>().Word = TaskDescription;
+       
+    PreviousText.GetComponent<KeyAnalyzer>().WordConversion();
 
-    PreviousText.text = "<s>" + PreviousText.text + "</s>";
+    //PreviousText.text = "<s>" + TaskDescription + "</s>";
+
+    PreviousText.GetComponent<KeyAnalyzer>().CanOverWrite = true;
+
 
     checkmark.SetActive(true);
 
     // SET NEW TASK TEXT
     KeyAnalyzer kaNew = NewText.GetComponent<KeyAnalyzer>();
 
-    kaNew.CanOverWrite = false; 
+   // kaNew.CanOverWrite = false; 
 
     kaNew.Word = NextObjectiveText;
     kaNew.WordConversion();
@@ -358,8 +363,9 @@ public void MarkFinalTask()
  {
         
 
-  StartCoroutine(ShowTheNextTaskInList(Task3, CheckMarkForTask2, TaskTwoText, TaskThreeText, "Seal the crack", FinalTaskAnim, "FinalTask"));
+  StartCoroutine(ShowTheNextTaskInList(Task3, CheckMarkForTask2, TaskTwoText, TaskThreeText, "Seal the crack", FinalTaskAnim, "FinalTask", "Investigate the door"));
 
+  
 
 
 }

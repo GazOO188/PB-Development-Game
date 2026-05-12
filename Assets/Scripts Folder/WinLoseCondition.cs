@@ -20,6 +20,7 @@ public class WinLoseCondition : MonoBehaviour
     [SerializeField] GameObject SpeakerTab;
     [SerializeField] GameObject FadeOut;
     [SerializeField] GameObject BossText;
+    [SerializeField] GameObject MinutesLaterText;
     
 
     [SerializeField] public PlayableDirector EnvelopeDirector;
@@ -38,6 +39,20 @@ public class WinLoseCondition : MonoBehaviour
 
 
 
+    void Awake()
+    {
+        
+
+     if (GameManager.Instance != null && GameManager.Instance.FinalTaskCompleted && GameManager.Instance.inEnvelopeScene)
+    {
+       
+          StartCoroutine(DisplayMinutesLaterText());
+
+    }
+
+
+
+    }
 
 
     void Start()
@@ -259,5 +274,25 @@ public class WinLoseCondition : MonoBehaviour
         BossTextAnim.enabled = true;
         BossTextAnim.Play("BossText");
         StartCoroutine(DisplayEndCredits());
+    }
+
+
+
+
+    private IEnumerator DisplayMinutesLaterText()
+    {
+        
+        yield return new WaitForSeconds(1.3f);
+
+        MinutesLaterText.SetActive(true);
+
+
+        yield return new WaitForSeconds(4f);
+
+
+        MinutesLaterText.SetActive(false);
+
+
+
     }
 }
