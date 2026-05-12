@@ -20,7 +20,7 @@ public class OutletTester : MonoBehaviour
         PlayerController.Instance.toolInUse = true;
 
         tester.transform.position = currentOutlet.transform.GetChild(0).transform.position;
-        Quaternion q = currentOutlet.transform.GetChild(0).transform.rotation;
+        Quaternion q = Quaternion.Euler(270f, 0f, 0f);//currentOutlet.transform.GetChild(0).transform.rotation;
         tester.transform.rotation = q;
 
         yield return new WaitForSeconds(2);

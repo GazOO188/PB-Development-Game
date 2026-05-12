@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Outlet : MonoBehaviour
 {
     [SerializeField] WorkPhaseTimer timer;
-    public List<GameObject> outlets = new List<GameObject>();
+    public GameObject brokenOutlet, workingOutlet;
     int index = 0;
     public bool active = true;
     public bool canBeTested = false;
@@ -14,9 +14,6 @@ public class Outlet : MonoBehaviour
     Outline outline;
     void Start()
     {
-        for (int i = 0; i < outlets.Count; i++)
-            outlets[i].GetComponent<Renderer>().material.color = Color.gray;
-
         outline = GetComponentInChildren<Outline>();
         outline.enabled = false;
     }
@@ -27,22 +24,9 @@ public class Outlet : MonoBehaviour
 
         UpdateOutline();
 
-        active = PlayerInventory.Instance.currentItem != null &&
-                 PlayerInventory.Instance.currentItem.itemName == "Outlet";
+        // active = PlayerInventory.Instance.currentItem != null &&
+        //          PlayerInventory.Instance.currentItem.itemName == "Outlet";
 
-        if (!active)
-        {
-            for (int i = 0; i < outlets.Count; i++)
-            {
-                if (outlets[i].GetComponent<Renderer>().material.color != Color.white)
-                    outlets[i].GetComponent<Renderer>().material.color = Color.gray;
-            }
-            return;
-        }
-        else
-        {
-            //if (complete) Debug.Log("YOU DID IT");
-        }
     }
 
     void UpdateOutline()
@@ -58,7 +42,7 @@ public class Outlet : MonoBehaviour
             if (PlayerInventory.Instance.currentItem.itemName == "Outlet Tester")
             {
                 if (!outline.enabled) outline.enabled = true;
-                if (outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
+                //if (outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
             }
             else
             {
@@ -70,7 +54,7 @@ public class Outlet : MonoBehaviour
             if (PlayerInventory.Instance.currentItem.itemName == "Outlet")
             {
                 if (!outline.enabled) outline.enabled = true;
-                if (outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
+                //if (outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
             }
             else
             {
@@ -84,21 +68,15 @@ public class Outlet : MonoBehaviour
     {
         if (!timer.TaskOneDisplayed || !outletTested) return;
 
-        foreach (GameObject outlet in outlets)
+        if (currentOutlet == brokenOutlet)
         {
-            if (currentOutlet == outlet)
-            {
-                outlet.GetComponent<Renderer>().material.color = Color.white;
-                outlet.name = "Working Outlet";
-                index++;
-            }
-        }
-
-        if (index == outlets.Count)
-        {
+            brokenOutlet.SetActive(false);
+            workingOutlet.SetActive(true);
+            //outlet.GetComponent<Renderer>().material.color = Color.white;
+            //outlet.name = "Working Outlet";
             PlayerInventory.Instance.currentItem = null;
             complete = true;
-            //Debug.Log("Did");
+            //index++;
         }
     }
 }
