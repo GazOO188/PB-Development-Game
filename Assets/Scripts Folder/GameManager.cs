@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int PanelsPlaced = 0;
     public bool CurtainDraft = false;
 
+
     void Awake()
     {
         if (Instance == null)
