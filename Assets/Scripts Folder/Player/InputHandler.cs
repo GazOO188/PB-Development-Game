@@ -113,6 +113,8 @@ public class InputHandler : MonoBehaviour
 
     public bool LastTaskForEnvelope = false;
 
+    public bool Task2Marked = false;
+
 
 
 
@@ -213,6 +215,8 @@ public class InputHandler : MonoBehaviour
                     displayDialouge(Envelope1);
                     canMove = false;
                     MetWithResidentOneInEnvelopeScene = true;
+
+                    GameManager.Instance.CurtainDraft = true;
 
                     CD.active = true;
                 
@@ -565,10 +569,13 @@ public class InputHandler : MonoBehaviour
 
         //FOR DISPLAYING THE FINAL TASK IN THE ENVELOPE SCENE -> CAULK GUN TASK//
         
-        if(Ep.TaskComp >= 3 && !isTalking)
+        if(Ep.TaskComp >= 3 && !isTalking && !Task2Marked)
         {
             
         Ep.MarkFinalTask();
+
+        Task2Marked = true;
+
 
         }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class EnvelopeTools : MonoBehaviour
 {
@@ -14,6 +15,14 @@ public class EnvelopeTools : MonoBehaviour
     public InputHandler IH;
 
     public SprayFoam SF;
+
+
+
+
+    //GET ALL THE CRACKS//
+
+
+    public List<GameObject> Cracks = new List<GameObject>();
 
 
 
@@ -110,6 +119,18 @@ public class EnvelopeTools : MonoBehaviour
     {
         //RESET WHEN NOT PRESSING//
         CG.hasLastPoint = false;
+
+
+        foreach(GameObject Collider in Cracks)
+        {
+                
+            Collider.GetComponent<CaulkGunDetection>().isTouched = false;
+
+
+
+         }
+
+
     }
 }
 

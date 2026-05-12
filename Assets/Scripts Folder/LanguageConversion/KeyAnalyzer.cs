@@ -35,7 +35,7 @@ public class KeyAnalyzer : MonoBehaviour
      
      if (!CanOverWrite && !string.IsNullOrEmpty(Word))
      {
-        WordConversion();
+       // WordConversion();
      }
     
     
