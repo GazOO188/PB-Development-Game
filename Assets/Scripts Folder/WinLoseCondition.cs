@@ -89,8 +89,12 @@ public class WinLoseCondition : MonoBehaviour
             //PLAYER RECIEVES TEXT FROM BOSS THEN PLAYS CREDITS//
             StartCoroutine(DisplayBossText());
 
+            //MAKE THE PLAYER CAN'T MOVE//
+            IH.canMove = false;
+
             GameCompleted = true;
 
+        
 
 
         }
