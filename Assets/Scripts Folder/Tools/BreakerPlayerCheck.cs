@@ -33,7 +33,7 @@ public class BreakerPlayerCheck : MonoBehaviour
 
     void Start()
     {
-        //breakerCollider.SetActive(false);
+        breakerCollider.SetActive(false);
     }
 
     void Update()
@@ -58,6 +58,7 @@ public class BreakerPlayerCheck : MonoBehaviour
 
     IEnumerator MoveToPosition(Vector3 targetPos, Quaternion targetRot)
     {
+        PlayerController.Instance.toolInUse = true;
         PlayerController.Instance.playerControl = false;
         isMoving = true;
 
@@ -94,10 +95,11 @@ public class BreakerPlayerCheck : MonoBehaviour
     void ReturnControls()
     {
         usingBreaker = false;
+        PlayerController.Instance.toolInUse = false;
         PlayerController.Instance.playerControl = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        //breakerCollider.SetActive(false);
+        breakerCollider.SetActive(false);
         panel.SetActive(false);
         InteractText.enabled = true;
     }

@@ -117,12 +117,14 @@ public class CircuitSwitch : MonoBehaviour
                     if (playerBreakers.transform.GetChild(0).gameObject.activeInHierarchy && isDamaged
                         && GameManager.Instance.PanelsPlaced == 1 && timer.DisplayFinalTask)
                     {
-                        if (outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
+                        if (!isOn && outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
+                        else if (isOn && outline.OutlineColor != Color.yellow) outline.OutlineColor = Color.yellow;
                     }
                     else if (playerBreakers.transform.GetChild(1).gameObject.activeInHierarchy && needsDoublePanel
                              && GameManager.Instance.PanelsPlaced == 0)
                     {
-                        if (outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
+                        if (!isOn && outline.OutlineColor != Color.green) outline.OutlineColor = Color.green;
+                        else if (isOn && outline.OutlineColor != Color.yellow) outline.OutlineColor = Color.yellow;
                     }
                     else
                     {

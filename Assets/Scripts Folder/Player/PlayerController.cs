@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
     [Space]
     public bool toolInUse;
 
-
     //FOR THE RESIDENTS//
 
     [SerializeField] public bool ResidentOneSeen = false, ResidentTwoSeen = false, ResidentThreeSeen = false;
