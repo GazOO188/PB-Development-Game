@@ -8,7 +8,7 @@ public class BreakerPlayerCheck : MonoBehaviour
 {
     [SerializeField] GameObject circuitManager;
     bool playerDetected;
-    [SerializeField] Transform camTarget;
+    [SerializeField] Transform camTarget, playerCamTarget;
     bool isMoving, usingBreaker;
     [SerializeField] GameObject panel;
     [SerializeField] GameObject breakerCollider;
@@ -40,9 +40,9 @@ public class BreakerPlayerCheck : MonoBehaviour
     {
         if (usingBreaker)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !isMoving)
             {
-                ReturnControls();
+                StartCoroutine(MoveToPlayer(playerCamTarget.position, playerCamTarget.rotation));
                 return;
             }
         }
@@ -54,6 +54,31 @@ public class BreakerPlayerCheck : MonoBehaviour
                 StartCoroutine(MoveToPosition(camTarget.position, camTarget.rotation));
             }
         }
+    }
+
+    IEnumerator MoveToPlayer(Vector3 targetPos, Quaternion targetRot)
+    {
+        isMoving = true;
+        breakerCollider.SetActive(false);
+        panel.SetActive(false);
+
+        Vector3 start = Camera.main.transform.position;
+        Quaternion rot = Camera.main.transform.rotation;
+
+        float elapsed = 0f;
+        float duration = 0.3f;
+
+        while (elapsed < duration)
+        {
+            float time = elapsed / duration;
+            Camera.main.transform.position = Vector3.Lerp(start, targetPos, time);
+            Camera.main.transform.rotation = Quaternion.Lerp(rot, targetRot, time);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        Camera.main.transform.position = targetPos;
+        ReturnControls();
     }
 
     IEnumerator MoveToPosition(Vector3 targetPos, Quaternion targetRot)
@@ -92,6 +117,8 @@ public class BreakerPlayerCheck : MonoBehaviour
         usingBreaker = true;
     }
 
+
+
     void ReturnControls()
     {
         usingBreaker = false;
@@ -99,9 +126,8 @@ public class BreakerPlayerCheck : MonoBehaviour
         PlayerController.Instance.playerControl = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        breakerCollider.SetActive(false);
-        panel.SetActive(false);
         InteractText.enabled = true;
+        isMoving = false;
     }
 
 
