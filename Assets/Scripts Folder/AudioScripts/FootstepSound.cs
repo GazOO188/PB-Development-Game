@@ -7,7 +7,7 @@ public class FootstepSound : MonoBehaviour
     [SerializeField] private float crouchInterval = 0.8f; // slower when crouching
     [SerializeField] private LayerMask groundLayer;
 
-    private float stepTimer = 0f;
+    private float stepTimer = 0.5f;
     private CharacterController controller;
     private PlayerController playerController;
 
@@ -37,7 +37,7 @@ public class FootstepSound : MonoBehaviour
         }
         else
         {
-            stepTimer = 0f;
+            stepTimer = 0.5f;
         }
     }
 

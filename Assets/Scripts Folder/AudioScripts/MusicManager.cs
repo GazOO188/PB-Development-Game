@@ -20,7 +20,7 @@ public class MusicManager : MonoBehaviour
     void Start()
     {
         // Start with normal music at full volume, tense at zero
-        normalSource.volume = 1f;
+        normalSource.volume = 0.3f;
         tenseSource.volume = 0f;
         normalSource.Play();
         tenseSource.Play(); // both play simultaneously, we just fade between them

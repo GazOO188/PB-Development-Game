@@ -76,7 +76,10 @@ public class AudioManager : MonoBehaviour
         source.maxDistance = maxDistance;
         source.volume = volume;
         source.clip = clip;
-        source.Play();
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
     }
 
     // --- Helpers ---
