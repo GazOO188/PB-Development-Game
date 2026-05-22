@@ -26,7 +26,7 @@ MonoBehaviour:
   - key: switch_click
     variants:
     - {fileID: 8300000, guid: 36af20c1fe9278e438eed58753fdbdeb, type: 3}
-    volume: 1
+    volume: 0.5
     pitchVariance: 1.026
   - key: footstep_default
     variants:
@@ -42,10 +42,10 @@ MonoBehaviour:
   - key: answer_click
     variants:
     - {fileID: 8300000, guid: ef8dd35dd862f0f458a7c1e1ebc5835a, type: 3}
-    volume: 1
+    volume: 0.5
     pitchVariance: 1.026
   - key: deny_click
     variants:
     - {fileID: 8300000, guid: 8388b7d63545ade45b4cf989bcc71c20, type: 3}
-    volume: 1
+    volume: 0.5
     pitchVariance: 1.026

@@ -24752,7 +24752,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  stepTimer: 0
 --- !u!1 &841030780
 GameObject:
   m_ObjectHideFlags: 0
@@ -59958,6 +59957,7 @@ GameObject:
   - component: {fileID: 1997987580}
   - component: {fileID: 1997987579}
   - component: {fileID: 1997987578}
+  - component: {fileID: 1997987585}
   m_Layer: 13
   m_Name: Bedroom Broken
   m_TagString: Untagged
@@ -60148,6 +60148,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 140, z: 90}
+--- !u!114 &1997987585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997987577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff0318eb6e5bcb4f95773ccfb1fd525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldClickSound
+  sounds: {fileID: 11400000, guid: 4f78483c16e4f9b469aac567f6a6a1cc, type: 2}
+  soundKey: switch_click
 --- !u!1001 &2002899265
 PrefabInstance:
   m_ObjectHideFlags: 0
