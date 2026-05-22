@@ -37,7 +37,7 @@ public class CircuitSwitch : MonoBehaviour
 
         if (isHovering && Input.GetMouseButtonDown(0) && !isMoving)
         {
-            //clickSound.PlaySound(); // Change 2
+            clickSound.PlaySound(); // Change 2
             StartCoroutine(MoveSwitch());
         }
 
